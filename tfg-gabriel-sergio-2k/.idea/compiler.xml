@@ -14,5 +14,9 @@
         <module name="tfg-model" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="entity" target="11" />
+      <module name="src" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

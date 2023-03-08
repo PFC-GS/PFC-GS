@@ -12,6 +12,8 @@
         <module>tfg-rest</module>
         <module>tfg-model</module>
         <module>tfg-front</module>
+
+
     </modules>
 
     <properties>
