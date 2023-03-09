@@ -9,8 +9,5 @@
         <module name="proyecto-fg-gabriel-sergio" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="proyecto-fg-gabriel-sergio" target="16" />
-    </bytecodeTargetLevel>
   </component>
 </project>
