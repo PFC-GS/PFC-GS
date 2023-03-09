@@ -9,9 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @AutoConfiguration
 @ComponentScan
-public class TestMain {
+public class MainRest {
 
     public static void main(String[] args) {
-        SpringApplication.run(TestMain.class, args);
+        SpringApplication.run(MainRest.class, args);
     }
 }
