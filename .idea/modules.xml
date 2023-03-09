@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PFC-GS.iml" filepath="$PROJECT_DIR$/.idea/PFC-GS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/proyecto-fg-gabriel-sergio/proyecto-fg-gabriel-sergio.iml" filepath="$PROJECT_DIR$/proyecto-fg-gabriel-sergio/proyecto-fg-gabriel-sergio.iml" />
-    </modules>
-  </component>
-</project>
