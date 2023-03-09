@@ -11,5 +11,5 @@ public class PreguntaTest {
 
     private Test test;
     private Pregunta pregunta;
-    // TODO: 09/03/2023 no se si esta entidad tendria que crearla o hacer como en la practica 7 
+    // TODO: 09/03/2023 no se si esta entidad tendria que crearla o hacer como en la practica 7
 }
