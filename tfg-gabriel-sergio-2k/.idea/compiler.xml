@@ -2,15 +2,21 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
+      <profile name="Annotation profile for tfg-gabriel-sergio-2k" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="proyecto-fg-gabriel-sergio" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
+        </processorPath>
+        <module name="tfg-front" />
+        <module name="tfg-rest" />
+        <module name="tfg-model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="proyecto-fg-gabriel-sergio" target="16" />
+      <module name="entity" target="11" />
+      <module name="src" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
