@@ -59,7 +59,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
-    @DeleteMapping("/students/{id}")
+    @DeleteMapping("/usuarios/{id}")
     public ResponseEntity<Void> deleteUsuario(
             @PathVariable("id") Integer usuarioId
     ) {
