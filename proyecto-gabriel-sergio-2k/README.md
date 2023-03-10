@@ -28,4 +28,9 @@ de jaxb, además de cambiar de nombre al service para que sea más genérico de 
 Para que el rest arranque hay que tener el docker levantado y en dbeaver 
 crear la base de datos "generator" y establecer la conexión. El mainRest arranca :D
 
+He modificado algunas dependencias de pom para que me funcionara el programa y he agregado el modulo model a rest para
+que se pueda usar en el DAO
 
+
+Creada logica de negocio en service
+Creados metodos toDto y toEntity en UsuarioDto pero con return null para que no de error

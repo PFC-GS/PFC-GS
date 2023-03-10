@@ -1,21 +1,28 @@
 package org.proyecto.controllers;
 
+import org.proyecto.controllers.dto.UsuarioDto;
 import org.proyecto.service.GeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class UsuarioController {
     @Autowired
     private GeneratorService service;
 
-    /*
+
     @GetMapping("/usuarios")
     public ResponseEntity<List<UsuarioDto>> getAllUsuarios() {
         return ResponseEntity.ok(
-                usuarioService.getAllUsuarios() // TODO: 09/03/2023 añadir parámetros de búsqueda
+                service.getAllUsuarios()
                         .stream()
-                        .map(UsuarioDto::toDto) // TODO: 09/03/2023 crearDTO
+                        .map(UsuarioDto::toDto)
                         .collect(Collectors.toList()));
     }
 
@@ -23,17 +30,17 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDto> getUsuarioById(
             @PathVariable("id") Integer usuarioId
     ) {
-        if (usuarioService.getUsuarioById(usuarioId) == null) { // TODO: 09/03/2023 crear método getUsuarioById
+        if (service.getUsuarioById(usuarioId) == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(UsuarioDto.toDto(usuarioService.getUsuarioById(usuarioId)));
+        return ResponseEntity.ok(UsuarioDto.toDto(service.getUsuarioById(usuarioId)));
     }
 
     @PostMapping("/usuarios")
     public ResponseEntity<UsuarioDto> createUsuario(
            @RequestBody UsuarioDto usuario
     ) {
-        if (usuarioService.addUsuario(UsuarioDto.toEntity(usuario))) { // TODO: 09/03/2023 crear método addUsuario
+        if (service.addUsuario(UsuarioDto.toEntity(usuario))) {
             return ResponseEntity.ok().build();
 
         } else {
@@ -45,7 +52,7 @@ public class UsuarioController {
             @PathVariable("id") Integer usuarioId,
             @Valid @RequestBody UsuarioDto usuario
     ) {
-        if (usuarioService.updateUsuario(usuarioId, UsuarioDto.toEntity(usuario))) { // TODO: 09/03/2023 crear método updateUsuario
+        if (service.updateUsuario(usuarioId, UsuarioDto.toEntity(usuario))) {
             return ResponseEntity.ok().build();
 
         } else {
@@ -56,7 +63,7 @@ public class UsuarioController {
     public ResponseEntity<Void> deleteUsuario(
             @PathVariable("id") Integer usuarioId
     ) {
-        if (usuarioService.deleteUsuario(usuarioId)) { // TODO: 09/03/2023 crear método deleteUsuario
+        if (service.deleteUsuario(usuarioId)) {
             return ResponseEntity.ok().build();
 
         } else {
@@ -64,7 +71,7 @@ public class UsuarioController {
         }
     }
 
-     */
+
 
 
 }
