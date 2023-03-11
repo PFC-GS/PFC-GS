@@ -17,7 +17,7 @@ public class UsuarioController {
     private GeneratorService service;
 
 
-    @GetMapping("/usuarios")
+    @GetMapping(path = "/usuarios")
     public ResponseEntity<List<UsuarioDto>> getAllUsuarios() {
         return ResponseEntity.ok(
                 service.getAllUsuarios()
@@ -26,7 +26,7 @@ public class UsuarioController {
                         .collect(Collectors.toList()));
     }
 
-    @GetMapping("/usuarios/{id}")
+    @GetMapping(path = "/usuarios/{id}")
     public ResponseEntity<UsuarioDto> getUsuarioById(
             @PathVariable("id") Integer usuarioId
     ) {
@@ -36,7 +36,7 @@ public class UsuarioController {
         return ResponseEntity.ok(UsuarioDto.toDto(service.getUsuarioById(usuarioId)));
     }
 
-    @PostMapping("/usuarios")
+    @PostMapping(path = "/usuarios")
     public ResponseEntity<UsuarioDto> createUsuario(
            @RequestBody UsuarioDto usuario
     ) {
@@ -47,7 +47,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
-    @PutMapping("/usuarios/{id}")
+    @PutMapping(path = "/usuarios/{id}")
     public ResponseEntity<Void> updateUsuario(
             @PathVariable("id") Integer usuarioId,
             @Valid @RequestBody UsuarioDto usuario
@@ -59,7 +59,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
-    @DeleteMapping("/usuarios/{id}")
+    @DeleteMapping(path = "/usuarios/{id}")
     public ResponseEntity<Void> deleteUsuario(
             @PathVariable("id") Integer usuarioId
     ) {

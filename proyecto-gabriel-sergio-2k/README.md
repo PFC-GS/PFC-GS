@@ -32,5 +32,7 @@ He modificado algunas dependencias de pom para que me funcionara el programa y h
 que se pueda usar en el DAO
 
 
-Creada logica de negocio en service
+Creada logica de negocio en service de usuario
 Creados metodos toDto y toEntity en UsuarioDto pero con return null para que no de error
+
+Creados los controllers y la logica de negocio de test y de pregunta
