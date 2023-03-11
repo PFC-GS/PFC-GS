@@ -36,3 +36,8 @@ Creada logica de negocio en service de usuario
 Creados metodos toDto y toEntity en UsuarioDto pero con return null para que no de error
 
 Creados los controllers y la logica de negocio de test y de pregunta
+
+Deberiamos de replantearnos como hacer el tema de la dificultad, porque es mejor que en vez de filtrar por dificultad
+(ya que es una movida saber que preguntas son mas dificiles que otras) ademas que no le veo mucho sentido, que 
+tenga esa funcionalidad..
+el usuario pueda elegir entre preguntas especificas de 1 tema o combinadas de varios temas. 

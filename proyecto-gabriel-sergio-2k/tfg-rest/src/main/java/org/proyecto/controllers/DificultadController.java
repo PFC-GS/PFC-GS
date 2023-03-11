@@ -15,7 +15,7 @@ public class DificultadController {
 
 
     @GetMapping(path = "/dificultades")
-    public ResponseEntity<List<String>> listAllDificultades() { // TODO: 11/03/2023 deberia de ser un DTO?
+    public ResponseEntity<List<String>> listAllDificultades() { // TODO: 11/03/2023 deberia de ser un DTO?  especifica o combinada
         return ResponseEntity.ok(service.getAllDificultad());
     }
 
