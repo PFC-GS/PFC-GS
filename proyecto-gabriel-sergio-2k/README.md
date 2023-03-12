@@ -41,3 +41,5 @@ Deberiamos de replantearnos como hacer el tema de la dificultad, porque es mejor
 (ya que es una movida saber que preguntas son mas dificiles que otras) ademas que no le veo mucho sentido, que 
 tenga esa funcionalidad..
 el usuario pueda elegir entre preguntas especificas de 1 tema o combinadas de varios temas. 
+
+Agregado controller y logica de Categoria

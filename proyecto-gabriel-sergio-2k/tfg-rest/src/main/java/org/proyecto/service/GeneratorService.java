@@ -1,8 +1,10 @@
 package org.proyecto.service;
 
+import org.proyecto.Entity.Categoria;
 import org.proyecto.Entity.Pregunta;
 import org.proyecto.Entity.Test;
 import org.proyecto.Entity.Usuario;
+import org.proyecto.dao.CategoriaDao;
 import org.proyecto.dao.PreguntaDAO;
 import org.proyecto.dao.TestDao;
 import org.proyecto.dao.UsuarioDAO;
@@ -20,6 +22,8 @@ public class GeneratorService {
     private UsuarioDAO usuarioDAO;
     @Autowired
     private TestDao testDao;
+    @Autowired
+    private CategoriaDao categoriaDao;
 
     /////////////////////////////////////////////////////////////
 //      CRUD USUARIO
@@ -145,7 +149,45 @@ public class GeneratorService {
             return Arrays.asList("Fácil", "Medio", "Difícil");
         }
 
-        /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+//     CRUD CATEGORIA
+
+    public List<Categoria> getAllCategorias() {
+        return categoriaDao.findAll();
+    }
+
+    public Categoria getCategoriaById(Integer categoriaId) {
+        return categoriaDao.findById(categoriaId).orElse(null);
+    }
+
+    public boolean addCategoria(Categoria categoria) {
+        if (categoriaDao.existsById(categoria.getId())) {
+            return false;
+        } else {
+            categoriaDao.save(categoria);
+            return true;
+        }
+    }
+
+    public boolean updateCategoria(Categoria categoria) {
+        if (categoriaDao.existsById(categoria.getId())) {
+            categoriaDao.save(categoria);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean deleteCategoria(Integer categoriaId) {
+        if (categoriaDao.existsById(categoriaId)) {
+            categoriaDao.deleteById(categoriaId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
 
 }

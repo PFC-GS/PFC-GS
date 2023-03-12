@@ -1,9 +1,10 @@
 package org.proyecto.dao;
 
-import org.proyecto.Entity.Test;
+import org.proyecto.Entity.Categoria;
+import org.proyecto.Entity.Pregunta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TestDao extends JpaRepository<Test,Integer> {
+public interface CategoriaDao extends JpaRepository<Categoria,Integer> {
 }
