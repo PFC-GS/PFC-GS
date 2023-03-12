@@ -11,6 +11,7 @@ import org.proyecto.dao.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -107,8 +108,16 @@ public class GeneratorService {
     /////////////////////////////////////////////////////////////
 //      CRUD PREGUNTA
 
-    public List<Pregunta> getAllPreguntas() {
-        return preguntaDAO.findAll();
+    public List<Pregunta> getAllPreguntas(Integer dificultad, Integer categoria) {
+        if (dificultad != null && categoria == null){
+            return preguntaDAO.findByDificultad_Id(dificultad);
+        }else if (dificultad == null && categoria != null){
+            return preguntaDAO.findByCategoria_Id(categoria);
+        }else if (dificultad != null && categoria != null){
+            return preguntaDAO.findByDificultad_IdAndCategoria_Id(dificultad, categoria);
+        }else {
+            return preguntaDAO.findAll();
+        }
     }
 
     public Pregunta getPreguntaById(Integer preguntaId) {

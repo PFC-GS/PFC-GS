@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,12 @@ public class PreguntaController {
     private GeneratorService service;
 
     @GetMapping(path = "/preguntas")
-    public ResponseEntity<List<PreguntaDto>> getAllPreguntas() {
-        return ResponseEntity.ok(service.getAllPreguntas()
+    public ResponseEntity<List<PreguntaDto>> getAllPreguntas(
+            @RequestParam(value = "dificultad", required = false) Integer dificultad,
+            @RequestParam(value = "categoria", required = false) Integer categoria
+
+    ) {
+        return ResponseEntity.ok(service.getAllPreguntas(dificultad,categoria)
                 .stream()
                 .map(PreguntaDto::toDto)
                 .collect(Collectors.toList()));
@@ -37,7 +42,7 @@ public class PreguntaController {
         }
     }
     @PostMapping(path = "/preguntas")
-    public ResponseEntity<Void> createPreguntas(
+    public ResponseEntity<Void> createPregunta(
             @Valid @RequestBody PreguntaDto pregunta
     ) {
         if (service.addPregunta(PreguntaDto.toEntity(pregunta))) {

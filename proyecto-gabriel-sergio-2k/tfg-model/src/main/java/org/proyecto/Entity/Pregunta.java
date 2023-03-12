@@ -25,8 +25,8 @@ public class Pregunta implements Serializable {
     @JoinColumn(name = "dificultad")
     private Dificultad dificultad;
 
-    @Column(name = "pregunta")
-    private String pregunta;
+    @Column(name = "enunciado")
+    private String enunciado;
     @Column(name = "respuestaA")
     private String respuestaA;
     @Column(name = "respuestaB")

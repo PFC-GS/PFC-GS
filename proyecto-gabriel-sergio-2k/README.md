@@ -43,3 +43,6 @@ tenga esa funcionalidad..
 el usuario pueda elegir entre preguntas especificas de 1 tema o combinadas de varios temas. 
 
 Agregado controller y logica de Categoria
+
+Agregados los dto, cambiado el campo "pregunta" en la entidad Pregunta por el campo "enunciado" además de 
+introducir requestParam en el método de obtener todas las preguntas para obtenerlas por dificultad y/o categoría.
