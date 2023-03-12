@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,7 @@ public class PreguntaController {
             @RequestParam(value = "categoria", required = false) Integer categoria
 
     ) {
-        return ResponseEntity.ok(service.getAllPreguntas(dificultad,categoria)
+        return ResponseEntity.ok(service.getAllPreguntas(dificultad, categoria)
                 .stream()
                 .map(PreguntaDto::toDto)
                 .collect(Collectors.toList()));
@@ -37,10 +36,11 @@ public class PreguntaController {
         Pregunta pregunta = service.getPreguntaById(preguntaId);
         if (pregunta != null) {
             return ResponseEntity.ok(PreguntaDto.toDto(pregunta));
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PostMapping(path = "/preguntas")
     public ResponseEntity<Void> createPregunta(
             @Valid @RequestBody PreguntaDto pregunta
@@ -51,6 +51,7 @@ public class PreguntaController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
+
     @PutMapping(path = "/preguntas/{id}")
     public ResponseEntity<Void> updatePregunta(
             @Valid @RequestBody PreguntaDto pregunta
@@ -61,6 +62,7 @@ public class PreguntaController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @DeleteMapping(path = "/preguntas/{id}")
     public ResponseEntity<Void> deletePregunta(
             @PathVariable("id") Integer preguntaId

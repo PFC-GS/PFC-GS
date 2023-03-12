@@ -1,18 +1,10 @@
 package org.proyecto.service;
 
-import org.proyecto.Entity.Categoria;
-import org.proyecto.Entity.Pregunta;
-import org.proyecto.Entity.Test;
-import org.proyecto.Entity.Usuario;
-import org.proyecto.dao.CategoriaDao;
-import org.proyecto.dao.PreguntaDAO;
-import org.proyecto.dao.TestDao;
-import org.proyecto.dao.UsuarioDAO;
+import org.proyecto.Entity.*;
+import org.proyecto.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -24,7 +16,9 @@ public class GeneratorService {
     @Autowired
     private TestDao testDao;
     @Autowired
-    private CategoriaDao categoriaDao;
+    private CategoriaDAO categoriaDAO;
+    @Autowired
+    private DificultadDAO dificultadDAO;
 
     /////////////////////////////////////////////////////////////
 //      CRUD USUARIO
@@ -154,33 +148,43 @@ public class GeneratorService {
     /////////////////////////////////////////////////////////////
 //      CRUD DIFICULTAD
 
-        public List<String> getAllDificultad() {
-            return Arrays.asList("Fácil", "Medio", "Difícil");
-        }
+    public List<Dificultad> getAllDificultad() {
+        return dificultadDAO.findAll();
+    }
+
+    public boolean addDificultad(Dificultad dificultad) {
+         if (dificultadDAO.existsById(dificultad.getId())){
+            return false;
+         }else {
+             dificultadDAO.save(dificultad);
+             return true;
+         }
+    }
+
 
     /////////////////////////////////////////////////////////////
 //     CRUD CATEGORIA
 
     public List<Categoria> getAllCategorias() {
-        return categoriaDao.findAll();
+        return categoriaDAO.findAll();
     }
 
     public Categoria getCategoriaById(Integer categoriaId) {
-        return categoriaDao.findById(categoriaId).orElse(null);
+        return categoriaDAO.findById(categoriaId).orElse(null);
     }
 
     public boolean addCategoria(Categoria categoria) {
-        if (categoriaDao.existsById(categoria.getId())) {
+        if (categoriaDAO.existsById(categoria.getId())) {
             return false;
         } else {
-            categoriaDao.save(categoria);
+            categoriaDAO.save(categoria);
             return true;
         }
     }
 
     public boolean updateCategoria(Categoria categoria) {
-        if (categoriaDao.existsById(categoria.getId())) {
-            categoriaDao.save(categoria);
+        if (categoriaDAO.existsById(categoria.getId())) {
+            categoriaDAO.save(categoria);
             return true;
         } else {
             return false;
@@ -188,14 +192,13 @@ public class GeneratorService {
     }
 
     public boolean deleteCategoria(Integer categoriaId) {
-        if (categoriaDao.existsById(categoriaId)) {
-            categoriaDao.deleteById(categoriaId);
+        if (categoriaDAO.existsById(categoriaId)) {
+            categoriaDAO.deleteById(categoriaId);
             return true;
         } else {
             return false;
         }
     }
-
 
 
 

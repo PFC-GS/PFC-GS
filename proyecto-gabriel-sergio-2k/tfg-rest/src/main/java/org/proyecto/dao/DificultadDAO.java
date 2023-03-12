@@ -1,10 +1,9 @@
 package org.proyecto.dao;
 
-import org.proyecto.Entity.Categoria;
-import org.proyecto.Entity.Pregunta;
+import org.proyecto.Entity.Dificultad;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoriaDao extends JpaRepository<Categoria,Integer> {
+public interface DificultadDAO extends JpaRepository<Dificultad,Integer> {
 }
