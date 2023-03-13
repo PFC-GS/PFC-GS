@@ -22,6 +22,9 @@ public class UsuarioDto {
     private String apellidos;
     @NotBlank
     private String email;
+    @NotBlank
+    private String password;
+
 
     public static Usuario toEntity(UsuarioDto dto) {
         return new Usuario(
@@ -29,6 +32,7 @@ public class UsuarioDto {
                 dto.getNombre(),
                 dto.getApellidos(),
                 dto.getEmail(),
+                dto.getPassword(),
                 null
         );
     }
@@ -39,7 +43,8 @@ public class UsuarioDto {
                 usuario.getId(),
                 usuario.getNombre(),
                 usuario.getApellidos(),
-                usuario.getEmail()
+                usuario.getEmail(),
+                usuario.getPassword()
         );
     }
 

@@ -23,6 +23,8 @@ public class Usuario implements Serializable {
     private String apellidos;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(mappedBy = "usuario")
     private List<Test> tests;

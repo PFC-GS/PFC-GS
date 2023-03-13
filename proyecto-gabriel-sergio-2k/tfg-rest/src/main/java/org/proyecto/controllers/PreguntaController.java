@@ -73,4 +73,22 @@ public class PreguntaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // obtener las preguntas de un test (por defecto serán 10 preguntas)
+    @GetMapping(path = "/preguntas/test/{categoriaId}")
+    public ResponseEntity<List<PreguntaDto>> getPreguntasForTest(
+            @PathVariable("categoriaId") Integer categoriaId,
+            @RequestParam(value = "numPreguntas",required = false) Integer numPreguntas
+    ){
+        if (service.getCategoriaById(categoriaId) == null){
+            return ResponseEntity.notFound().build();
+        }else {
+            return ResponseEntity.ok(
+                    service.getPreguntasForTest(categoriaId,numPreguntas)
+                            .stream()
+                            .map(PreguntaDto::toDto)
+                            .collect(Collectors.toList()));
+        }
+    }
+
 }

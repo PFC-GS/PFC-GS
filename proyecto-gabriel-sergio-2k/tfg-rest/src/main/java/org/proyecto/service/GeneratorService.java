@@ -5,7 +5,9 @@ import org.proyecto.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class GeneratorService {
@@ -200,7 +202,35 @@ public class GeneratorService {
         }
     }
 
+/////////////////////////////////////////////////////////
+    // Obtener un usuario mediante su email y pass
+    public Usuario getUsuarioByEmailAndPass(String email, String pass) {
+        if (usuarioDAO.findByEmailAndPassword(email, pass) != null) {
+            return usuarioDAO.findByEmailAndPassword(email, pass);
+        }else return null;
+    }
 
-
+    // Obtener una lista de preguntas de una categoría
+    public List<Pregunta> getPreguntasForTest(Integer categoriaId, Integer numPreguntas) {
+        List<Pregunta> preguntaList = new ArrayList<>();
+        if (numPreguntas == null){
+            numPreguntas = 10;
+        }
+        List<Pregunta> totalList = preguntaDAO.findByCategoria_Id(categoriaId);
+        if (totalList.size()<numPreguntas){   // Esta condición está para prevenir un bucle infinito si hubiera menos preguntas que las pedidas
+            numPreguntas = totalList.size();
+        }
+        Random random = new Random();
+        for (int i = 0; i < numPreguntas; i++) {
+            int aux = random.nextInt(totalList.size());
+            Pregunta pregunta = totalList.get(aux);
+            if (!preguntaList.contains(pregunta)){
+                preguntaList.add(pregunta);
+            }else {
+                i--;
+            }
+        }
+        return preguntaList;
+    }
 }
 
