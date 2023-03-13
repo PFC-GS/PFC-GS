@@ -46,3 +46,7 @@ Agregado controller y logica de Categoria
 
 Agregados los dto, cambiado el campo "pregunta" en la entidad Pregunta por el campo "enunciado" además de 
 introducir requestParam en el método de obtener todas las preguntas para obtenerlas por dificultad y/o categoría.
+
+He agregado el campo password a Usuario y hecho los cambios necesarios debido a ello, los endpoints de login y la obtención 
+de preguntas para realizar un test.
+
