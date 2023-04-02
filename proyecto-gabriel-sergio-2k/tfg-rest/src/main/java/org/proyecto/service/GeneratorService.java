@@ -205,7 +205,9 @@ public class GeneratorService {
 /////////////////////////////////////////////////////////
     // Obtener un usuario mediante su email y pass
     public Usuario getUsuarioByEmailAndPass(String email, String pass) {
-        if (usuarioDAO.findByEmailAndPassword(email, pass) != null) {
+        Usuario user = usuarioDAO.findByEmailAndPassword(email, pass);
+        if (user != null) {
+            user.getTests().isEmpty();
             return usuarioDAO.findByEmailAndPassword(email, pass);
         }else return null;
     }

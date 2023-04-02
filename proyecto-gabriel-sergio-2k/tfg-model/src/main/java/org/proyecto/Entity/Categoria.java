@@ -18,6 +18,7 @@ public class Categoria implements Serializable {
     private Integer id;
     @Column(name = "nombre")
     private String nombre;
+
     @OneToMany(mappedBy = "categoria")
     List<Pregunta> preguntas;
 }

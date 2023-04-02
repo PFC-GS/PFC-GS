@@ -25,6 +25,8 @@ public class Usuario implements Serializable {
     private String email;
     @Column(name = "password")
     private String password;
+    @Column(name= "admin")
+    private boolean admin;
 
     @OneToMany(mappedBy = "usuario")
     private List<Test> tests;

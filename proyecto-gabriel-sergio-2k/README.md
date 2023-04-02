@@ -50,3 +50,4 @@ introducir requestParam en el método de obtener todas las preguntas para obtene
 He agregado el campo password a Usuario y hecho los cambios necesarios debido a ello, los endpoints de login y la obtención 
 de preguntas para realizar un test.
 
+Agregado el campo admin en la entidad y dto de usuario 

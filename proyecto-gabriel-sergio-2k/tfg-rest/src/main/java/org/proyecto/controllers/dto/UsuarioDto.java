@@ -24,6 +24,8 @@ public class UsuarioDto {
     private String email;
     @NotBlank
     private String password;
+    @NotBlank
+    private boolean admin;
 
 
     public static Usuario toEntity(UsuarioDto dto) {
@@ -33,6 +35,7 @@ public class UsuarioDto {
                 dto.getApellidos(),
                 dto.getEmail(),
                 dto.getPassword(),
+                dto.isAdmin(),
                 null
         );
     }
@@ -44,7 +47,8 @@ public class UsuarioDto {
                 usuario.getNombre(),
                 usuario.getApellidos(),
                 usuario.getEmail(),
-                usuario.getPassword()
+                usuario.getPassword(),
+                usuario.isAdmin()
         );
     }
 
