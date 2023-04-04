@@ -18,7 +18,7 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class PreguntaDto {
 
-    @Positive
+
     private Integer id;
     @NotNull
     @Positive

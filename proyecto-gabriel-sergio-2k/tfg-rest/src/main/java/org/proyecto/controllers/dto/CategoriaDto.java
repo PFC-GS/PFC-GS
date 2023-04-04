@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class CategoriaDto {
 
-    @Positive
+
     private Integer id;
     @NotBlank
     private String nombre;

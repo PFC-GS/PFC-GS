@@ -2,6 +2,7 @@ package org.proyecto.controllers;
 
 import org.proyecto.Entity.Test;
 import org.proyecto.controllers.dto.TestDto;
+import org.proyecto.controllers.dto.UsuarioDto;
 import org.proyecto.service.GeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,5 +67,21 @@ public class TestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // obtener un test con las preguntas cargadas (por defecto serán 10 preguntas)
+    @GetMapping(path = "/test/preguntas/{categoriaId}")
+    public ResponseEntity<TestDto> getPreguntasForTest(
+            @Valid @RequestBody UsuarioDto usuario,
+            @PathVariable("categoriaId") Integer categoriaId,
+            @RequestParam(value = "numPreguntas",required = false) Integer numPreguntas
+    ){
+        if (service.getCategoriaById(categoriaId) == null){
+            return ResponseEntity.notFound().build();
+        }else {
+            return ResponseEntity.ok(TestDto.toDto(
+                    service.createTestWithQuestions(UsuarioDto.toEntity(usuario),categoriaId,numPreguntas)));
+        }
+    }
+
 
 }

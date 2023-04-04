@@ -51,3 +51,11 @@ He agregado el campo password a Usuario y hecho los cambios necesarios debido a 
 de preguntas para realizar un test.
 
 Agregado el campo admin en la entidad y dto de usuario 
+
+Modificado entidades para agregar fetch de tipo lazy, 
+
+Eliminado la etiqueta @Positive del id de los dto para no tener que introducir el id y la base de datos lo genere, 
+actualizados también los campos de los dtos.
+
+Creado el método para obtener un test con sus preguntas, para enviar a la parte del front, una vez realizado el test se enviará 
+al servicio rest con la calificación para guardarse en la base de datos.

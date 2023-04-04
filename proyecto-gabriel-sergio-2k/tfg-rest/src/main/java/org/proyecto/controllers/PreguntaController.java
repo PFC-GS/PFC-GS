@@ -73,7 +73,7 @@ public class PreguntaController {
             return ResponseEntity.notFound().build();
         }
     }
-
+/*
     // obtener las preguntas de un test (por defecto serán 10 preguntas)
     @GetMapping(path = "/preguntas/test/{categoriaId}")
     public ResponseEntity<List<PreguntaDto>> getPreguntasForTest(
@@ -90,5 +90,7 @@ public class PreguntaController {
                             .collect(Collectors.toList()));
         }
     }
+
+ */
 
 }

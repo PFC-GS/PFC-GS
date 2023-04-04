@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class DificultadDto {
 
-    @Positive
+
     private Integer id;
     @NotBlank
     private String nombre;

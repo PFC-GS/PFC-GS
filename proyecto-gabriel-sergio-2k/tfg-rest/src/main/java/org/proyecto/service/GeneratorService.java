@@ -1,13 +1,13 @@
 package org.proyecto.service;
 
 import org.proyecto.Entity.*;
+import org.proyecto.controllers.dto.UsuarioDto;
 import org.proyecto.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Service
 public class GeneratorService {
@@ -212,9 +212,9 @@ public class GeneratorService {
         }else return null;
     }
 
-    // Obtener una lista de preguntas de una categoría
-    public List<Pregunta> getPreguntasForTest(Integer categoriaId, Integer numPreguntas) {
-        List<Pregunta> preguntaList = new ArrayList<>();
+    // Obtener una lista de preguntas de una categoría (PASARÄ A SER MËTODO PRIVATE)
+    public Set<Pregunta> getPreguntasForTest(Integer categoriaId, Integer numPreguntas) {
+        Set<Pregunta> preguntaList = new HashSet<>();
         if (numPreguntas == null){
             numPreguntas = 10;
         }
@@ -233,6 +233,17 @@ public class GeneratorService {
             }
         }
         return preguntaList;
+    }
+    // Retornar un Test con las preguntas
+    public Test createTestWithQuestions(Usuario usuario, Integer categoriaId, Integer numPreguntas) {
+        Test newTest = new Test();
+        newTest.setPreguntas(getPreguntasForTest(categoriaId,numPreguntas));
+        newTest.setUsuario(usuario);
+        newTest.setFecha(new Timestamp(System.currentTimeMillis()));
+
+        return newTest;
+
+
     }
 }
 

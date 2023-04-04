@@ -21,12 +21,11 @@ import java.util.Set;
 @AllArgsConstructor
 public class TestDto {
 
-    @Positive
+
     private Integer id;
     @NotNull
     @Positive
     private int usuario;
-    @Positive
 
     private double calificacion;
     @NotNull

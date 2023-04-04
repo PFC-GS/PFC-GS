@@ -8,13 +8,15 @@ import org.proyecto.Entity.Usuario;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDto {
-    @Positive
+
     private Integer id;
     @NotBlank
     private String nombre;
@@ -27,6 +29,8 @@ public class UsuarioDto {
     @NotBlank
     private boolean admin;
 
+    private List<TestDto> tests;
+
 
     public static Usuario toEntity(UsuarioDto dto) {
         return new Usuario(
@@ -36,7 +40,7 @@ public class UsuarioDto {
                 dto.getEmail(),
                 dto.getPassword(),
                 dto.isAdmin(),
-                null
+                dto.getTests().stream().map(TestDto::toEntity).collect(Collectors.toList())
         );
     }
 
@@ -48,7 +52,8 @@ public class UsuarioDto {
                 usuario.getApellidos(),
                 usuario.getEmail(),
                 usuario.getPassword(),
-                usuario.isAdmin()
+                usuario.isAdmin(),
+                usuario.getTests().stream().map(TestDto::toDto).collect(Collectors.toList())
         );
     }
 
