@@ -30,7 +30,7 @@ public class Application extends javafx.application.Application {
         stage.setTitle("ExamTool App");
         stage.setScene(scene);
         stage.show();
-        
+
 
 
     }
