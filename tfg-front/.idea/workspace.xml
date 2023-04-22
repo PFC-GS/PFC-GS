@@ -4,11 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b239d96-796f-4da6-bc2b-57eba1a5e556" name="Changes" comment="" />
+    <list default="true" id="5b239d96-796f-4da6-bc2b-57eba1a5e556" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Pregunta.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Pregunta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/PreguntaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/PreguntaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/TestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/DificultadDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/DificultadDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/PreguntaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/PreguntaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/TestDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/TestDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/UsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/UsuarioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/service/GeneratorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/service/GeneratorService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/FrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/proyecto/tfgfront/HelloApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/proyecto/tfgfront/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/proyecto/tfgfront/HelloController.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -16,7 +45,6 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
@@ -28,15 +56,24 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "frontIntegracion",
-    "last_opened_file_path": "D:/PFC/proyecto-gabriel-sergio-2k"
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/PFC/tfg-front/src/main/java/org/proyecto/tfgfront/clients"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.proyecto.tfgfront.clients" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PFC\tfg-front\src\main\java\org\proyecto\tfgfront\clients" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.proyecto.tfgfront.HelloApplication" />
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.proyecto.tfgfront.Application" />
       <module name="tfg-front" />
       <extension name="coverage">
         <pattern>
@@ -44,16 +81,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
