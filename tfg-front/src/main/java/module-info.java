@@ -8,4 +8,5 @@ module org.proyecto.tfgfront {
 
     opens org.proyecto.tfgfront to javafx.fxml;
     exports org.proyecto.tfgfront;
+
 }
