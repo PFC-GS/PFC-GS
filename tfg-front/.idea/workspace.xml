@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b239d96-796f-4da6-bc2b-57eba1a5e556" name="Changes" comment="" />
+    <list default="true" id="5b239d96-796f-4da6-bc2b-57eba1a5e556" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +17,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -37,20 +40,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/PFC/tfg-front"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;integracion-retrofit-javaFX&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PFC/tfg-front&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.proyecto.tfgfront" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ExamToolApp">
+  <component name="RunManager">
     <configuration name="ExamToolApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.proyecto.tfgfront.ExamToolApp" />
       <module name="tfg-front" />
@@ -106,9 +110,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ExamToolApp" />
-        <item itemvalue="Application.org.proyecto.tfgfront.app.ExamToolApp" />
-        <item itemvalue="Application.org.proyecto.tfgfront.app.ExamToolApp" />
-        <item itemvalue="Application.org.proyecto.tfgfront.ExamToolApp" />
       </list>
     </recent_temporary>
   </component>
@@ -122,5 +123,20 @@
       <updated>1681657157996</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/TableMainMenuViewController.java</url>
+          <line>34</line>
+          <properties class="org.proyecto.tfgfront.controller.TableMainMenuViewController" method="mostrarCategoria">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
