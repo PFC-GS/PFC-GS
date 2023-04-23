@@ -7,31 +7,26 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainMenuController {
-
+public class TableMainMenuViewController {
 
     @FXML
-    public Button btnToLogin;
+    public Button btnAtras;
     @FXML
-    public Button btnToTable;
+    public Button btnLogin;
 
 
-
-
-    public void volverALogin(ActionEvent event) throws IOException {
-
+    public void irALogin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
-        changeSceneMethod(loader,event);
+        changeSceneMethod(loader, event);
     }
 
-    public void goTable(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/tableMainMenu-view.fxml"));
-        changeSceneMethod(loader,event);
+    public void irAtras(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainMenu-view.fxml"));
+        changeSceneMethod(loader, event);
     }
     private static void changeSceneMethod(FXMLLoader loader, ActionEvent event) throws IOException {
         Parent root = loader.load();
@@ -43,3 +38,5 @@ public class MainMenuController {
         loginStage.close();
     }
 }
+
+
