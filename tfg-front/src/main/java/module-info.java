@@ -4,6 +4,7 @@ module org.proyecto.tfgfront {
     requires lombok;
     requires unirest.java;
     requires org.json;
+    requires com.google.gson;
 
 
     opens org.proyecto.tfgfront to javafx.fxml;
