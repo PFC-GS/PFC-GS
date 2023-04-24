@@ -14,7 +14,11 @@ import java.util.List;
 
 public class UniRestController {
 
+<<<<<<< HEAD
 //    private static final Gson gson = new Gson();
+=======
+
+>>>>>>> 1f15eadf110d57c7b27dce3068b57e50054ccb05
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
         try {
