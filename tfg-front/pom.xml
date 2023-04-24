@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.9.1</junit.version>
+
         <lombok.version>1.18.24</lombok.version>
         <java-fx-fxml.version>19</java-fx-fxml.version>
         <java-fx-controls.version>19</java-fx-controls.version>
@@ -26,6 +27,7 @@
             <artifactId>javafx-controls</artifactId>
             <version>${java-fx-controls.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -37,14 +39,19 @@
             <version>${unirest-java.version}</version>
         </dependency>
         <dependency>
+
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>${json.version}</version>
+
         </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
+
             <version>${java-fx-fxml.version}</version>
+
         </dependency>
 
         <dependency>
