@@ -69,6 +69,18 @@ public class UniRestController {
         }
         return usuarios;
     }
+    public Usuario login2 (String email, String password){
+        try{
+            Usuario user = Unirest.get("localhost:8080/usuarios/{email}/{pass}")
+                    .routeParam("email",email)
+                    .routeParam("pass",password)
+                    .asObject(Usuario.class).getBody();
+            return user;
 
+        } catch (UnirestException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }
