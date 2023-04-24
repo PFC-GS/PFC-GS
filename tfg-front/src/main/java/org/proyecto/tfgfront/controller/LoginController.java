@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -37,8 +36,6 @@ public class LoginController {
             resultado.setText("Error");
         }
     }
-
-
     /**
      * Método que cambia de escena
      * @param loader cargador de la escena

@@ -2,11 +2,8 @@ package org.proyecto.tfgfront.controller;
 
 import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.proyecto.tfgfront.model.Categoria;
 import org.proyecto.tfgfront.model.Usuario;
 
@@ -17,7 +14,7 @@ import java.util.List;
 
 public class UniRestController {
 
-    private static final Gson gson = new Gson();
+
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
         try {
@@ -43,6 +40,7 @@ public class UniRestController {
                 .asString();
 
         if (response.getStatus() == 200 && !response.getBody().isEmpty()) {
+            Gson gson = new Gson();
             Usuario user = gson.fromJson(response.getBody(), Usuario.class);
             return user;
         } else {
