@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LoginController {
     @FXML
@@ -23,13 +24,19 @@ public class LoginController {
     private UniRestController uniRest = new UniRestController();
 
     public void accionBoton(ActionEvent event) throws IOException {
-        Usuario usuario = uniRest.httpLogin(usuarioLogin.getText(), contrasenaLogin.getText());
-        if (usuario != null && usuarioLogin.getText().equals(usuario.getNombre()) && contrasenaLogin.getText().equals(usuario.getPassword())) {
-
+        List<Usuario> usuarios = uniRest.httpLogin(usuarioLogin.getText(), contrasenaLogin.getText());
+        boolean usuarioValido = false;
+        for (Usuario usuario : usuarios) {
+            if (usuarioLogin.getText().equals(usuario.getNombre()) && contrasenaLogin.getText().equals(usuario.getPassword())) {
+                usuarioValido = true;
+                break;
+            }
+        }
+        if (usuarioValido) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
             changeSceneMethod(loader, event);
 
-        }else {
+        } else {
             resultado.setText("Error");
         }
     }

@@ -38,8 +38,8 @@ public class UniRestController {
         }
         return categorias;
     }
-    public Usuario httpLogin(String name, String password) {
-        Usuario usuario = null;
+    public List<Usuario> httpLogin(String name, String password) {
+        List<Usuario> usuarios = new ArrayList<>();
         try {
             HttpResponse<JsonNode> jsonResponse = Unirest.get(Constants.HTTP_LOCALHOST_8080_USUARIOS_LOGIN)
                     .header("accept", "application/json")
@@ -47,37 +47,27 @@ public class UniRestController {
                     .queryString("password", password) // Pasa el parámetro de contraseña
                     .asJson();
 
-
             int statusCode = jsonResponse.getStatus();
-
             if (statusCode == 200) { // Verifica el estado de la respuesta
                 JSONArray jsonArray = jsonResponse.getBody().getArray();
-                if (jsonArray.length() == 1) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Integer id = jsonObject.getInt("id");
                     String nombre = jsonObject.getString("nombre");
                     String apellidos = jsonObject.getString("apellidos");
                     String emailUsuario = jsonObject.getString("email");
                     String passwordUsuario = jsonObject.getString("password");
                     boolean admin = jsonObject.getBoolean("admin");
-                    usuario = new Usuario(id, nombre, apellidos, emailUsuario, passwordUsuario, admin, null);
-                } else {
-                    System.err.println("Error: No se encontró el objeto JSON esperado");
+                    Usuario usuario = new Usuario(id, nombre, apellidos, emailUsuario, passwordUsuario, admin, null);
+                    usuarios.add(usuario);
                 }
+            } else {
+                System.err.println("Error: " + jsonResponse.getStatusText());
             }
-
-
-
-
-
-
-
-
-
         } catch (UnirestException e) {
             System.err.println("Error: " + e.getMessage());
         }
-        return usuario;
+        return usuarios;
     }
 
 
