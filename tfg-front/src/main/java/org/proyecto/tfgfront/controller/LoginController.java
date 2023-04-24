@@ -24,13 +24,21 @@ public class LoginController {
     private UniRestController uniRest = new UniRestController();
 
     public void accionBoton(ActionEvent event) throws IOException {
-        List<Usuario> usuarios = uniRest.httpLogin(usuarioLogin.getText(), contrasenaLogin.getText());
         boolean usuarioValido = false;
+        /*
+        List<Usuario> usuarios = uniRest.httpLogin(usuarioLogin.getText(), contrasenaLogin.getText());
+
         for (Usuario usuario : usuarios) {
             if (usuarioLogin.getText().equals(usuario.getNombre()) && contrasenaLogin.getText().equals(usuario.getPassword())) {
                 usuarioValido = true;
                 break;
             }
+        }
+        */
+
+        Usuario user = uniRest.login2(usuarioLogin.getText(),contrasenaLogin.getText());
+        if (user != null){
+            usuarioValido = true;
         }
         if (usuarioValido) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));

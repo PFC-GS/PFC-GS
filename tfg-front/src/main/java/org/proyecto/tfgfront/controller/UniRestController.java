@@ -72,6 +72,7 @@ public class UniRestController {
     public Usuario login2 (String email, String password){
         try{
             Usuario user = Unirest.get("localhost:8080/usuarios/{email}/{pass}")
+                    .header("aceptar","application/json")
                     .routeParam("email",email)
                     .routeParam("pass",password)
                     .asObject(Usuario.class).getBody();

@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b239d96-796f-4da6-bc2b-57eba1a5e556" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_39__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_39__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_41__Changes_.xml" afterDir="false" />
+    <list default="true" id="5b239d96-796f-4da6-bc2b-57eba1a5e556" name="Changes" comment="Creado el método login2 en UniRestController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/proyecto/tfgfront/ControllerClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/proyecto/tfgfront/controllers/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/proyecto/tfgfront/views/HelloApplication.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +126,18 @@
       <option name="presentableId" value="Default" />
       <updated>1681657157996</updated>
     </task>
+    <task id="LOCAL-00001" summary="Creado el método login2 en UniRestController">
+      <created>1682361380512</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682361380512</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creado el método login2 en UniRestController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creado el método login2 en UniRestController" />
   </component>
 </project>
