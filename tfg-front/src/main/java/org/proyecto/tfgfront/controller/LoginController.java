@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.proyecto.tfgfront.model.Usuario;
 
 import java.io.IOException;
 
@@ -19,10 +20,18 @@ public class LoginController {
     private TextField contrasenaLogin;
     @FXML
     private Label resultado;
+    private UniRestController uniRest = new UniRestController();
 
     public void accionBoton(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
-    changeSceneMethod(loader,event);
+        Usuario usuario = uniRest.httpLogin(usuarioLogin.getText(), contrasenaLogin.getText());
+        if (usuario != null && usuarioLogin.getText().equals(usuario.getNombre()) && contrasenaLogin.getText().equals(usuario.getPassword())) {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
+            changeSceneMethod(loader, event);
+
+        }else {
+            resultado.setText("Error");
+        }
     }
 
 

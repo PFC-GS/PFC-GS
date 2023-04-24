@@ -50,8 +50,14 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PFC\tfg-front\src\main\resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.proyecto.tfgfront" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.proyecto.tfgfront.model" />
     </key>
   </component>
   <component name="RunManager">
@@ -125,18 +131,11 @@
     <servers />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/TableMainMenuViewController.java</url>
-          <line>34</line>
-          <properties class="org.proyecto.tfgfront.controller.TableMainMenuViewController" method="mostrarCategoria">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="param_2" />
+        <watch expression="param_2" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

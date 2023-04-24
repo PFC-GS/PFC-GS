@@ -6,3 +6,8 @@
     - Creado el modelo Categoria
     - Creado Test de Retrofit pero no funciona (java.lang.reflect.InvocationTargetException)
     - Creado metodo hardcodeando datos para la tabla y funciona correctamente
+
+24/04/2023
+    - Cambio de libreria RetroFit a libreria unirest
+    - Agregado metodo para obtener datos de la API y mostrarlos en la tabla
+    - Agregado login

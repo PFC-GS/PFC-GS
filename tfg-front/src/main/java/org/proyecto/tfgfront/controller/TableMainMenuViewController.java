@@ -1,5 +1,6 @@
 package org.proyecto.tfgfront.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,9 +14,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Categoria;
-import org.proyecto.tfgfront.model.TestRetrofit;
 
 import java.io.IOException;
+import java.util.List;
 
 public class TableMainMenuViewController {
 
@@ -24,22 +25,35 @@ public class TableMainMenuViewController {
     @FXML
     public Button btnLogin;
     @FXML
-    public TableView categoriaTabla;
+    public TableView<Categoria> categoriaTabla;
     @FXML
-    public TableColumn idCategoria;
+    public TableColumn<Categoria, Integer> idCategoria;
     @FXML
-    public TableColumn nombreCategoria;
+    public TableColumn<Categoria, String> nombreCategoria;
+    private UniRestController uniRest = new UniRestController();
 
 
 
     public void mostrarCategoria() {
-        TestRetrofit testRetrofit = new TestRetrofit();
-        testRetrofit.getDataFromJson();
+
+        List<Categoria> categorias = uniRest.httpCategoria();
+
+        // Creamos un observable list a partir de la lista de categorías
+        ObservableList<Categoria> listaCategorias = FXCollections.observableArrayList(categorias);
+
+        // Vinculamos las columnas de la tabla con los atributos de la clase Categoria
         idCategoria.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreCategoria.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        ObservableList<Categoria> listaCategorias = testRetrofit.getCategoriaObservableList();
+
+        // Agregamos la lista de categorías a la tabla
         categoriaTabla.setItems(listaCategorias);
+
+
+
     }
+
+
+
 
 
 
@@ -53,6 +67,7 @@ public class TableMainMenuViewController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainMenu-view.fxml"));
         changeSceneMethod(loader, event);
     }
+
     private static void changeSceneMethod(FXMLLoader loader, ActionEvent event) throws IOException {
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -62,19 +77,44 @@ public class TableMainMenuViewController {
         Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         loginStage.close();
     }
-//metodo con lista hardcodeada para probar la tabla
+
+    //metodo para leer la tabla de categorias de la base de datos sin retrofit
 //    public void mostrarCategoria() {
-//        idCategoria.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        nombreCategoria.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+//        try {
+//            URL url = new URL("http://localhost:8080/categorias");
+//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setRequestMethod("GET");
+//            conn.setRequestProperty("Accept", "application/json");
 //
-//        // Creamos una lista de objetos Categoria hardcodeados
-//        ObservableList<Categoria> listaCategorias = FXCollections.observableArrayList(
-//                new Categoria(1, "Categoría 1"),
-//                new Categoria(2, "Categoría 2")
-//        );
+//            if (conn.getResponseCode() != 200) {
+//                throw new RuntimeException("Failed : HTTP error code : "
+//                        + conn.getResponseCode());
+//            }
 //
-//        // Establecemos la lista en la tabla
-//        categoriaTabla.setItems(listaCategorias);
+//            BufferedReader br = new BufferedReader(new InputStreamReader(
+//                    (conn.getInputStream())));
+//
+//            String json = "";
+//            String output;
+//            while ((output = br.readLine()) != null) {
+//                json += output;
+//            }
+//
+//            conn.disconnect();
+//
+//            Gson gson = new Gson();
+//            Categoria[] categorias = gson.fromJson(json, Categoria[].class);
+//
+//            ObservableList<Categoria> categoriaObservableList = FXCollections.observableArrayList(Arrays.asList(categorias));
+//            idCategoria.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            nombreCategoria.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+//            categoriaTabla.setItems(categoriaObservableList);
+//
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 //    }
 }
 
