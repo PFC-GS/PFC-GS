@@ -3,21 +3,22 @@ package org.proyecto.tfgfront.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
-import org.proyecto.tfgfront.session.Session;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     @FXML
     private PasswordField contrasenaLogin;
@@ -40,7 +41,12 @@ public class LoginController {
 
         user = uniRest.login(usuarioLogin.getText(),contrasenaLogin.getText());
         if (user != null){
-            usuarioValido = true;
+            if (user.getEmail().equals(usuarioLogin.getText()) && user.getPassword().equals(contrasenaLogin.getText())) {
+                usuarioValido = true;
+            }else {
+                panelWrong.setVisible(true);
+            }
+
         }
         if (usuarioValido) {
 
@@ -53,20 +59,6 @@ public class LoginController {
             panelWrong.setVisible(true);
         }
     }
-
-    public void initialize(){
-        usuarioLogin.setPromptText("Introduce Email");
-        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
-        usuarioLogin.setAlignment(Pos.CENTER);
-        contrasenaLogin.setPromptText("Introduce Contraseña");
-        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
-        contrasenaLogin.setAlignment(Pos.CENTER);
-
-    }
-
-
-
-
 
     /**
      * Método que cambia de escena
@@ -85,5 +77,13 @@ public class LoginController {
     }
 
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usuarioLogin.setPromptText("Introduce Email");
+        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
+        usuarioLogin.setAlignment(Pos.CENTER);
+        contrasenaLogin.setPromptText("Introduce Contraseña");
+        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
+        contrasenaLogin.setAlignment(Pos.CENTER);
+    }
 }

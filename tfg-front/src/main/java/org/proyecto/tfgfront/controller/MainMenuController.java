@@ -3,6 +3,7 @@ package org.proyecto.tfgfront.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,8 +15,10 @@ import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainMenuController {
+public class MainMenuController implements Initializable {
 
 
     @FXML
@@ -59,12 +62,6 @@ public class MainMenuController {
         TableMainMenuViewController tableMainMenuViewController = loader.getController();
         tableMainMenuViewController.mostrarCategoria();
     }
-    public void initialize() { //Este método se ejecuta al cargar la vista automaticamente, si se le cambia el nombre no funciona
-        Usuario user = Session.getUsuario();
-        lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
-    }
-
-
     private static void changeSceneMethod(FXMLLoader loader, ActionEvent event) throws IOException {
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -73,5 +70,11 @@ public class MainMenuController {
         stage.show();
         Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         loginStage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Usuario user = Session.getUsuario();
+        lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
     }
 }
