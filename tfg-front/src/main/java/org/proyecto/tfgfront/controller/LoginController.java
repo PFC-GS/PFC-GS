@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
@@ -58,6 +59,10 @@ public class LoginController implements Initializable {
         } else {
             panelWrong.setVisible(true);
         }
+    }
+    @FXML
+    void exitMethod(MouseEvent event) {
+        System.exit(0);
     }
 
     /**
