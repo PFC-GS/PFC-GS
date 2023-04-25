@@ -6,6 +6,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.proyecto.tfgfront.model.Categoria;
 import org.proyecto.tfgfront.model.Usuario;
+import org.proyecto.tfgfront.session.Session;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,8 @@ import java.util.List;
 
 
 public class UniRestController {
+
+//    private static Session session = new Session();
 
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
@@ -41,6 +44,7 @@ public class UniRestController {
         if (response.getStatus() == 200 && !response.getBody().isEmpty()) {
             Gson gson = new Gson();
             Usuario user = gson.fromJson(response.getBody(), Usuario.class);
+            Session.setUsuario(user);
             return user;
         } else {
             return null;

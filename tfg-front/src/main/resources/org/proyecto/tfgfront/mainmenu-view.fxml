@@ -14,7 +14,7 @@
             <Button contentDisplay="CENTER" layoutX="28.0" layoutY="206.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #0893bc;" text="Button" textFill="WHITE" />
             <Button fx:id="btnLogout" alignment="CENTER" layoutX="28.0" layoutY="721.0" mnemonicParsing="false" onAction="#methodLogout" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #0893bc;" text="Logout" textFill="WHITE" />
          </children></AnchorPane>
-      <AnchorPane layoutX="201.0" prefHeight="88.0" prefWidth="1132.0" style="-fx-background-color: #ffc16c;">
+      <AnchorPane layoutX="201.0" prefHeight="88.0" prefWidth="1130.0" style="-fx-background-color: #ffc16c;">
          <children>
             <Label layoutX="46.0" layoutY="27.0" prefHeight="18.0" prefWidth="83.0" text="Bienvenido: ">
                <font>
