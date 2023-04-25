@@ -18,7 +18,7 @@ try {
 
     Scene scene = new Scene(fxmlLoader.load());
     stage.setScene(scene);
-   
+
     stage.show();
 } catch (IOException e) {
     e.printStackTrace();
