@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -30,11 +31,20 @@ public class MainMenuController {
 
     @FXML
     void methodLogout(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
-        try {
-            changeSceneMethod(loader, event);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("¿Estás seguro de que quieres cerrar sesión?");
+        alert.setContentText("Se cerrará la sesión actual");
+        alert.showAndWait();
+        if (alert.getResult().getText().equals("Aceptar")) {
+            Session.setUsuario(null);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
+            try {
+                changeSceneMethod(loader, event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
