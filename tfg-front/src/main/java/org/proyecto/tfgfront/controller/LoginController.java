@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
-
+import org.proyecto.tfgfront.session.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,6 +58,18 @@ public class LoginController implements Initializable {
         } else {
             panelWrong.setVisible(true);
         }
+    }
+
+
+
+    public void initialize(){
+        usuarioLogin.setPromptText("Introduce Email");
+        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
+        usuarioLogin.setAlignment(Pos.CENTER);
+        contrasenaLogin.setPromptText("Introduce Contraseña");
+        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
+        contrasenaLogin.setAlignment(Pos.CENTER);
+
     }
 
     /**
