@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
+import org.proyecto.tfgfront.session.Session;
 
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class MainMenuController {
 
     @FXML
     private Label lbRecuperaNombre;
+
 
 
     @FXML
@@ -47,6 +49,11 @@ public class MainMenuController {
         TableMainMenuViewController tableMainMenuViewController = loader.getController();
         tableMainMenuViewController.mostrarCategoria();
     }
+    public void initialize() { //Este método se ejecuta al cargar la vista automaticamente, si se le cambia el nombre no funciona
+        Usuario user = Session.getUsuario();
+        lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
+    }
+
 
     private static void changeSceneMethod(FXMLLoader loader, ActionEvent event) throws IOException {
         Parent root = loader.load();

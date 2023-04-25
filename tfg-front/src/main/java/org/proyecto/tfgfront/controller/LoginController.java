@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
+import org.proyecto.tfgfront.session.Session;
 
 import java.io.IOException;
 
@@ -30,6 +31,7 @@ public class LoginController {
     private Usuario user;
 
 
+
     @FXML
     void accionBoton(ActionEvent event) throws IOException {
         boolean usuarioValido = false;
@@ -39,6 +41,7 @@ public class LoginController {
             usuarioValido = true;
         }
         if (usuarioValido) {
+
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
 
