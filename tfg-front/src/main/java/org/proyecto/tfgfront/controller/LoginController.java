@@ -6,11 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
 
@@ -18,27 +16,41 @@ import java.io.IOException;
 
 public class LoginController {
 
-    public Button resultado;
-    public TextField usuarioLogin;
-    public TextField contrasenaLogin;
+    @FXML
+    private PasswordField contrasenaLogin;
+
+    @FXML
+    private Pane panelWrong;
+
+    @FXML
+    private TextField usuarioLogin;
+
     private UniRestController uniRest = new UniRestController();
 
-    public void accionBoton(ActionEvent event) throws IOException {
+    private Usuario user;
+
+
+    @FXML
+    void accionBoton(ActionEvent event) throws IOException {
         boolean usuarioValido = false;
 
-        Usuario user = uniRest.login2(usuarioLogin.getText(),contrasenaLogin.getText());
+        user = uniRest.login(usuarioLogin.getText(),contrasenaLogin.getText());
         if (user != null){
             usuarioValido = true;
         }
         if (usuarioValido) {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
-            changeSceneMethod(loader, event);
+
+                changeSceneMethod(loader, event);
 
         } else {
-            resultado.setText("Error");
+            panelWrong.setVisible(true);
         }
     }
+
+
+
 
 
     /**
@@ -56,6 +68,7 @@ public class LoginController {
         Stage loginStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         loginStage.close();
     }
+
 
 
 }

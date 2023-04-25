@@ -31,7 +31,7 @@ public class UniRestController {
     }
 
 
-    public static Usuario login2(String email, String password) {
+    public static Usuario login(String email, String password) {
     try {
         HttpResponse<String> response = Unirest.get("http://localhost:8080/usuarios/{email}/{pass}")
                 .routeParam("email", email)

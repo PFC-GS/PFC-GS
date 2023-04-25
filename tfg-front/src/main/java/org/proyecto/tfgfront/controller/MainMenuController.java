@@ -7,7 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.proyecto.tfgfront.model.Usuario;
 
 import java.io.IOException;
 
@@ -15,20 +17,33 @@ public class MainMenuController {
 
 
     @FXML
-    public Button btnToLogin;
+    private Button btnGoCategorias;
+
     @FXML
-    public Button btnToTable;
+    private Button btnLogout;
+
+    @FXML
+    private Label lbRecuperaNombre;
 
 
-    public void volverALogin(ActionEvent event) throws IOException {
-
+    @FXML
+    void methodLogout(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
-        changeSceneMethod(loader, event);
+        try {
+            changeSceneMethod(loader, event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void goTable(ActionEvent event) throws IOException {
+    @FXML
+    void verCategorias(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/tableMainMenu-view.fxml"));
-        changeSceneMethod(loader, event);
+        try {
+            changeSceneMethod(loader, event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         TableMainMenuViewController tableMainMenuViewController = loader.getController();
         tableMainMenuViewController.mostrarCategoria();
     }
