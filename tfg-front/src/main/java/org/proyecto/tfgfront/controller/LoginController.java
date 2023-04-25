@@ -3,11 +3,13 @@ package org.proyecto.tfgfront.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
@@ -50,6 +52,16 @@ public class LoginController {
         } else {
             panelWrong.setVisible(true);
         }
+    }
+
+    public void initialize(){
+        usuarioLogin.setPromptText("Introduce Email");
+        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
+        usuarioLogin.setAlignment(Pos.CENTER);
+        contrasenaLogin.setPromptText("Introduce Contraseña");
+        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
+        contrasenaLogin.setAlignment(Pos.CENTER);
+
     }
 
 
