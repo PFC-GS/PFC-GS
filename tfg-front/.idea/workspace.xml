@@ -18,9 +18,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -44,17 +44,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;integracion-retrofit-javaFX&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PFC/tfg-front&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "integracion-retrofit-javaFX",
+    "last_opened_file_path": "D:/PFC/tfg-front/src/main/resources/img",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PFC\tfg-front\src\main\resources\img" />
+      <recent name="D:\PFC\tfg-front\src\main\resources\org\proyecto\tfgfront" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PFC\tfg-front\src\main\java\org\proyecto\tfgfront\controller" />
+      <recent name="D:\PFC\tfg-front\src\main\java\org\proyecto\tfgfront" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
       <recent name="org.proyecto.tfgfront" />
     </key>
   </component>

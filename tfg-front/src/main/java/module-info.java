@@ -5,7 +5,7 @@ module org.proyecto.tfgfront {
     requires unirest.java;
     requires org.json;
     requires com.google.gson;
-
+    requires javafx.graphics;
 
     opens org.proyecto.tfgfront to javafx.fxml;
     exports org.proyecto.tfgfront;
@@ -13,6 +13,4 @@ module org.proyecto.tfgfront {
     opens org.proyecto.tfgfront.model to javafx.base;
     exports org.proyecto.tfgfront.model;
     opens org.proyecto.tfgfront.controller to javafx.base, javafx.fxml;
-
-
 }
