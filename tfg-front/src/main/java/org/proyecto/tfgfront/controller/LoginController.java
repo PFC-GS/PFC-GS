@@ -6,20 +6,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
 
 import java.io.IOException;
 
 public class LoginController {
-    @FXML
-    private TextField usuarioLogin;
-    @FXML
-    private TextField contrasenaLogin;
-    @FXML
-    private Label resultado;
+
+    public Button resultado;
+    public TextField usuarioLogin;
+    public TextField contrasenaLogin;
     private UniRestController uniRest = new UniRestController();
 
     public void accionBoton(ActionEvent event) throws IOException {
@@ -30,6 +31,7 @@ public class LoginController {
             usuarioValido = true;
         }
         if (usuarioValido) {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
             changeSceneMethod(loader, event);
 

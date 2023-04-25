@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class UniRestController {
-    
+
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
         try {
