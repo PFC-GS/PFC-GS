@@ -13,7 +13,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
+
 import org.proyecto.tfgfront.session.Session;
+
 
 import java.io.IOException;
 
@@ -54,6 +56,7 @@ public class LoginController {
         }
     }
 
+
     public void initialize(){
         usuarioLogin.setPromptText("Introduce Email");
         usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
@@ -63,10 +66,6 @@ public class LoginController {
         contrasenaLogin.setAlignment(Pos.CENTER);
 
     }
-
-
-
-
 
     /**
      * Método que cambia de escena
