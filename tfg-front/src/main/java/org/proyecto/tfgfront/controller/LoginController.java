@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -39,8 +38,6 @@ public class LoginController {
             resultado.setText("Error");
         }
     }
-
-
     /**
      * Método que cambia de escena
      * @param loader cargador de la escena
