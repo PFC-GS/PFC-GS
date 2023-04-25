@@ -1,5 +1,7 @@
 package org.proyecto.tfgfront.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,12 +12,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
@@ -29,6 +36,8 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private Label lbRecuperaNombre;
+    @FXML
+    private Label labelhora;
 
 
 
@@ -76,5 +85,19 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Usuario user = Session.getUsuario();
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
+
+        final LocalTime[] horaActual = {LocalTime.now()};
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    horaActual[0] = LocalTime.now();
+                    String horaFormateada = horaActual[0].format(formatter);
+                    this.labelhora.setText(horaFormateada);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+
     }
 }
