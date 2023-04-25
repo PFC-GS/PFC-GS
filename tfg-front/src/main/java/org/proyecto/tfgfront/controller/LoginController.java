@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
     }
 
 
-
+/*
     public void initialize(){
         usuarioLogin.setPromptText("Introduce Email");
         usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
@@ -76,6 +76,8 @@ public class LoginController implements Initializable {
         contrasenaLogin.setAlignment(Pos.CENTER);
 
     }
+
+ */
 
     /**
      * Método que cambia de escena

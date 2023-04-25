@@ -16,4 +16,6 @@
     - Actualizacion y organizacion de dependencias
     - Borrado de metodos comentados (login2 pasa a ser login)
     - Creacion de login mas visual
+    - Agregado logo
+    - Comentado el recorte de la ventana en LoginController 
     
