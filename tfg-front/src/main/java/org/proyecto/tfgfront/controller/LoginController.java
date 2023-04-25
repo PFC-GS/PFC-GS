@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -48,10 +47,6 @@ public class LoginController {
             panelWrong.setVisible(true);
         }
     }
-
-
-
-
 
     /**
      * Método que cambia de escena
