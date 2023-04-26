@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.sql.Timestamp;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -31,7 +32,7 @@ public class TestDto {
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Timestamp fecha;
-
+    private Set<PreguntaDto> preguntas;
 
 
 
@@ -40,7 +41,11 @@ public class TestDto {
                 test.getId(),
                 test.getUsuario().getId(),
                 test.getCalificacion(),
-                test.getFecha()
+                test.getFecha(),
+                test.getPreguntas()
+                        .stream()
+                        .map(PreguntaDto::toDto)
+                        .collect(Collectors.toSet())
         );
     }
 
@@ -51,7 +56,7 @@ public class TestDto {
                 usuario,
                 dto.getCalificacion(),
                 dto.getFecha(),
-                null
+                dto.getPreguntas().stream().map(PreguntaDto::toEntity).collect(Collectors.toSet())
         );
     }
 }

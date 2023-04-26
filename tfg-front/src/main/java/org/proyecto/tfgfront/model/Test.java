@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.security.Timestamp;
+import java.util.Set;
 
 
 @Getter
@@ -23,5 +24,7 @@ public class Test {
     private double calificacion;
 
     private Timestamp fecha;
+
+    private Set<Pregunta> preguntas;
 
 }
