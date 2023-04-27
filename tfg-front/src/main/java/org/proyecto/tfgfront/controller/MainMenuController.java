@@ -25,6 +25,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
+
 public class MainMenuController implements Initializable {
 
 
@@ -52,34 +54,18 @@ public class MainMenuController implements Initializable {
         if (alert.getResult().getText().equals("Aceptar")) {
             Session.setUsuario(null);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
-            try {
-                changeSceneMethod(loader, event);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            changeSceneMethod(loader, event);
         }
     }
 
     @FXML
     void verCategorias(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/tableMainMenu-view.fxml"));
-        try {
-            changeSceneMethod(loader, event);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        changeSceneMethod(loader, event);
         TableMainMenuViewController tableMainMenuViewController = loader.getController();
         tableMainMenuViewController.mostrarCategoria();
     }
-    private static void changeSceneMethod(FXMLLoader loader, ActionEvent event) throws IOException {
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        loginStage.close();
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
