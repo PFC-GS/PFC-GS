@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -36,6 +37,21 @@
                   <Image url="@../../../images/password.png" />
                </image>
             </ImageView>
+            <Hyperlink layoutX="93.0" layoutY="544.0" onAction="#olvidastePw" text="¿Olvidaste la contraseña?">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutX="93.0" layoutY="591.0" text="¿No tienes una cuenta? Registrate">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Hyperlink layoutX="318.0" layoutY="588.0" onAction="#irARegistro" text="aqui">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
          </children>
       </Pane>
       <AnchorPane layoutY="52.0" prefHeight="743.0" prefWidth="496.0">

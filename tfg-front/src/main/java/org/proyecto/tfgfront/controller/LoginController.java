@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
-import org.proyecto.tfgfront.session.Session;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +33,27 @@ public class LoginController implements Initializable {
     private UniRestController uniRest = new UniRestController();
 
     private Usuario user;
+
+    @FXML
+    void olvidastePw(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/olvidarPw-view.fxml"));
+
+        try {
+            changeSceneMethod(loader, event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    void irARegistro(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/registro-view.fxml"));
+
+        try {
+            changeSceneMethod(loader, event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 
@@ -65,19 +86,6 @@ public class LoginController implements Initializable {
         System.exit(0);
     }
 
-
-/*
-    public void initialize(){
-        usuarioLogin.setPromptText("Introduce Email");
-        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
-        usuarioLogin.setAlignment(Pos.CENTER);
-        contrasenaLogin.setPromptText("Introduce Contraseña");
-        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
-        contrasenaLogin.setAlignment(Pos.CENTER);
-
-    }
-
- */
 
     /**
      * Método que cambia de escena
