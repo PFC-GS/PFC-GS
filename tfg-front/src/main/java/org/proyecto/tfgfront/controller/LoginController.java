@@ -27,6 +27,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField usuarioLogin;
+    @FXML
+    private Pane panelLogin;
 
     private UniRestController uniRest = new UniRestController();
 
@@ -57,6 +59,7 @@ public class LoginController implements Initializable {
                 usuarioValido = true;
             }else {
                 panelWrong.setVisible(true);
+// TODO: 27/04/2023 hay que agregar un evento para que cuando se muestre el panel de error se oculte al pinchar fuera porque si no no se puede acceder a registro de usuario
             }
 
         }
@@ -82,11 +85,14 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        usuarioLogin.setPromptText("Introduce Email");
-        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
-        usuarioLogin.setAlignment(Pos.CENTER);
-        contrasenaLogin.setPromptText("Introduce Contraseña");
-        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
-        contrasenaLogin.setAlignment(Pos.CENTER);
+        configurarTextField(usuarioLogin, "Introduce Correo electrónico");
+        configurarTextField(contrasenaLogin, "Introduce Contraseña");
+
+
+    }
+    private void configurarTextField(TextField textField, String textoSugerencia) {
+        textField.setPromptText(textoSugerencia);
+        textField.setStyle("-fx-prompt-text-fill: gray;");
+        textField.setAlignment(Pos.CENTER);
     }
 }
