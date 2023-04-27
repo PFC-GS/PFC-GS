@@ -19,3 +19,5 @@
     - Agregado logo
     - Comentado el recorte de la ventana en LoginController 
     
+27/04/2023
+    - Creada packAge util con clase de utilidad para el cambio de escenas ahorrando codigo

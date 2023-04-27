@@ -5,19 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
-import org.proyecto.tfgfront.session.Session;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
 public class LoginController implements Initializable {
 
@@ -29,10 +27,25 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField usuarioLogin;
+    @FXML
+    private Pane panelLogin;
 
     private UniRestController uniRest = new UniRestController();
 
     private Usuario user;
+
+    @FXML
+    void olvidastePw(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/olvidarPw-view.fxml"));
+
+        changeSceneMethod(loader, event);
+    }
+    @FXML
+    void irARegistro(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/registro-view.fxml"));
+
+        changeSceneMethod(loader, event);
+    }
 
 
 
@@ -46,6 +59,7 @@ public class LoginController implements Initializable {
                 usuarioValido = true;
             }else {
                 panelWrong.setVisible(true);
+// TODO: 27/04/2023 hay que agregar un evento para que cuando se muestre el panel de error se oculte al pinchar fuera porque si no no se puede acceder a registro de usuario
             }
 
         }
@@ -66,43 +80,19 @@ public class LoginController implements Initializable {
     }
 
 
-/*
-    public void initialize(){
-        usuarioLogin.setPromptText("Introduce Email");
-        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
-        usuarioLogin.setAlignment(Pos.CENTER);
-        contrasenaLogin.setPromptText("Introduce Contraseña");
-        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
-        contrasenaLogin.setAlignment(Pos.CENTER);
 
-    }
-
- */
-
-    /**
-     * Método que cambia de escena
-     * @param loader cargador de la escena
-     * @throws IOException
-     */
-    private static void changeSceneMethod(FXMLLoader loader,ActionEvent event) throws IOException {
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        //cerrar la vista anterior
-        Stage loginStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        loginStage.close();
-    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        usuarioLogin.setPromptText("Introduce Email");
-        usuarioLogin.setStyle("-fx-prompt-text-fill: gray;");
-        usuarioLogin.setAlignment(Pos.CENTER);
-        contrasenaLogin.setPromptText("Introduce Contraseña");
-        contrasenaLogin.setStyle("-fx-prompt-text-fill: gray;");
-        contrasenaLogin.setAlignment(Pos.CENTER);
+        configurarTextField(usuarioLogin, "Introduce Correo electrónico");
+        configurarTextField(contrasenaLogin, "Introduce Contraseña");
+
+
+    }
+    private void configurarTextField(TextField textField, String textoSugerencia) {
+        textField.setPromptText(textoSugerencia);
+        textField.setStyle("-fx-prompt-text-fill: gray;");
+        textField.setAlignment(Pos.CENTER);
     }
 }
