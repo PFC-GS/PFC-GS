@@ -5,19 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import org.proyecto.tfgfront.model.Usuario;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
 public class LoginController implements Initializable {
 
@@ -38,21 +36,13 @@ public class LoginController implements Initializable {
     void olvidastePw(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/olvidarPw-view.fxml"));
 
-        try {
-            changeSceneMethod(loader, event);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        changeSceneMethod(loader, event);
     }
     @FXML
     void irARegistro(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/registro-view.fxml"));
 
-        try {
-            changeSceneMethod(loader, event);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        changeSceneMethod(loader, event);
     }
 
 
@@ -87,21 +77,7 @@ public class LoginController implements Initializable {
     }
 
 
-    /**
-     * Método que cambia de escena
-     * @param loader cargador de la escena
-     * @throws IOException
-     */
-    private static void changeSceneMethod(FXMLLoader loader,ActionEvent event) throws IOException {
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        //cerrar la vista anterior
-        Stage loginStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        loginStage.close();
-    }
+
 
 
     @Override

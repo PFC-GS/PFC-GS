@@ -23,6 +23,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
+
 public class TableMainMenuViewController implements Initializable {
 
     @FXML
@@ -60,15 +62,7 @@ public class TableMainMenuViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainMenu-view.fxml"));
         changeSceneMethod(loader, event);
     }
-    private static void changeSceneMethod(FXMLLoader loader, ActionEvent event) throws IOException {
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        loginStage.close();
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

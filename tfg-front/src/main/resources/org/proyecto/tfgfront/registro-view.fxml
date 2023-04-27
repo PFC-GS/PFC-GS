@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="787.0" prefWidth="1331.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyecto.tfgfront.controller.RegistroController">
+<AnchorPane prefHeight="770.0" prefWidth="1312.0" style="-fx-background-color: C9EDDC;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyecto.tfgfront.controller.RegistroController">
    <children>
-      <AnchorPane prefHeight="53.0" prefWidth="1341.0" style="-fx-background-color: #0a4577;">
+      <ImageView fitHeight="758.0" fitWidth="1367.0" layoutX="-13.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+         <image>
+            <Image url="@../../../images/registroFondoWallpaper.png" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="53.0" prefWidth="1352.0" style="-fx-background-color: #0a4577;">
          <children>
             <ImageView fitHeight="36.0" fitWidth="33.0" layoutX="1287.0" layoutY="11.0" onMouseClicked="#exitMethod" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -16,5 +26,57 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="391.0" layoutY="138.0" prefHeight="455.0" prefWidth="535.0">
+         <children>
+            <Label alignment="CENTER" layoutX="163.0" layoutY="36.0" prefHeight="63.0" prefWidth="243.0" text="ALTA USUARIO">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="apellidosUsuario" layoutX="180.0" layoutY="214.0" prefHeight="43.0" prefWidth="240.0" style="-fx-border-color: #0893bc;" />
+            <TextField fx:id="emailUsuario" layoutX="180.0" layoutY="281.0" prefHeight="43.0" prefWidth="240.0" style="-fx-border-color: #0893bc;" />
+            <TextField fx:id="passwordUsuario" layoutX="180.0" layoutY="351.0" prefHeight="43.0" prefWidth="240.0" style="-fx-border-color: #0893bc;" />
+            <TextField fx:id="nombreUsuario" layoutX="180.0" layoutY="141.0" prefHeight="43.0" prefWidth="240.0" style="-fx-border-color: #0893bc;" />
+            <ImageView fitHeight="43.0" fitWidth="49.0" layoutX="120.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/altaUsuario.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="49.0" layoutX="120.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/altaUsuario.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="49.0" layoutX="120.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/altaCorreoUsuario.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="49.0" layoutX="120.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/password.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="enviarBoton" layoutX="240.0" layoutY="419.0" mnemonicParsing="false" onAction="#enviarAltaRegistro" prefHeight="43.0" prefWidth="121.0" style="-fx-background-color: #0a4577;" text="Enviar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="volverLogin" layoutX="-11.0" layoutY="39.0" mnemonicParsing="false" onAction="#volverALogin" prefHeight="43.0" prefWidth="121.0" style="-fx-background-color: #0a4577;" text="Volver a login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="panelWrong" layoutX="-6.0" layoutY="623.0" prefHeight="188.0" prefWidth="1358.0" style="-fx-background-color: #ff5868;" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutX="500.0" layoutY="71.0" prefHeight="29.0" prefWidth="467.0" text="Rellene todos los campos marcados en rojo antes de presionar Enviar" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
