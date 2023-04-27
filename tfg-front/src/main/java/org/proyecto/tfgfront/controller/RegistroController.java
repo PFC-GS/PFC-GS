@@ -11,6 +11,8 @@ import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Usuario;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
@@ -49,10 +51,10 @@ public class RegistroController implements Initializable {
             user.setEmail(emailUsuario.getText());
             user.setPassword(passwordUsuario.getText());
 
+            // user = uniRest.altaUsuario(user);  TODO: 27/04/2023 implementar altaUsuario en UniRestController
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
             changeSceneMethod(loader, event);
-
-           // user = uniRest.altaUsuario(user); // TODO: 27/04/2023 implementar altaUsuario en UniRestController
 
         }else {
             panelWrong.setVisible(true);
@@ -69,20 +71,7 @@ public class RegistroController implements Initializable {
         alert.showAndWait();
     }
 
-    private void conditionsRedText() {
-        if (nombreUsuario.getText().isEmpty()){
-               nombreUsuario.setStyle("-fx-prompt-text-fill: red;");
-        }
-        if (apellidosUsuario.getText().isEmpty()){
-            apellidosUsuario.setStyle("-fx-prompt-text-fill: red;");
-        }
-        if (emailUsuario.getText().isEmpty()){
-            emailUsuario.setStyle("-fx-prompt-text-fill: red;");
-        }
-        if (passwordUsuario.getText().isEmpty()){
-            passwordUsuario.setStyle("-fx-prompt-text-fill: red;");
-        }
-    }
+
 
     @FXML
     void volverALogin(ActionEvent event) {
@@ -97,22 +86,25 @@ public class RegistroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        nombreUsuario.setPromptText("Introduce Nombre");
-        nombreUsuario.setStyle("-fx-prompt-text-fill: gray;");
-        nombreUsuario.setAlignment(Pos.CENTER);
+        configurarTextField(nombreUsuario, "Introduce Nombre");
+        configurarTextField(apellidosUsuario, "Introduce Apellidos");
+        configurarTextField(emailUsuario, "Introduce Correo electrónico");
+        configurarTextField(passwordUsuario, "Introduce Contraseña");
 
-        apellidosUsuario.setPromptText("Introduce Apellidos");
-        apellidosUsuario.setStyle("-fx-prompt-text-fill: gray;");
-        apellidosUsuario.setAlignment(Pos.CENTER);
+    }
+    private void configurarTextField(TextField textField, String textoSugerencia) {
+        textField.setPromptText(textoSugerencia);
+        textField.setStyle("-fx-prompt-text-fill: gray;");
+        textField.setAlignment(Pos.CENTER);
+    }
+    private void conditionsRedText() {
+        List<TextField> textFields = Arrays.asList(nombreUsuario, apellidosUsuario, emailUsuario, passwordUsuario);
 
-        emailUsuario.setPromptText("Introduce Correo electronico");
-        emailUsuario.setStyle("-fx-prompt-text-fill: gray;");
-        emailUsuario.setAlignment(Pos.CENTER);
-
-        passwordUsuario.setPromptText("Introduce Contraseña");
-        passwordUsuario.setStyle("-fx-prompt-text-fill: gray;");
-        passwordUsuario.setAlignment(Pos.CENTER);
-
+        for (TextField textField : textFields) {
+            if (textField.getText().isEmpty()) {
+                textField.setStyle("-fx-prompt-text-fill: red;");
+            }
+        }
     }
 
 }
