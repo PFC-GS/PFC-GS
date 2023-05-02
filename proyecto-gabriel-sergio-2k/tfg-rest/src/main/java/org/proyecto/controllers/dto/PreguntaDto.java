@@ -52,7 +52,7 @@ public class PreguntaDto {
     }
 
     public static Pregunta toEntity(PreguntaDto dto) {
-        Categoria categoria = new Categoria(dto.getCategoria(),null,null);
+        Categoria categoria = new Categoria(dto.getCategoria(),null,null,null);
         Dificultad dificultad = new Dificultad(dto.getDificultad(), null,null);
         return new Pregunta(
                 dto.getId(),

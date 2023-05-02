@@ -50,7 +50,7 @@ public class TestDto {
     }
 
     public static Test toEntity(TestDto dto) {
-        Usuario usuario = new Usuario(dto.getUsuario(), null,null,null,null,false,null);
+        Usuario usuario = new Usuario(dto.getUsuario(), null,null,null,null,false,null,null);
         return new Test(
                 dto.getId(),
                 usuario,

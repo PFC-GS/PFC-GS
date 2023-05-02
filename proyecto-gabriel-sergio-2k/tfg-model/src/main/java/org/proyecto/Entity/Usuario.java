@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -30,4 +31,7 @@ public class Usuario implements Serializable {
 
     @OneToMany(mappedBy = "usuario")
     private List<Test> tests;
+
+    @ManyToMany(mappedBy = "usuarios")
+    private Set<Categoria> categorias;
 }

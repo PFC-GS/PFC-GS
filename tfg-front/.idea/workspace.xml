@@ -5,11 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b239d96-796f-4da6-bc2b-57eba1a5e556" name="Changes" comment="Creado el método login2 en UniRestController">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_39__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_39__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_04_2023_13_41__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/src/main/java/org/proyecto/Entity/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/src/main/java/org/proyecto/Entity/Categoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/src/main/java/org/proyecto/Entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/src/main/java/org/proyecto/Entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Categoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Categoria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/target/classes/org/proyecto/Entity/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/CategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/CategoriaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/PreguntaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/PreguntaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/TestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/TestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/UsuarioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/UsuarioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/dao/PreguntaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/dao/PreguntaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/service/GeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/service/GeneratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/CategoriaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/CategoriaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/PreguntaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/PreguntaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/TestDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/TestDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/UsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/controllers/dto/UsuarioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/service/GeneratorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/target/classes/org/proyecto/service/GeneratorService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "integracion-retrofit-javaFX",
-    "last_opened_file_path": "D:/PFC/tfg-front/src/main/resources/images",
+    "last_opened_file_path": "C:/Users/Sergio/Desktop/TFG2/proyecto-gabriel-sergio-2k",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",

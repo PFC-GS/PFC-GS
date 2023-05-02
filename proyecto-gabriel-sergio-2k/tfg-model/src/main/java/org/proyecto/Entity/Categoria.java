@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,5 +21,11 @@ public class Categoria implements Serializable {
     private String nombre;
 
     @OneToMany(mappedBy = "categoria")
-    List<Pregunta> preguntas;
+    private List<Pregunta> preguntas;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "usuario_categoria",
+            joinColumns = @JoinColumn(name = "categoria"),
+            inverseJoinColumns = @JoinColumn(name = "usuario"))
+    private Set<Usuario> usuarios;
 }
