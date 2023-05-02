@@ -10,6 +10,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -21,12 +23,14 @@ public class CategoriaDto {
     private Integer id;
     @NotBlank
     private String nombre;
+    private Set<UsuarioDto> usuarios;
 
 
     public static CategoriaDto toDto(Categoria categoria) {
         return new CategoriaDto(
                 categoria.getId(),
-                categoria.getNombre()
+                categoria.getNombre(),
+                categoria.getUsuarios().stream().map(UsuarioDto::toDto).collect(Collectors.toSet())
         );
     }
 
@@ -34,6 +38,8 @@ public class CategoriaDto {
         return new Categoria(
                 dto.getId(),
                 dto.getNombre(),
-                new ArrayList<>());
+                new ArrayList<>(),
+                dto.getUsuarios().stream().map(UsuarioDto::toEntity).collect(Collectors.toSet())
+        );
     }
 }

@@ -9,6 +9,7 @@ import org.proyecto.Entity.Usuario;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -31,6 +32,8 @@ public class UsuarioDto {
 
     private List<TestDto> tests;
 
+    private Set<CategoriaDto> categorias;
+
 
     public static Usuario toEntity(UsuarioDto dto) {
         return new Usuario(
@@ -40,7 +43,8 @@ public class UsuarioDto {
                 dto.getEmail(),
                 dto.getPassword(),
                 dto.isAdmin(),
-                dto.getTests().stream().map(TestDto::toEntity).collect(Collectors.toList())
+                dto.getTests().stream().map(TestDto::toEntity).collect(Collectors.toList()),
+                dto.getCategorias().stream().map(CategoriaDto::toEntity).collect(Collectors.toSet())
         );
     }
 
@@ -53,7 +57,8 @@ public class UsuarioDto {
                 usuario.getEmail(),
                 usuario.getPassword(),
                 usuario.isAdmin(),
-                usuario.getTests().stream().map(TestDto::toDto).collect(Collectors.toList())
+                usuario.getTests().stream().map(TestDto::toDto).collect(Collectors.toList()),
+                usuario.getCategorias().stream().map(CategoriaDto::toDto).collect(Collectors.toSet())
         );
     }
 

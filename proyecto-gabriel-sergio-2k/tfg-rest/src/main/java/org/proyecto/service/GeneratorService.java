@@ -208,12 +208,13 @@ public class GeneratorService {
         Usuario user = usuarioDAO.findByEmailAndPassword(email, pass);
         if (user != null) {
             user.getTests().isEmpty();
+            user.getCategorias().isEmpty();
             return usuarioDAO.findByEmailAndPassword(email, pass);
         }else return null;
     }
 
     // Obtener una lista de preguntas de una categoría (PASARÄ A SER MËTODO PRIVATE)
-    public Set<Pregunta> getPreguntasForTest(Integer categoriaId, Integer numPreguntas) {
+    private Set<Pregunta> getPreguntasForTest(Integer categoriaId, Integer numPreguntas) {
         Set<Pregunta> preguntaList = new HashSet<>();
         if (numPreguntas == null){
             numPreguntas = 10;
