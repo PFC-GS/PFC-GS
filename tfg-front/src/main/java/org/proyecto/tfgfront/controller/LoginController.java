@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -13,6 +13,8 @@ import org.proyecto.tfgfront.model.Usuario;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
@@ -26,7 +28,9 @@ public class LoginController implements Initializable {
     private Pane panelWrong;
 
     @FXML
-    private TextField usuarioLogin;
+    private TextField emailLogin;
+    @FXML
+    private Button loginButton;
 
     private UniRestController uniRest = new UniRestController();
 
@@ -51,9 +55,10 @@ public class LoginController implements Initializable {
     void accionBoton(ActionEvent event) throws IOException {
         boolean usuarioValido = false;
 
-        user = uniRest.login(usuarioLogin.getText(),contrasenaLogin.getText());
+        user = uniRest.login(emailLogin.getText(),contrasenaLogin.getText());
+        conditionsRedText();
         if (user != null){
-            if (user.getEmail().equals(usuarioLogin.getText()) && user.getPassword().equals(contrasenaLogin.getText())) {
+            if (user.getEmail().equals(emailLogin.getText()) && user.getPassword().equals(contrasenaLogin.getText())) {
                 usuarioValido = true;
             }else {
                 panelWrong.setVisible(true);
@@ -77,20 +82,31 @@ public class LoginController implements Initializable {
         System.exit(0);
     }
 
+    private void conditionsRedText() {
+        List<TextField> textFields = Arrays.asList(emailLogin, contrasenaLogin);
+
+        for (TextField textField : textFields) {
+            if (textField.getText().isEmpty()) {
+                textField.getStyleClass().add("redText");
+            }
+        }
+    }
+
 
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        configurarTextField(usuarioLogin, "Correo electrónico");
+        configurarTextField(emailLogin, "Correo electrónico");
         configurarTextField(contrasenaLogin, "Contraseña");
+
+
 
 
     }
     private void configurarTextField(TextField textField, String textoSugerencia) {
         textField.setPromptText(textoSugerencia);
-        textField.setStyle("-fx-prompt-text-fill: gray;");
-        textField.setAlignment(Pos.CENTER);
+        textField.getStyleClass().add("textField");
     }
 }

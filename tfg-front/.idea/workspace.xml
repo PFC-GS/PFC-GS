@@ -65,7 +65,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -76,8 +76,9 @@
       <recent name="D:\PFC\tfg-front\src\main\resources\org\proyecto\tfgfront" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\PFC\tfg-front\src\main\java\org\proyecto\tfgfront\controller" />
+      <recent name="D:\PFC\tfg-front\src\main\java\style" />
       <recent name="D:\PFC\tfg-front\src\main\java\org\proyecto\tfgfront" />
+      <recent name="D:\PFC\tfg-front\src\main\java\org\proyecto\tfgfront\controller" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -165,5 +166,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creado el método login2 en UniRestController" />
     <option name="LAST_COMMIT_MESSAGE" value="Creado el método login2 en UniRestController" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java</url>
+          <line>36</line>
+          <properties class="org.proyecto.tfgfront.controller.UniRestController" method="login">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
