@@ -27,8 +27,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField usuarioLogin;
-    @FXML
-    private Pane panelLogin;
 
     private UniRestController uniRest = new UniRestController();
 
@@ -59,7 +57,7 @@ public class LoginController implements Initializable {
                 usuarioValido = true;
             }else {
                 panelWrong.setVisible(true);
-// TODO: 27/04/2023 hay que agregar un evento para que cuando se muestre el panel de error se oculte al pinchar fuera porque si no no se puede acceder a registro de usuario
+
             }
 
         }
@@ -85,8 +83,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        configurarTextField(usuarioLogin, "Introduce Correo electrónico");
-        configurarTextField(contrasenaLogin, "Introduce Contraseña");
+        configurarTextField(usuarioLogin, "Correo electrónico");
+        configurarTextField(contrasenaLogin, "Contraseña");
 
 
     }
