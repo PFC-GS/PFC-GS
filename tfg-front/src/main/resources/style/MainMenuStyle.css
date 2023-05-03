@@ -1,0 +1,29 @@
+
+
+#panelEncabezado{
+    -fx-background-color: #0a4577;
+
+}
+#panelMenu{
+    -fx-background-color: #70b493;
+
+}
+.button{
+    -fx-background-color: #0a4577;
+    -fx-background-radius: 25px;
+}
+.button:hover {
+    -fx-background-color: #0a4577;
+    -fx-background-radius: 25px;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+#practicaLabel{
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+
+}
+.label{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
