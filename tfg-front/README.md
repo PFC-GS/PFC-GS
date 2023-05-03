@@ -21,3 +21,9 @@
     
 27/04/2023
     - Creada packAge util con clase de utilidad para el cambio de escenas ahorrando codigo
+
+28/04/2023
+    - Creado registro de usuario
+
+03/05/2023
+    - Agregados estilos css al proyecto 
