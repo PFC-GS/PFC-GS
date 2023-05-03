@@ -86,10 +86,10 @@ public class RegistroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        configurarTextField(nombreUsuario, "Introduce Nombre");
-        configurarTextField(apellidosUsuario, "Introduce Apellidos");
-        configurarTextField(emailUsuario, "Introduce Correo electrónico");
-        configurarTextField(passwordUsuario, "Introduce Contraseña");
+        configurarTextField(nombreUsuario, "Nombre");
+        configurarTextField(apellidosUsuario, "Apellidos");
+        configurarTextField(emailUsuario, "Correo electrónico");
+        configurarTextField(passwordUsuario, "Contraseña");
 
     }
     private void configurarTextField(TextField textField, String textoSugerencia) {
