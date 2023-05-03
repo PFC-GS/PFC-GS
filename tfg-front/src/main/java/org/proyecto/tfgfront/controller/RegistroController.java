@@ -61,7 +61,7 @@ public class RegistroController implements Initializable {
         }
     }
 
-    private static void soloBotonAceptar(Alert alert) {
+    private void soloBotonAceptar(Alert alert) {
         //quitar botones que no sean aceptar
         ButtonBar buttonBar = (ButtonBar) alert.getDialogPane().lookup(".button-bar");
         buttonBar.getButtons().clear();
@@ -94,15 +94,14 @@ public class RegistroController implements Initializable {
     }
     private void configurarTextField(TextField textField, String textoSugerencia) {
         textField.setPromptText(textoSugerencia);
-        textField.setStyle("-fx-prompt-text-fill: gray;");
-        textField.setAlignment(Pos.CENTER);
+        textField.getStyleClass().add("textField");
     }
     private void conditionsRedText() {
         List<TextField> textFields = Arrays.asList(nombreUsuario, apellidosUsuario, emailUsuario, passwordUsuario);
 
         for (TextField textField : textFields) {
             if (textField.getText().isEmpty()) {
-                textField.setStyle("-fx-prompt-text-fill: red;");
+                textField.getStyleClass().add("redText");
             }
         }
     }

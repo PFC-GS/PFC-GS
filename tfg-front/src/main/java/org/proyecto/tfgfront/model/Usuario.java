@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,6 +26,8 @@ public class Usuario {
     private boolean admin;
 
     private List<Test> tests;
+
+    private Set<Categoria> categorias;
 
 
 }
