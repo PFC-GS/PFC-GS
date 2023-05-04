@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="menuPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1331.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyecto.tfgfront.controller.MainMenuController">
@@ -12,7 +13,8 @@
       <AnchorPane fx:id="menuPanel" layoutY="114.0" prefHeight="708.0" prefWidth="200.0" style="-fx-background-color: #f3ad8b;">
          <children>
             <Button fx:id="btnGoCategorias" alignment="CENTER" layoutX="32.0" layoutY="80.0" mnemonicParsing="false" onAction="#verCategorias" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Entrenate" textFill="WHITE" AnchorPane.bottomAnchor="587.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="80.0" />
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="panelEncabezado" prefHeight="57.0" prefWidth="1331.0" stylesheets="@../../../style/MainMenuStyle.css">
          <children>
             <ImageView fitHeight="33.0" fitWidth="39.0" layoutX="1284.0" layoutY="12.0" onMouseClicked="#exitMethod" pickOnBounds="true" preserveRatio="true">
@@ -57,40 +59,46 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="categoriaPanel" layoutX="200.0" layoutY="114.0" prefHeight="708.0" prefWidth="309.0" stylesheets="@../../../style/MainMenuStyle.css">
+      <AnchorPane fx:id="categoriaPanel" layoutX="200.0" layoutY="114.0" prefHeight="708.0" prefWidth="376.0" stylesheets="@../../../style/MainMenuStyle.css">
          <children>
-            <Label fx:id="practicaLabel" layoutX="14.0" layoutY="201.0" prefHeight="64.0" prefWidth="281.0" text="¿Que categoria quieres Practicar?" />
+            <Label fx:id="practicaLabel" layoutX="48.0" layoutY="303.0" prefHeight="64.0" prefWidth="281.0" text="¿Que categoria quieres Practicar?" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="opoPanel" layoutX="506.0" layoutY="114.0" prefHeight="245.0" prefWidth="822.0" style="-fx-background-color: #0a4577;" stylesheets="@../../../style/MainMenuStyle.css">
+      <StackPane fx:id="contendorPaneles" layoutX="715.0" layoutY="250.0" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="252.0" fitWidth="434.0" layoutX="388.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/imagenOposiciones.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="practicaLabel1" layoutX="137.0" layoutY="94.0" prefHeight="64.0" prefWidth="281.0" text="OPOSICIONES" />
+            <AnchorPane fx:id="conducirPanel" prefHeight="588.0" prefWidth="528.0" style="-fx-background-color: #f3ad8b;" stylesheets="@../../../style/MainMenuStyle.css">
+               <children>
+                  <ImageView fitHeight="350.0" fitWidth="528.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/imagenConducir.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="practicaLabel11" layoutX="169.0" layoutY="373.0" prefHeight="64.0" prefWidth="281.0" text="CARNET DE CONDUCIR" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="opoPanel" prefHeight="588.0" prefWidth="536.0" style="-fx-background-color: #0a4577;" stylesheets="@../../../style/MainMenuStyle.css">
+               <children>
+                  <ImageView fitHeight="311.0" fitWidth="536.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/imagenOposiciones.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="practicaLabel1" layoutX="212.0" layoutY="294.0" prefHeight="64.0" prefWidth="281.0" text="OPOSICIONES" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="damPanel" prefHeight="588.0" prefWidth="536.0" style="-fx-background-color: #70b493;" stylesheets="@../../../style/MainMenuStyle.css">
+               <children>
+                  <ImageView fitHeight="281.0" fitWidth="536.0" layoutX="-1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/imageDAM.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="practicaLabel111" layoutX="76.0" layoutY="262.0" prefHeight="64.0" prefWidth="385.0" text="DESARROLLO APLICACIONES MULTIPLATAFORMA" />
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="damPanel" layoutX="506.0" layoutY="606.0" prefHeight="224.0" prefWidth="822.0" style="-fx-background-color: #70b493;" stylesheets="@../../../style/MainMenuStyle.css">
-         <children>
-            <ImageView fitHeight="224.0" fitWidth="434.0" layoutX="388.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/imageDAM.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="practicaLabel111" layoutX="3.0" layoutY="81.0" prefHeight="64.0" prefWidth="385.0" text="DESARROLLO APLICACIONES MULTIPLATAFORMA" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="conducirPanel" layoutX="506.0" layoutY="363.0" prefHeight="245.0" prefWidth="822.0" style="-fx-background-color: #f3ad8b;" stylesheets="@../../../style/MainMenuStyle.css">
-         <children>
-            <ImageView fitHeight="246.0" fitWidth="828.0" layoutX="453.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/imagenConducir.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="practicaLabel11" layoutX="97.0" layoutY="102.0" prefHeight="64.0" prefWidth="281.0" text="CARNET DE CONDUCIR" />
-         </children>
-      </AnchorPane>
+      </StackPane>
+      <Button fx:id="btnToRight" layoutX="1263.0" layoutY="422.0" mnemonicParsing="false" onAction="#moveToRight" prefHeight="95.0" prefWidth="54.0" text="&gt;" />
+      <Button fx:id="btnToLeft" layoutX="650.0" layoutY="422.0" mnemonicParsing="false" onAction="#moveToLeft" prefHeight="95.0" prefWidth="54.0" text="&lt;" />
    </children>
 </AnchorPane>
