@@ -68,7 +68,7 @@
          <children>
             <AnchorPane fx:id="conducirPanel" prefHeight="588.0" prefWidth="528.0" style="-fx-background-color: #f3ad8b;" stylesheets="@../../../style/MainMenuStyle.css">
                <children>
-                  <ImageView fitHeight="350.0" fitWidth="528.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="350.0" fitWidth="528.0" layoutX="6.0" layoutY="6.0" onMouseClicked="#irACarnetConducir" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/imagenConducir.png" />
                      </image>
@@ -78,7 +78,7 @@
             </AnchorPane>
             <AnchorPane fx:id="opoPanel" prefHeight="588.0" prefWidth="536.0" style="-fx-background-color: #0a4577;" stylesheets="@../../../style/MainMenuStyle.css">
                <children>
-                  <ImageView fitHeight="311.0" fitWidth="536.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="311.0" fitWidth="536.0" layoutY="-2.0" onMouseClicked="#irAOposiciones" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/imagenOposiciones.png" />
                      </image>
@@ -88,7 +88,7 @@
             </AnchorPane>
             <AnchorPane fx:id="damPanel" prefHeight="588.0" prefWidth="536.0" style="-fx-background-color: #70b493;" stylesheets="@../../../style/MainMenuStyle.css">
                <children>
-                  <ImageView fitHeight="281.0" fitWidth="536.0" layoutX="-1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="281.0" fitWidth="536.0" layoutX="-1.0" layoutY="-2.0" onMouseClicked="#irADam" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/imageDAM.png" />
                      </image>
