@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
+import static org.proyecto.tfgfront.util.Util.changeSceneMethodWithMouseEvent;
 
 public class MainMenuController implements Initializable {
 
@@ -55,13 +56,12 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private AnchorPane conducirPanel;
-
+    @FXML
+    private AnchorPane opoPanel;
     @FXML
     private AnchorPane damPanel;
     @FXML
     private ImageView imageMenu;
-    @FXML
-    private AnchorPane opoPanel;
     @FXML
     private StackPane contendorPaneles;
 
@@ -69,6 +69,32 @@ public class MainMenuController implements Initializable {
     private int indicePanelActual = -1;
 
 
+
+
+
+    @FXML
+    void irACarnetConducir(MouseEvent event) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/testConducir-view.fxml"));
+        changeSceneMethodWithMouseEvent(loader, event);
+//        TestConducirController testConducir = loader.getController();
+
+    }
+
+
+
+    @FXML
+    void irADam(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/testDam-view.fxml"));
+        changeSceneMethodWithMouseEvent(loader, event);
+
+    }
+
+    @FXML
+    void irAOposiciones(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/testOposiciones-view.fxml"));
+        changeSceneMethodWithMouseEvent(loader, event);
+
+    }
 
 
     @FXML
