@@ -35,3 +35,22 @@
 .redText{
     -fx-prompt-text-fill: red;
 }
+
+#contrasenaAlta{
+ -fx-border-color: #0a4577;
+   -fx-background-radius: 25px;
+   -fx-border-width: 0px;
+   -fx-alignment: center;
+   -fx-alignment: center;
+  -fx-font-size: 14px;
+}
+.contrasenaAlta-field:hover {
+    -fx-border-color: #0a4577;
+    -fx-background-radius: 25px;
+    -fx-border-width: 0px;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+
+}

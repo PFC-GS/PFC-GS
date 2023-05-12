@@ -1,14 +1,16 @@
 package org.proyecto.service;
 
 import org.proyecto.Entity.*;
-import org.proyecto.controllers.dto.UsuarioDto;
 import org.proyecto.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
 
 @Service
 public class GeneratorService {
@@ -43,6 +45,7 @@ public class GeneratorService {
             return true;
         }
     }
+
     public boolean updateUsuario(Integer usuarioId, Usuario usuario) {
         if (usuarioDAO.existsById(usuarioId)) {
             usuario.setId(usuarioId);
@@ -52,6 +55,7 @@ public class GeneratorService {
             return false;
         }
     }
+
     public boolean deleteUsuario(Integer usuarioId) {
         if (usuarioDAO.existsById(usuarioId)) {
             usuarioDAO.deleteById(usuarioId);
@@ -101,18 +105,17 @@ public class GeneratorService {
     }
 
 
-
     /////////////////////////////////////////////////////////////
 //      CRUD PREGUNTA
 
     public List<Pregunta> getAllPreguntas(Integer dificultad, Integer categoria) {
-        if (dificultad != null && categoria == null){
+        if (dificultad != null && categoria == null) {
             return preguntaDAO.findByDificultad_Id(dificultad);
-        }else if (dificultad == null && categoria != null){
+        } else if (dificultad == null && categoria != null) {
             return preguntaDAO.findByCategoria_Id(categoria);
-        }else if (dificultad != null && categoria != null){
+        } else if (dificultad != null && categoria != null) {
             return preguntaDAO.findByDificultad_IdAndCategoria_Id(dificultad, categoria);
-        }else {
+        } else {
             return preguntaDAO.findAll();
         }
     }
@@ -156,12 +159,12 @@ public class GeneratorService {
     }
 
     public boolean addDificultad(Dificultad dificultad) {
-         if (dificultadDAO.existsById(dificultad.getId())){
+        if (dificultadDAO.existsById(dificultad.getId())) {
             return false;
-         }else {
-             dificultadDAO.save(dificultad);
-             return true;
-         }
+        } else {
+            dificultadDAO.save(dificultad);
+            return true;
+        }
     }
 
 
@@ -203,7 +206,7 @@ public class GeneratorService {
         }
     }
 
-/////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
     // Obtener un usuario mediante su email y pass
     public Usuario getUsuarioByEmailAndPass(String email, String pass) {
         Usuario user = usuarioDAO.findByEmailAndPassword(email, pass);
@@ -211,35 +214,36 @@ public class GeneratorService {
             user.getTests().isEmpty();
             user.getCategorias().isEmpty();
             return usuarioDAO.findByEmailAndPassword(email, pass);
-        }else return null;
+        } else return null;
     }
 
     // Obtener una lista de preguntas de una categoría (PASARÄ A SER MËTODO PRIVATE)
     private Set<Pregunta> getPreguntasForTest(Integer categoriaId, Integer numPreguntas) {
         Set<Pregunta> preguntaList = new HashSet<>();
-        if (numPreguntas == null){
+        if (numPreguntas == null) {
             numPreguntas = 10;
         }
         List<Pregunta> totalList = preguntaDAO.findByCategoria_Id(categoriaId);
-        if (totalList.size()<numPreguntas){   // Esta condición está para prevenir un bucle infinito si hubiera menos preguntas que las pedidas
+        if (totalList.size() < numPreguntas) {   // Esta condición está para prevenir un bucle infinito si hubiera menos preguntas que las pedidas
             numPreguntas = totalList.size();
         }
         Random random = new Random();
         for (int i = 0; i < numPreguntas; i++) {
             int aux = random.nextInt(totalList.size());
             Pregunta pregunta = totalList.get(aux);
-            if (!preguntaList.contains(pregunta)){
+            if (!preguntaList.contains(pregunta)) {
                 preguntaList.add(pregunta);
-            }else {
+            } else {
                 i--;
             }
         }
         return preguntaList;
     }
+
     // Retornar un Test con las preguntas
     public Test createTestWithQuestions(Usuario usuario, Integer categoriaId, Integer numPreguntas) {
         Test newTest = new Test();
-        newTest.setPreguntas(getPreguntasForTest(categoriaId,numPreguntas));
+        newTest.setPreguntas(getPreguntasForTest(categoriaId, numPreguntas));
         newTest.setUsuario(usuario);
         newTest.setFecha(new Timestamp(System.currentTimeMillis()));
 
@@ -247,13 +251,14 @@ public class GeneratorService {
 
 
     }
+
     //  Retornar TEst con preguntas V2
     public Test createTestV2(Usuario usuario, Integer categoriaId, Integer numpreguntas) {
-        if (numpreguntas == null){
+        if (numpreguntas == null) {
             numpreguntas = 10;
         }
-        Set<Pregunta> preguntas = preguntaDAO.findRandomQuestions(categoriaId,numpreguntas);
-        for (Pregunta p:preguntas) {
+        Set<Pregunta> preguntas = preguntaDAO.findRandomQuestions(categoriaId, numpreguntas);
+        for (Pregunta p : preguntas) {
             p.setSolucion("");
         }
         Test newTest = new Test();
@@ -263,16 +268,17 @@ public class GeneratorService {
 
         return newTest;
     }
+
     //  Correccion de test
     public Test getCorreccion(Test test) {
         float puntos = 0;
-        for (Pregunta p:test.getPreguntas()) {
+        for (Pregunta p : test.getPreguntas()) {
             Pregunta pregunaCorrecta = preguntaDAO.findById(p.getId()).orElse(null);
-            if (pregunaCorrecta.getSolucion().equals(p.getSolucion())){
+            if (pregunaCorrecta.getSolucion().equals(p.getSolucion())) {
                 puntos++;
             }
         }
-        double nota = (puntos/test.getPreguntas().size())*10;
+        double nota = (puntos / test.getPreguntas().size()) * 10;
         int decimalPlaces = 2;
         nota = (double) (Math.round(nota * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces));
 

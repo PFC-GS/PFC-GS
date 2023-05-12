@@ -74,7 +74,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void irACarnetConducir(MouseEvent event) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/testConducir-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
 //        TestConducirController testConducir = loader.getController();
 
@@ -84,14 +84,14 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void irADam(MouseEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/testDam-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
 
     }
 
     @FXML
     void irAOposiciones(MouseEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/testOposiciones-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
 
     }
@@ -195,7 +195,7 @@ public class MainMenuController implements Initializable {
     @FXML
     void exitMethod(MouseEvent event) {
         System.exit(0);
-    }
+    } // TODO: 12/05/2023 implementar un método para salir de la aplicación
 
     private void transitionOut() {
         TranslateTransition slideOut = new TranslateTransition(Duration.seconds(0.75), categoriaPanel);

@@ -92,7 +92,7 @@
       <module name="tfg-front" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.proyecto.tfgfront.controller.TestDamController" />
+          <option name="PATTERN" value="org.proyecto.tfgfront.controller.TestController" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

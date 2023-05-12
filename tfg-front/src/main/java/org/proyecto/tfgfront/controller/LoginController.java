@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
     }
     @FXML
     void exitMethod(MouseEvent event) {
-        System.exit(0);
+        System.exit(0); // TODO: 12/05/2023 implementar un método para salir de la aplicación
     }
 
     private void conditionsRedText() {

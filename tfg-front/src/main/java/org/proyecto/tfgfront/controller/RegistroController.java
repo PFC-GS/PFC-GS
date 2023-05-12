@@ -30,7 +30,7 @@ public class RegistroController implements Initializable {
     private TextField nombreUsuario;
 
     @FXML
-    private TextField passwordUsuario;
+    private PasswordField contrasenaAlta;
     @FXML
     private Pane panelWrong;
 
@@ -39,7 +39,7 @@ public class RegistroController implements Initializable {
     void enviarAltaRegistro(ActionEvent event) {
 
         conditionsRedText();
-        if (!nombreUsuario.getText().isEmpty() && !apellidosUsuario.getText().isEmpty() && !emailUsuario.getText().isEmpty() && !passwordUsuario.getText().isEmpty()){
+        if (!nombreUsuario.getText().isEmpty() && !apellidosUsuario.getText().isEmpty() && !emailUsuario.getText().isEmpty() && !contrasenaAlta.getText().isEmpty()){
             panelWrong.setVisible(false);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro");
@@ -49,7 +49,7 @@ public class RegistroController implements Initializable {
             user.setNombre(nombreUsuario.getText());
             user.setApellidos(apellidosUsuario.getText());
             user.setEmail(emailUsuario.getText());
-            user.setPassword(passwordUsuario.getText());
+            user.setPassword(contrasenaAlta.getText());
 
             // user = uniRest.altaUsuario(user);  TODO: 27/04/2023 implementar altaUsuario en UniRestController
 
@@ -80,7 +80,7 @@ public class RegistroController implements Initializable {
     }
     @FXML
     void exitMethod(MouseEvent event) {
-        System.exit(0);
+        System.exit(0); // TODO: 12/05/2023 implementar un método para salir de la aplicación
     }
 
     @Override
@@ -89,7 +89,7 @@ public class RegistroController implements Initializable {
         configurarTextField(nombreUsuario, "Nombre");
         configurarTextField(apellidosUsuario, "Apellidos");
         configurarTextField(emailUsuario, "Correo electrónico");
-        configurarTextField(passwordUsuario, "Contraseña");
+        configurarTextField(contrasenaAlta, "Contraseña");
 
     }
     private void configurarTextField(TextField textField, String textoSugerencia) {
@@ -97,7 +97,7 @@ public class RegistroController implements Initializable {
         textField.getStyleClass().add("textField");
     }
     private void conditionsRedText() {
-        List<TextField> textFields = Arrays.asList(nombreUsuario, apellidosUsuario, emailUsuario, passwordUsuario);
+        List<TextField> textFields = Arrays.asList(nombreUsuario, apellidosUsuario, emailUsuario, contrasenaAlta);
 
         for (TextField textField : textFields) {
             if (textField.getText().isEmpty()) {
