@@ -69,7 +69,7 @@ public class TestController {
     }
 
     // obtener un test con las preguntas cargadas (por defecto serán 10 preguntas)
-    @GetMapping(path = "/test/preguntas/{categoriaId}")
+    @GetMapping(path = "/tests/preguntas/{categoriaId}")
     public ResponseEntity<TestDto> getPreguntasForTest(
             @Valid @RequestBody UsuarioDto usuario,
             @PathVariable("categoriaId") Integer categoriaId,
@@ -83,5 +83,30 @@ public class TestController {
         }
     }
 
-
+    // Obtener un test con las preguntas, versión mejorada
+    @GetMapping(path = "/tests/preguntas2/{categoriaId}")
+    public ResponseEntity<TestDto> getTestReady(
+            @Valid @RequestBody UsuarioDto usuario,
+            @PathVariable("categoriaId") Integer categoriaId,
+            @RequestParam(value = "numPreguntas",required = false) Integer numpreguntas
+    ){
+        if (service.getCategoriaById(categoriaId)==null || service.getUsuarioById(usuario.getId()) == null){
+            return ResponseEntity.notFound().build();
+        }else {
+            return ResponseEntity.ok(TestDto.toDto(
+                    service.createTestV2(UsuarioDto.toEntity(usuario),categoriaId,numpreguntas)));
+        }
+    }
+    //  Obtener el test corregido
+    @GetMapping(path = "/test/correccion")
+    public ResponseEntity<TestDto> getCorreccion(
+            @Valid @RequestBody TestDto test
+    ){
+        if (service.getUsuarioById(test.getUsuario()).getId() == null){
+            return  ResponseEntity.notFound().build();
+        }else {
+            return ResponseEntity.ok(TestDto.toDto(
+                    service.getCorreccion(TestDto.toEntity(test))));
+        }
+    }
 }
