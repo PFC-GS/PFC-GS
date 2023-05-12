@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+
 @Service
 public class GeneratorService {
     @Autowired
@@ -249,6 +250,42 @@ public class GeneratorService {
         return newTest;
 
 
+    }
+
+    //  Retornar TEst con preguntas V2
+    public Test createTestV2(Usuario usuario, Integer categoriaId, Integer numpreguntas) {
+        if (numpreguntas == null) {
+            numpreguntas = 10;
+        }
+        Set<Pregunta> preguntas = preguntaDAO.findRandomQuestions(categoriaId, numpreguntas);
+        for (Pregunta p : preguntas) {
+            p.setSolucion("");
+        }
+        Test newTest = new Test();
+        newTest.setPreguntas(preguntas);
+        newTest.setFecha(new Timestamp(System.currentTimeMillis()));
+        newTest.setUsuario(usuario);
+
+        return newTest;
+    }
+
+    //  Correccion de test
+    public Test getCorreccion(Test test) {
+        float puntos = 0;
+        for (Pregunta p : test.getPreguntas()) {
+            Pregunta pregunaCorrecta = preguntaDAO.findById(p.getId()).orElse(null);
+            if (pregunaCorrecta.getSolucion().equals(p.getSolucion())) {
+                puntos++;
+            }
+        }
+        double nota = (puntos / test.getPreguntas().size()) * 10;
+        int decimalPlaces = 2;
+        nota = (double) (Math.round(nota * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces));
+
+        test.setCalificacion(nota);
+        testDao.save(test);
+
+        return test;
     }
 }
 
