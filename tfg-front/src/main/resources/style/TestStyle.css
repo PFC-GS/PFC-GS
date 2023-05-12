@@ -9,16 +9,32 @@
 }
 
 #panelTest{
-     border: 1px solid black;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
 }
 
-#panelRespuesta1,#panelRespuesta3 {
+#panelRespuesta1,#panelRespuesta2,#panelRespuesta3 {
     -fx-background-radius: 25px;
     -fx-background-color: #8794F0;
 }
 
-#panelRespuesta2{
+
+#panelRespuesta1:hover{
     -fx-background-radius: 25px;
-    -fx-background-color: #6CFAEE;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
+#panelRespuesta2:hover{
+    -fx-background-radius: 25px;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+#panelRespuesta3:hover{
+    -fx-background-radius: 25px;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+
 
