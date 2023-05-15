@@ -40,4 +40,5 @@ public class Util {
         Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         loginStage.close();
     }
+
 }
