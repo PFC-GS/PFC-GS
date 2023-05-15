@@ -2,19 +2,28 @@ package org.proyecto.tfgfront.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import org.proyecto.tfgfront.model.Pregunta;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
+
+
 
 public class TestController implements Initializable {
 
@@ -115,26 +124,9 @@ public class TestController implements Initializable {
     @FXML
     void siguientePregunta(ActionEvent event) {
 
-        // Guardar la respuesta del usuario para la pregunta actual
-        preguntaActual.setSolucion(respuestaUser);
-        respuesta.add(preguntaActual);
-        respuesta.forEach(System.out::println);
-        System.out.println("-----------------------------------");
+        procesarRespuesta(event);
 
-        // Incrementar el índice de la pregunta actual
-        indicePreguntaActual++;
-
-        // Comprobar si se han contestado todas las preguntas
-        if (indicePreguntaActual >= preguntas.size()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Test finalizado");
-            alert.setHeaderText("Has finalizado el test");
-            alert.setContentText("Pulsa aceptar para ver los resultados");
-            return;
-        }
-
-        // Establecer la pregunta actual como la siguiente en la lista
-        preguntaActual = preguntas.get(indicePreguntaActual);
+        panelesDesmarcados();
 
         // Actualizar la vista con el contenido de la pregunta actual
         encabezadoPregunta.setText(preguntaActual.getEnunciado());
@@ -148,6 +140,54 @@ public class TestController implements Initializable {
         setPanelRespuestaEvents(panelRespuesta2, preguntaActual.getRespuestaB());
         setPanelRespuestaEvents(panelRespuesta3, preguntaActual.getRespuestaC());
 
+    }
+
+    /**
+     * Método que pone los paneles de respuesta en su estado inicial
+     */
+    private void panelesDesmarcados() {
+        panelRespuesta1.setStyle("-fx-background-radius: 25px;\n" +
+                "    -fx-background-color: #8794F0;");
+        panelRespuesta2.setStyle("-fx-background-radius: 25px;\n" +
+                "    -fx-background-color: #8794F0;");
+        panelRespuesta3.setStyle("-fx-background-radius: 25px;\n" +
+                "    -fx-background-color: #8794F0;");
+    }
+
+
+    /**
+     * Metodo que procesa la respuesta del usuario y la guarda en una lista
+     * @param event
+     */
+    private void procesarRespuesta(ActionEvent event) {
+        // Guardar la respuesta del usuario para la pregunta actual
+        preguntaActual.setSolucion(respuestaUser);
+        respuesta.add(preguntaActual);
+        respuesta.forEach(System.out::println);
+        System.out.println("-----------------------------------");
+
+        // Incrementar el índice de la pregunta actual
+        indicePreguntaActual++;
+
+        // Comprobar si se han contestado todas las preguntas
+        if (indicePreguntaActual < preguntas.size()) {
+            // Establecer la pregunta actual como la siguiente en la lista
+            preguntaActual = preguntas.get(indicePreguntaActual);
+        } else {
+            // Mostrar diálogo de alerta indicando que se ha terminado el test
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Test finalizado");
+            alert.setHeaderText("Has finalizado el test");
+            alert.setContentText("Pulsa aceptar para ver los resultados");
+            // comprueba si el usuario ha pulsado el botón aceptar
+            Optional<ButtonType> result = alert.showAndWait();
+            // si el usuario ha pulsado el botón aceptar de la ventana alert, carga la vista de resultados
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/resultadoTest-view.fxml"));
+               changeSceneMethod(loader, event);
+            }
+
+        }
     }
 
 
