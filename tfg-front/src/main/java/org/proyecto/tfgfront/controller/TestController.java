@@ -4,25 +4,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Pregunta;
+import org.proyecto.tfgfront.model.Test;
+import org.proyecto.tfgfront.session.Session;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
+import java.security.Timestamp;
+import java.util.*;
 
+import static java.lang.System.currentTimeMillis;
+import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
 
 public class TestController implements Initializable {
@@ -104,6 +102,7 @@ public class TestController implements Initializable {
 
     /**
      * Método que asigna los eventos a los paneles de respuesta
+     *
      * @param panelRespuesta
      * @param respuesta
      */
@@ -136,9 +135,9 @@ public class TestController implements Initializable {
         numeroPregunta.setText(String.valueOf(indicePreguntaActual + 1));
 
         // Establecer los eventos de clic para cada panel de respuesta
-        setPanelRespuestaEvents(panelRespuesta1, preguntaActual.getRespuestaA());
-        setPanelRespuestaEvents(panelRespuesta2, preguntaActual.getRespuestaB());
-        setPanelRespuestaEvents(panelRespuesta3, preguntaActual.getRespuestaC());
+        setPanelRespuestaEvents(panelRespuesta1, "a");
+        setPanelRespuestaEvents(panelRespuesta2, "b");
+        setPanelRespuestaEvents(panelRespuesta3, "c");
 
     }
 
@@ -157,6 +156,7 @@ public class TestController implements Initializable {
 
     /**
      * Metodo que procesa la respuesta del usuario y la guarda en una lista
+     *
      * @param event
      */
     private void procesarRespuesta(ActionEvent event) {
@@ -179,12 +179,18 @@ public class TestController implements Initializable {
             alert.setTitle("Test finalizado");
             alert.setHeaderText("Has finalizado el test");
             alert.setContentText("Pulsa aceptar para ver los resultados");
+            // Guardar las respuestas del usuario en un objeto Test
+            Set<Pregunta> respuestas = new HashSet<>(respuesta); // TODO: 15/05/2023 revisar si es necesario
+            Test test = new Test();
+            test.setUsuario(Session.getUsuario().getId());
+            test.setPreguntas(respuestas);
+
             // comprueba si el usuario ha pulsado el botón aceptar
             Optional<ButtonType> result = alert.showAndWait();
             // si el usuario ha pulsado el botón aceptar de la ventana alert, carga la vista de resultados
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/resultadoTest-view.fxml"));
-               changeSceneMethod(loader, event);
+                changeSceneMethod(loader, event);
             }
 
         }
@@ -203,9 +209,9 @@ public class TestController implements Initializable {
             lbRespuesta3.setText(preguntaActual.getRespuestaC());
             numeroPregunta.setText("1");
 
-            setPanelRespuestaEvents(panelRespuesta1, preguntaActual.getRespuestaA());
-            setPanelRespuestaEvents(panelRespuesta2, preguntaActual.getRespuestaB());
-            setPanelRespuestaEvents(panelRespuesta3, preguntaActual.getRespuestaC());
+            setPanelRespuestaEvents(panelRespuesta1, "a");
+            setPanelRespuestaEvents(panelRespuesta2, "b");
+            setPanelRespuestaEvents(panelRespuesta3, "c");
 
         }
     }

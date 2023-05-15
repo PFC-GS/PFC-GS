@@ -25,6 +25,6 @@ public class Test {
 
     private Timestamp fecha;
 
-    private Set<Pregunta> preguntas;
+    private Set<Pregunta> Preguntas;
 
 }
