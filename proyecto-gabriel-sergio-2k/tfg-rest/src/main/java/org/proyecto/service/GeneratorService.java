@@ -241,9 +241,10 @@ public class GeneratorService {
     }
 
     // Retornar un Test con las preguntas
-    public Test createTestWithQuestions(Usuario usuario, Integer categoriaId, Integer numPreguntas) {
+    public Test createTestWithQuestions(Integer usuarioId, Integer categoriaId, Integer numPreguntas) {
         Test newTest = new Test();
         newTest.setPreguntas(getPreguntasForTest(categoriaId, numPreguntas));
+        Usuario usuario = usuarioDAO.findById(usuarioId).orElse(null);
         newTest.setUsuario(usuario);
         newTest.setFecha(new Timestamp(System.currentTimeMillis()));
 
@@ -253,7 +254,7 @@ public class GeneratorService {
     }
 
     //  Retornar TEst con preguntas V2
-    public Test createTestV2(Usuario usuario, Integer categoriaId, Integer numpreguntas) {
+    public Test createTestV2(Integer usuarioId, Integer categoriaId, Integer numpreguntas) {
         if (numpreguntas == null) {
             numpreguntas = 10;
         }
@@ -262,13 +263,14 @@ public class GeneratorService {
         Test newTest = new Test();
         newTest.setPreguntas(preguntas);
         newTest.setFecha(new Timestamp(System.currentTimeMillis()));
+        Usuario usuario = usuarioDAO.findById(usuarioId).orElse(null);
         newTest.setUsuario(usuario);
 
         return newTest;
     }
 
-    //  Correccion de test
-    public Test getCorreccion(Test test) {
+    //  Correccion de test y guardado en la bbdd
+    public void getCorreccion(Test test) {
         float puntos = 0;
         for (Pregunta p : test.getPreguntas()) {
             Pregunta pregunaCorrecta = preguntaDAO.findById(p.getId()).orElse(null);
@@ -282,8 +284,10 @@ public class GeneratorService {
 
         test.setCalificacion(nota);
         testDao.save(test);
-
-        return test;
+    }
+    //
+    public Test getTestByUserIdAndDate(Integer usuarioId, Timestamp fecha) {
+        return testDao.findTestByUserIdAndDate(usuarioId,fecha);
     }
 }
 

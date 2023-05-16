@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,46 +68,58 @@ public class TestController {
             return ResponseEntity.notFound().build();
         }
     }
-
+/*
     // obtener un test con las preguntas cargadas (por defecto serán 10 preguntas)
-    @GetMapping(path = "/tests/preguntas/{categoriaId}")
+    @GetMapping(path = "/tests/preguntas/{usuarioId}/{categoriaId}")
     public ResponseEntity<TestDto> getPreguntasForTest(
-            @Valid @RequestBody UsuarioDto usuario,
+            @PathVariable("usuarioId") Integer usuarioId,
             @PathVariable("categoriaId") Integer categoriaId,
             @RequestParam(value = "numPreguntas",required = false) Integer numPreguntas
     ){
-        if (service.getCategoriaById(categoriaId) == null){
+        if (service.getCategoriaById(categoriaId) == null || service.getUsuarioById(usuarioId) == null){
             return ResponseEntity.notFound().build();
         }else {
             return ResponseEntity.ok(TestDto.toDto(
-                    service.createTestWithQuestions(UsuarioDto.toEntity(usuario),categoriaId,numPreguntas)));
+                    service.createTestWithQuestions(usuarioId,categoriaId,numPreguntas)));
         }
     }
-
+ */
     // Obtener un test con las preguntas, versión mejorada
-    @GetMapping(path = "/tests/preguntas2/{categoriaId}")
+    @GetMapping(path = "/tests/preguntas2/{usuarioId}/{categoriaId}")
     public ResponseEntity<TestDto> getTestReady(
-            @Valid @RequestBody UsuarioDto usuario,
+            @PathVariable("usuarioId") Integer usuarioId,
             @PathVariable("categoriaId") Integer categoriaId,
             @RequestParam(value = "numPreguntas",required = false) Integer numpreguntas
     ){
-        if (service.getCategoriaById(categoriaId)==null || service.getUsuarioById(usuario.getId()) == null){
+        if (service.getCategoriaById(categoriaId)==null || service.getUsuarioById(usuarioId) == null){
             return ResponseEntity.notFound().build();
         }else {
             return ResponseEntity.ok(TestDto.toDto(
-                    service.createTestV2(UsuarioDto.toEntity(usuario),categoriaId,numpreguntas)));
+                    service.createTestV2(usuarioId,categoriaId,numpreguntas)));
         }
     }
     //  Obtener el test corregido
-    @GetMapping(path = "/test/correccion")
-    public ResponseEntity<TestDto> getCorreccion(
+    @PostMapping(path = "/test/correccion")
+    public ResponseEntity<Void> getCorreccion(
             @Valid @RequestBody TestDto test
     ){
         if (service.getUsuarioById(test.getUsuario()).getId() == null){
             return  ResponseEntity.notFound().build();
         }else {
-            return ResponseEntity.ok(TestDto.toDto(
-                    service.getCorreccion(TestDto.toEntity(test))));
+            return ResponseEntity.ok().build();
+        }
+    }
+
+    //  Obtener un test por fecha e id de usuario
+    @GetMapping(path = "/test/{usuarioId}/{fechaTest}")
+    public ResponseEntity<TestDto> getTestByUserIdAndDate(
+            @PathVariable("usuarioId") Integer usuarioId,
+            @PathVariable("fechaTest") Timestamp fecha
+    ){
+        if (service.getUsuarioById(usuarioId)==null){
+            return ResponseEntity.notFound().build();
+        }else {
+            return ResponseEntity.ok(TestDto.toDto(service.getTestByUserIdAndDate(usuarioId,fecha)));
         }
     }
 }
