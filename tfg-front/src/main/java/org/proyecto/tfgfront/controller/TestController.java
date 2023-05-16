@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.session.Session;
+import org.proyecto.tfgfront.session.TestConfigurator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -61,16 +62,16 @@ public class TestController implements Initializable {
 
     @FXML
     private Button siguientePregunta;
-
     private Pane ultimoPanelClickeado = null;
-
     private UniRestController uniRest = new UniRestController();
-//    private Test test = uniRest.getTest(3,4);
+   private Test test = uniRest.getTest(TestConfigurator.getUsuarioId(),TestConfigurator.getCategoriaTest(), TestConfigurator.getNumeroPreguntas());
     private List<Pregunta> preguntas = new ArrayList<>();
     private Pregunta preguntaActual;
     private String respuestaUser;
     private List<Pregunta> respuesta = new ArrayList<>();
     private int indicePreguntaActual = 0;
+
+
 
 
     @FXML
@@ -207,8 +208,8 @@ public class TestController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
 
-//        preguntas = new ArrayList<>(test.getPreguntas());
-        preguntas = uniRest.getPreguntas();
+        preguntas = new ArrayList<>(test.getPreguntas());
+//        preguntas = uniRest.getPreguntas();
         if (!preguntas.isEmpty()) {
             preguntaActual = preguntas.get(0);
             encabezadoPregunta.setText(preguntaActual.getEnunciado());

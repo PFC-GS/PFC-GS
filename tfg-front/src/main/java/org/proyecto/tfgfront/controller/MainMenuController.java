@@ -3,6 +3,8 @@ package org.proyecto.tfgfront.controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
+import org.proyecto.tfgfront.session.TestConfigurator;
 
 import java.net.URL;
 import java.time.LocalTime;
@@ -53,7 +57,6 @@ public class MainMenuController implements Initializable {
     private AnchorPane menuPanel;
     @FXML
     private AnchorPane categoriaPanel;
-
     @FXML
     private AnchorPane conducirPanel;
     @FXML
@@ -64,12 +67,32 @@ public class MainMenuController implements Initializable {
     private ImageView imageMenu;
     @FXML
     private StackPane contendorPaneles;
-
+    @FXML
+    private ComboBox<Integer> comboPreguntas;
+    public Integer preguntasSeleccionadas;
     private List<Node> paneles;
     private int indicePanelActual = -1;
 
 
 
+    @FXML
+    void numeroPreguntasSeleccionadas(MouseEvent event) {
+        List<Integer> opciones = Arrays.asList(5,10,15,20);
+
+        ObservableList<Integer> listaOpciones = FXCollections.observableArrayList(opciones);
+        comboPreguntas.setItems(listaOpciones);
+
+        comboPreguntas.setOnAction(e -> {
+            Integer seleccion = comboPreguntas.getValue();
+            if (seleccion != null) {
+                Integer numeroPreguntas = seleccion;
+                TestConfigurator.setNumeroPreguntas(numeroPreguntas);
+            } else {
+                // Manejar el caso de que no se haya seleccionado ninguna opción
+                TestConfigurator.setNumeroPreguntas(4); // Valor por defecto
+            }
+        });
+    }
 
 
     @FXML
