@@ -258,9 +258,7 @@ public class GeneratorService {
             numpreguntas = 10;
         }
         Set<Pregunta> preguntas = preguntaDAO.findRandomQuestions(categoriaId, numpreguntas);
-        for (Pregunta p : preguntas) {
-            p.setSolucion("");
-        }
+        preguntas.forEach(p -> p.setSolucion(""));
         Test newTest = new Test();
         newTest.setPreguntas(preguntas);
         newTest.setFecha(new Timestamp(System.currentTimeMillis()));
