@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -100,5 +101,6 @@
       </StackPane>
       <Button fx:id="btnToRight" layoutX="1263.0" layoutY="422.0" mnemonicParsing="false" onAction="#moveToRight" prefHeight="95.0" prefWidth="54.0" text="&gt;" />
       <Button fx:id="btnToLeft" layoutX="650.0" layoutY="422.0" mnemonicParsing="false" onAction="#moveToLeft" prefHeight="95.0" prefWidth="54.0" text="&lt;" />
+      <ComboBox fx:id="comboPreguntas" layoutX="522.0" layoutY="588.0" onMouseClicked="#numeroPreguntasSeleccionadas" prefHeight="27.0" prefWidth="182.0" promptText="numero de preguntas" visibleRowCount="3" />
    </children>
 </AnchorPane>

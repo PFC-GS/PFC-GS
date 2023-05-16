@@ -9,8 +9,8 @@ import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
-import org.proyecto.tfgfront.util.Util;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,31 +57,34 @@ public class UniRestController {
         }
     }
 
-//    public Test getTest(Integer categoriaId, Integer numPreguntas) {
-//        Test test = null;
-//        String url = "http://localhost:8080/tests/preguntas2/{categoriaId}";
-//        if (numPreguntas != null) {
-//            url = url + "?numPreguntas=" + numPreguntas;
-//        }
-//        try {
-//            Gson gson = new Gson();
-//            String usuarioJson = gson.toJson(Session.getUsuario());
-//
-//            HttpResponse<String> response = Unirest.get(url)
-//                    .routeParam("categoriaId", String.valueOf(categoriaId))
-//                    .queryString("usuario", usuarioJson)
-//                    .asString();
-//
-//            String responseBody = response.getBody();
-//            test = gson.fromJson(responseBody, Test.class);
-//
-//            return test;
-//        } catch (UnirestException e) {
-//            System.err.println("Error: " + e.getMessage());
-//        }
-//        return null;
-//
-//    }
+    public Test getTest(Integer usuarioId, Integer categoriaId, Integer numPreguntas) {
+        String url = "http://localhost:8080/tests/preguntas2/{usuarioId}/{categoriaId}";
+        if (numPreguntas != null) {
+            url += "?numPreguntas=" + numPreguntas;
+        }
+        try {
+            Gson gson = new Gson();
+
+            HttpResponse<String> response = Unirest.get(url)
+                    .routeParam("usuarioId", String.valueOf(usuarioId))
+                    .routeParam("categoriaId", String.valueOf(categoriaId))
+                    .asString();
+
+            int statusCode = response.getStatus();
+            if (statusCode == 200) {
+                String responseBody = response.getBody();
+                Test test = gson.fromJson(responseBody, Test.class);
+                return test;
+            } else {
+                System.err.println("Error: Unexpected response status - " + statusCode);
+                System.err.println("Response body: " + response.getBody());
+            }
+        } catch (UnirestException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return null;
+    }
+
     public List<Pregunta> getPreguntas() {
 
         List<Pregunta> preguntas = new ArrayList<>();
