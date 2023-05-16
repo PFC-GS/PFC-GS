@@ -15,6 +15,7 @@ import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.session.Session;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.security.Timestamp;
 import java.util.*;
@@ -64,7 +65,8 @@ public class TestController implements Initializable {
     private Pane ultimoPanelClickeado = null;
 
     private UniRestController uniRest = new UniRestController();
-    private List<Pregunta> preguntas = uniRest.getPreguntas();
+//    private Test test = uniRest.getTest(3,4);
+    private List<Pregunta> preguntas = new ArrayList<>();
     private Pregunta preguntaActual;
     private String respuestaUser;
     private List<Pregunta> respuesta = new ArrayList<>();
@@ -127,12 +129,16 @@ public class TestController implements Initializable {
 
         panelesDesmarcados();
 
+        respuestaUser = null;
+
         // Actualizar la vista con el contenido de la pregunta actual
         encabezadoPregunta.setText(preguntaActual.getEnunciado());
         lbRespuesta1.setText(preguntaActual.getRespuestaA());
         lbRespuesta2.setText(preguntaActual.getRespuestaB());
         lbRespuesta3.setText(preguntaActual.getRespuestaC());
         numeroPregunta.setText(String.valueOf(indicePreguntaActual + 1));
+
+
 
         // Establecer los eventos de clic para cada panel de respuesta
         setPanelRespuestaEvents(panelRespuesta1, "a");
@@ -200,6 +206,8 @@ public class TestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
+
+//        preguntas = new ArrayList<>(test.getPreguntas());
         preguntas = uniRest.getPreguntas();
         if (!preguntas.isEmpty()) {
             preguntaActual = preguntas.get(0);
@@ -214,6 +222,7 @@ public class TestController implements Initializable {
             setPanelRespuestaEvents(panelRespuesta3, "c");
 
         }
+
     }
 }
 

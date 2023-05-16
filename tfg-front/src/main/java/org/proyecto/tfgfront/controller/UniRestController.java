@@ -6,8 +6,10 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.proyecto.tfgfront.model.Categoria;
 import org.proyecto.tfgfront.model.Pregunta;
+import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
+import org.proyecto.tfgfront.util.Util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,26 +57,31 @@ public class UniRestController {
         }
     }
 
-//    public  Pregunta getPregunta(Integer id) {
+//    public Test getTest(Integer categoriaId, Integer numPreguntas) {
+//        Test test = null;
+//        String url = "http://localhost:8080/tests/preguntas2/{categoriaId}";
+//        if (numPreguntas != null) {
+//            url = url + "?numPreguntas=" + numPreguntas;
+//        }
 //        try {
-//            HttpResponse<String> response = Unirest.get("http://localhost:8080/preguntas/{id}")
-//                    .routeParam("id", id.toString())
+//            Gson gson = new Gson();
+//            String usuarioJson = gson.toJson(Session.getUsuario());
+//
+//            HttpResponse<String> response = Unirest.get(url)
+//                    .routeParam("categoriaId", String.valueOf(categoriaId))
+//                    .queryString("usuario", usuarioJson)
 //                    .asString();
 //
-//            if (response.getStatus() == 200 && !response.getBody().isEmpty()) {
-//                Gson gson = new Gson();
-//                Pregunta pregunta = gson.fromJson(response.getBody(), Pregunta.class);
-//                return pregunta;
-//            } else {
-//                return null;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
+//            String responseBody = response.getBody();
+//            test = gson.fromJson(responseBody, Test.class);
+//
+//            return test;
+//        } catch (UnirestException e) {
+//            System.err.println("Error: " + e.getMessage());
 //        }
+//        return null;
+//
 //    }
-
-
     public List<Pregunta> getPreguntas() {
 
         List<Pregunta> preguntas = new ArrayList<>();
@@ -92,4 +99,5 @@ public class UniRestController {
         return preguntas;
 
     }
+//
 }

@@ -3,6 +3,7 @@ package org.proyecto.dao;
 import org.proyecto.Entity.Pregunta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public interface PreguntaDAO extends JpaRepository<Pregunta,Integer> {
      * @param num número de preguntas a elegir
      * @return  Set de preguntas
      */
-    @Query(value = "Select * from pregunta where categoria=:cate order by random() limit :num;", nativeQuery = true)
-    Set<Pregunta> findRandomQuestions(Integer cate,Integer num);
+    @Query(value = "Select * from pregunta where categoria = :cate order by random() LIMIT :num", nativeQuery = true)
+    Set<Pregunta> findRandomQuestions(@Param("cate") Integer cate, @Param("num") Integer num);
 
 
 

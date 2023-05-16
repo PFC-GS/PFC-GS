@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.proyecto.Entity.Usuario;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class UsuarioDto {
     private String email;
     @NotBlank
     private String password;
-    @NotBlank
+    @NotNull
     private boolean admin;
 
     private List<TestDto> tests;
