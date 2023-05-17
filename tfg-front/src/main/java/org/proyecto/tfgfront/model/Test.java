@@ -19,12 +19,11 @@ import java.util.TimeZone;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Test {
     private Integer id;
     private int usuario;
     private double calificacion;
-    private String fecha;
+    private  String fecha;
     private Set<Pregunta> preguntas;
 
 

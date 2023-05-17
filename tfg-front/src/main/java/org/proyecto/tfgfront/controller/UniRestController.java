@@ -5,12 +5,10 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.proyecto.tfgfront.model.Categoria;
-import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 
-import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +16,7 @@ import java.util.List;
 
 public class UniRestController {
 
+    private String fecha;
 
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
@@ -84,6 +83,7 @@ public class UniRestController {
         }
         return null;
     }
+
     public void postTest(Test test) {
         String url = "http://localhost:8080/test/correccion";
 
@@ -96,8 +96,31 @@ public class UniRestController {
                     .asString();
 
             int statusCode = response.getStatus();
+            if (statusCode != 200) {
+                System.err.println("Error: Unexpected response status - " + statusCode);
+                System.err.println("Response body: " + response.getBody());
+            }
+        } catch (UnirestException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
+    public Test getCorreccion() {
+        String url = "http://localhost:8080/test/{usuarioId}/{fechaTest}";
+
+        try {
+            Gson gson = new Gson();
+
+            HttpResponse<String> response = Unirest.get(url)
+                    .routeParam("usuarioId", String.valueOf(Session.getUsuario().getId()))
+                    .routeParam("fechaTest",fecha )
+                    .asString();
+
+            int statusCode = response.getStatus();
             if (statusCode == 200) {
-                System.out.println("Test enviado correctamente al backend.");
+                String responseBody = response.getBody();
+                Test test = gson.fromJson(responseBody, Test.class);
+                return test;
             } else {
                 System.err.println("Error: Unexpected response status - " + statusCode);
                 System.err.println("Response body: " + response.getBody());
@@ -105,6 +128,7 @@ public class UniRestController {
         } catch (UnirestException e) {
             System.err.println("Error: " + e.getMessage());
         }
+        return null;
     }
 
 
