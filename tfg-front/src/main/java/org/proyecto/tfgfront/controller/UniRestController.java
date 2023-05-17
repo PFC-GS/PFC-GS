@@ -84,23 +84,28 @@ public class UniRestController {
         }
         return null;
     }
+    public void postTest(Test test) {
+        String url = "http://localhost:8080/test/correccion";
 
-    public List<Pregunta> getPreguntas() {
-
-        List<Pregunta> preguntas = new ArrayList<>();
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/preguntas")
-                    .header("accept", "application/json")
-                    .asString();
-            String responseBody = response.getBody();
             Gson gson = new Gson();
-            Pregunta[] preguntaArray = gson.fromJson(responseBody, Pregunta[].class);
-            preguntas = Arrays.asList(preguntaArray);
+
+            HttpResponse<String> response = Unirest.post(url)
+                    .header("Content-Type", "application/json")
+                    .body(gson.toJson(test))
+                    .asString();
+
+            int statusCode = response.getStatus();
+            if (statusCode == 200) {
+                System.out.println("Test enviado correctamente al backend.");
+            } else {
+                System.err.println("Error: Unexpected response status - " + statusCode);
+                System.err.println("Response body: " + response.getBody());
+            }
         } catch (UnirestException e) {
             System.err.println("Error: " + e.getMessage());
         }
-        return preguntas;
-
     }
-//
+
+
 }
