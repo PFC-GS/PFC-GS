@@ -13,15 +13,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
-import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.security.Timestamp;
 import java.util.*;
 
-import static java.lang.System.currentTimeMillis;
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
 
@@ -64,16 +60,17 @@ public class TestController implements Initializable {
     private Button siguientePregunta;
     private Pane ultimoPanelClickeado = null;
     private UniRestController uniRest = new UniRestController();
-   private Test test = uniRest.getTest(TestConfigurator.getUsuarioId(),TestConfigurator.getCategoriaTest(), TestConfigurator.getNumeroPreguntas());
+    private Test test = uniRest.getTest(TestConfigurator.getUsuarioId(), TestConfigurator.getCategoriaTest(), TestConfigurator.getNumeroPreguntas());
     private List<Pregunta> preguntas = new ArrayList<>();
     private Pregunta preguntaActual;
     private String respuestaUser;
     private List<Pregunta> respuesta = new ArrayList<>();
     private int indicePreguntaActual = 0;
 
+    public Test getTest(Test seteaTest) {
 
-
-
+        return  seteaTest = this.test;
+    }
     @FXML
     void seleccionPregunta1(MouseEvent event) {
         actualizarPanelClickeado(panelRespuesta1);
@@ -140,7 +137,6 @@ public class TestController implements Initializable {
         numeroPregunta.setText(String.valueOf(indicePreguntaActual + 1));
 
 
-
         // Establecer los eventos de clic para cada panel de respuesta
         setPanelRespuestaEvents(panelRespuesta1, "a");
         setPanelRespuestaEvents(panelRespuesta2, "b");
@@ -189,7 +185,7 @@ public class TestController implements Initializable {
             // Guardar las respuestas del usuario en un objeto Test
             Set<Pregunta> respuestas = new HashSet<>(respuesta);
             test.setPreguntas(respuestas);
-            System.out.println(test);
+            // Enviar el test al servidor
             uniRest.postTest(test);
 
             // comprueba si el usuario ha pulsado el botón aceptar

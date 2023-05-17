@@ -13,5 +13,6 @@ import java.util.Set;
 @Repository
 public interface TestDao extends JpaRepository<Test,Integer> {
     @Query(value = "SELECT * FROM test WHERE fecha = :fecha AND usuario = :usuarioId ORDER BY id DESC LIMIT 1", nativeQuery = true)
-    Test findTestByUserIdAndDate(@Param("usuario")Integer usuarioId, @Param("fecha") Timestamp fecha);
+    Test findTestByUserIdAndDate(@Param("usuarioId")Integer usuarioId, @Param("fecha") Timestamp fecha);
 }
+
