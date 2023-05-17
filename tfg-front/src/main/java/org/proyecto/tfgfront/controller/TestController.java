@@ -187,10 +187,10 @@ public class TestController implements Initializable {
             alert.setHeaderText("Has finalizado el test");
             alert.setContentText("Pulsa aceptar para ver los resultados");
             // Guardar las respuestas del usuario en un objeto Test
-            Set<Pregunta> respuestas = new HashSet<>(respuesta); // TODO: 15/05/2023 revisar si es necesario
-            Test test = new Test();
-            test.setUsuario(Session.getUsuario().getId());
+            Set<Pregunta> respuestas = new HashSet<>(respuesta);
             test.setPreguntas(respuestas);
+            System.out.println(test);
+            uniRest.postTest(test);
 
             // comprueba si el usuario ha pulsado el botón aceptar
             Optional<ButtonType> result = alert.showAndWait();
@@ -209,7 +209,7 @@ public class TestController implements Initializable {
         // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
 
         preguntas = new ArrayList<>(test.getPreguntas());
-//        preguntas = uniRest.getPreguntas();
+
         if (!preguntas.isEmpty()) {
             preguntaActual = preguntas.get(0);
             encabezadoPregunta.setText(preguntaActual.getEnunciado());

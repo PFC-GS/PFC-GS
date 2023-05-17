@@ -87,9 +87,6 @@ public class MainMenuController implements Initializable {
             if (seleccion != null) {
                 Integer numeroPreguntas = seleccion;
                 TestConfigurator.setNumeroPreguntas(numeroPreguntas);
-            } else {
-                // Manejar el caso de que no se haya seleccionado ninguna opción
-                TestConfigurator.setNumeroPreguntas(4); // Valor por defecto
             }
         });
     }

@@ -4,7 +4,7 @@ public class TestConfigurator {
     private static int usuarioId;
     private static int categoriaTest;
 
-    private static int numeroPreguntas;
+    private static int numeroPreguntas = 4;
 
     public static int getUsuarioId() {
         return usuarioId = Session.getUsuario().getId();

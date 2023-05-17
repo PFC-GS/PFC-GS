@@ -1,10 +1,7 @@
 package org.proyecto.tfgfront.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.security.Timestamp;
 import java.security.cert.CertPath;
@@ -22,6 +19,7 @@ import java.util.TimeZone;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Test {
     private Integer id;
     private int usuario;

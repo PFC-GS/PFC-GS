@@ -106,6 +106,7 @@ public class TestController {
         if (service.getUsuarioById(test.getUsuario()).getId() == null){
             return  ResponseEntity.notFound().build();
         }else {
+            service.getCorreccion(TestDto.toEntity(test));
             return ResponseEntity.ok().build();
         }
     }
