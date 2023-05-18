@@ -30,7 +30,7 @@ public class TestDto {
 
     private double calificacion;
     @NotNull
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Timestamp fecha;
     private Set<PreguntaDto> preguntas;
 

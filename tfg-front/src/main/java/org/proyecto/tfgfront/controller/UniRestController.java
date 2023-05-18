@@ -8,6 +8,7 @@ import org.proyecto.tfgfront.model.Categoria;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
+import org.proyecto.tfgfront.session.TestConfigurator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class UniRestController {
 
-    private String fecha;
+    private final String hora =" 02:00:00.000";
 
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
@@ -73,6 +74,8 @@ public class UniRestController {
             if (statusCode == 200) {
                 String responseBody = response.getBody();
                 Test test = gson.fromJson(responseBody, Test.class);
+                TestConfigurator.setfecha(test.getFecha()+hora);
+                System.out.println(TestConfigurator.getfecha());
                 return test;
             } else {
                 System.err.println("Error: Unexpected response status - " + statusCode);
@@ -113,7 +116,7 @@ public class UniRestController {
 
             HttpResponse<String> response = Unirest.get(url)
                     .routeParam("usuarioId", String.valueOf(Session.getUsuario().getId()))
-                    .routeParam("fechaTest",fecha )
+                    .routeParam("fechaTest", TestConfigurator.getfecha())
                     .asString();
 
             int statusCode = response.getStatus();
