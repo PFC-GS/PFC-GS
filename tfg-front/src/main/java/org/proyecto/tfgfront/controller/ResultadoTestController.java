@@ -14,7 +14,8 @@ public class ResultadoTestController implements Initializable{
     private Label lbResultado;
     @FXML
     private Label lbFecha;
-    private Test test;
+    private UniRestController uniRest = new UniRestController();
+    private Test test = uniRest.getCorreccion();
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {

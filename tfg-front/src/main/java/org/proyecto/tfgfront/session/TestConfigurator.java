@@ -6,6 +6,8 @@ public class TestConfigurator {
 
     private static int numeroPreguntas = 4;
 
+    private static String fecha;
+
     public static int getUsuarioId() {
         return usuarioId = Session.getUsuario().getId();
     }
@@ -18,7 +20,15 @@ public class TestConfigurator {
         return numeroPreguntas;
     }
 
+    public static String getfecha() {
+        return fecha;
+    }
+
     public static void setNumeroPreguntas(int numeroPreguntas) {
         TestConfigurator.numeroPreguntas = numeroPreguntas;
+    }
+
+    public static void setfecha(String fecha) {
+        TestConfigurator.fecha = fecha;
     }
 }
