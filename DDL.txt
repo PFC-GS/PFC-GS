@@ -1,0 +1,231 @@
+-- DROP SCHEMA public;
+
+CREATE SCHEMA public AUTHORIZATION pg_database_owner;
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+-- DROP SEQUENCE public.categoria_id_seq;
+
+CREATE SEQUENCE public.categoria_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+
+-- Permissions
+
+ALTER SEQUENCE public.categoria_id_seq OWNER TO postgres;
+GRANT ALL ON SEQUENCE public.categoria_id_seq TO postgres;
+
+-- DROP SEQUENCE public.dificultad_id_seq;
+
+CREATE SEQUENCE public.dificultad_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+
+-- Permissions
+
+ALTER SEQUENCE public.dificultad_id_seq OWNER TO postgres;
+GRANT ALL ON SEQUENCE public.dificultad_id_seq TO postgres;
+
+-- DROP SEQUENCE public.pregunta_id_seq;
+
+CREATE SEQUENCE public.pregunta_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+
+-- Permissions
+
+ALTER SEQUENCE public.pregunta_id_seq OWNER TO postgres;
+GRANT ALL ON SEQUENCE public.pregunta_id_seq TO postgres;
+
+-- DROP SEQUENCE public.test_id_seq;
+
+CREATE SEQUENCE public.test_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+
+-- Permissions
+
+ALTER SEQUENCE public.test_id_seq OWNER TO postgres;
+GRANT ALL ON SEQUENCE public.test_id_seq TO postgres;
+
+-- DROP SEQUENCE public.usuario_id_seq;
+
+CREATE SEQUENCE public.usuario_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+
+-- Permissions
+
+ALTER SEQUENCE public.usuario_id_seq OWNER TO postgres;
+GRANT ALL ON SEQUENCE public.usuario_id_seq TO postgres;
+-- public.categoria definition
+
+-- Drop table
+
+-- DROP TABLE public.categoria;
+
+CREATE TABLE public.categoria (
+	id serial4 NOT NULL,
+	nombre varchar(255) NULL,
+	CONSTRAINT categoria_pkey PRIMARY KEY (id)
+);
+
+-- Permissions
+
+ALTER TABLE public.categoria OWNER TO postgres;
+GRANT ALL ON TABLE public.categoria TO postgres;
+
+
+-- public.dificultad definition
+
+-- Drop table
+
+-- DROP TABLE public.dificultad;
+
+CREATE TABLE public.dificultad (
+	id serial4 NOT NULL,
+	nombre varchar(255) NULL,
+	CONSTRAINT dificultad_pkey PRIMARY KEY (id)
+);
+
+-- Permissions
+
+ALTER TABLE public.dificultad OWNER TO postgres;
+GRANT ALL ON TABLE public.dificultad TO postgres;
+
+
+-- public.usuario definition
+
+-- Drop table
+
+-- DROP TABLE public.usuario;
+
+CREATE TABLE public.usuario (
+	id serial4 NOT NULL,
+	"admin" bool NULL,
+	apellidos varchar(255) NULL,
+	email varchar(255) NULL,
+	nombre varchar(255) NULL,
+	"password" varchar(255) NULL,
+	CONSTRAINT usuario_pkey PRIMARY KEY (id)
+);
+
+-- Permissions
+
+ALTER TABLE public.usuario OWNER TO postgres;
+GRANT ALL ON TABLE public.usuario TO postgres;
+
+
+-- public.pregunta definition
+
+-- Drop table
+
+-- DROP TABLE public.pregunta;
+
+CREATE TABLE public.pregunta (
+	id serial4 NOT NULL,
+	enunciado varchar(255) NULL,
+	respuestaa varchar(255) NULL,
+	respuestab varchar(255) NULL,
+	respuestac varchar(255) NULL,
+	solucion varchar(255) NULL,
+	categoria int4 NULL,
+	dificultad int4 NULL,
+	CONSTRAINT pregunta_pkey PRIMARY KEY (id),
+	CONSTRAINT fk628ddjlhdy9eck9fklce7bqd FOREIGN KEY (dificultad) REFERENCES public.dificultad(id),
+	CONSTRAINT fkfeqxwvmln98gaqhgs2krv046x FOREIGN KEY (categoria) REFERENCES public.categoria(id)
+);
+
+-- Permissions
+
+ALTER TABLE public.pregunta OWNER TO postgres;
+GRANT ALL ON TABLE public.pregunta TO postgres;
+
+
+-- public.test definition
+
+-- Drop table
+
+-- DROP TABLE public.test;
+
+CREATE TABLE public.test (
+	id serial4 NOT NULL,
+	calificacion float8 NULL,
+	fecha timestamp NULL,
+	usuario int4 NULL,
+	CONSTRAINT test_pkey PRIMARY KEY (id),
+	CONSTRAINT fkje8qe8rmvb71q0qhnf2c76sne FOREIGN KEY (usuario) REFERENCES public.usuario(id)
+);
+
+-- Permissions
+
+ALTER TABLE public.test OWNER TO postgres;
+GRANT ALL ON TABLE public.test TO postgres;
+
+
+-- public.test_pregunta definition
+
+-- Drop table
+
+-- DROP TABLE public.test_pregunta;
+
+CREATE TABLE public.test_pregunta (
+	test int4 NOT NULL,
+	pregunta int4 NOT NULL,
+	CONSTRAINT test_pregunta_pkey PRIMARY KEY (test, pregunta),
+	CONSTRAINT fk3tcttpdn0o6ag8djqsqthkrmd FOREIGN KEY (test) REFERENCES public.test(id),
+	CONSTRAINT fkd6ojak2vy1s9p6i2iodcvt2fb FOREIGN KEY (pregunta) REFERENCES public.pregunta(id)
+);
+
+-- Permissions
+
+ALTER TABLE public.test_pregunta OWNER TO postgres;
+GRANT ALL ON TABLE public.test_pregunta TO postgres;
+
+
+-- public.usuario_categoria definition
+
+-- Drop table
+
+-- DROP TABLE public.usuario_categoria;
+
+CREATE TABLE public.usuario_categoria (
+	categoria int4 NOT NULL,
+	usuario int4 NOT NULL,
+	CONSTRAINT usuario_categoria_pkey PRIMARY KEY (categoria, usuario),
+	CONSTRAINT fk8x76h3jm3iytpgxjuo1a9901x FOREIGN KEY (categoria) REFERENCES public.categoria(id),
+	CONSTRAINT fknpfj69eaa85tc7exgycsx1kgr FOREIGN KEY (usuario) REFERENCES public.usuario(id)
+);
+
+-- Permissions
+
+ALTER TABLE public.usuario_categoria OWNER TO postgres;
+GRANT ALL ON TABLE public.usuario_categoria TO postgres;
+
+
+
+
+-- Permissions
+
+GRANT ALL ON SCHEMA public TO pg_database_owner;
+GRANT USAGE ON SCHEMA public TO public;
