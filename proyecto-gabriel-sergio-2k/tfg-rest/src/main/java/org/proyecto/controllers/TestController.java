@@ -2,6 +2,7 @@ package org.proyecto.controllers;
 
 import org.proyecto.Entity.Test;
 import org.proyecto.controllers.dto.TestDto;
+import org.proyecto.controllers.dto.TestGestorDto;
 import org.proyecto.controllers.dto.UsuarioDto;
 import org.proyecto.service.GeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +99,7 @@ public class TestController {
                     service.createTestV2(usuarioId,categoriaId,numpreguntas)));
         }
     }
-    //  Obtener el test corregido
+    //  Introducir un test hecho por un usuario en la bbdd
     @PostMapping(path = "/test/correccion")
     public ResponseEntity<Void> getCorreccion(
             @Valid @RequestBody TestDto test
@@ -111,16 +112,16 @@ public class TestController {
         }
     }
 
-    //  Obtener un test por fecha e id de usuario
+    //  Obtener el último testGestor con el test de un usuario por fecha e id de usuario
     @GetMapping(path = "/test/{usuarioId}/{fechaTest}")
-    public ResponseEntity<TestDto> getTestByUserIdAndDate(
+    public ResponseEntity<TestGestorDto> getTestByUserIdAndDate(
             @PathVariable("usuarioId") Integer usuarioId,
             @PathVariable("fechaTest") Timestamp fecha
     ){
         if (service.getUsuarioById(usuarioId)==null){
             return ResponseEntity.notFound().build();
         }else {
-            return ResponseEntity.ok(TestDto.toDto(service.getTestByUserIdAndDate(usuarioId,fecha)));
+            return ResponseEntity.ok(TestGestorDto.toDto(service.getTestByUserIdAndDate(usuarioId,fecha)));
         }
     }
 }
