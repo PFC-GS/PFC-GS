@@ -285,9 +285,30 @@ public class GeneratorService {
         test.setCalificacion(nota);
         testDao.save(test);
     }
-    //
-    public Test getTestByUserIdAndDate(Integer usuarioId, Timestamp fecha) {
-        return testDao.findTestByUserIdAndDate(usuarioId,fecha);
+    //  Obtener el testGestor por usuario y fecha
+    public TestGestor getTestByUserIdAndDate(Integer usuarioId, Timestamp fecha) {
+        Test test = testDao.findTestByUserIdAndDate(usuarioId,fecha);
+        TestGestor tg = new TestGestor();
+        tg.setTest(test);
+        Set<Pregunta> preguntasCorregidas = new HashSet<>();
+        float puntos = 0;
+        for (Pregunta p:test.getPreguntas()) {
+            Pregunta pregunaCorrecta = preguntaDAO.findById(p.getId()).orElse(null);
+            puntos+= pregunaCorrecta.getDificultad().getId();
+            preguntasCorregidas.add(pregunaCorrecta);
+        }
+        tg.setPreguntasCorrectas(preguntasCorregidas);
+        float res = puntos/(preguntasCorregidas.size()*3);
+        String dificultad = "";
+        if (res<0.5){
+            dificultad = "Fácil";
+        } else if (res>=0.5 && res<0.66) {
+            dificultad = "Media";
+        }else if (res>=0.66) {
+            dificultad = "difícil";
+        }
+        tg.setDificultad(dificultad);
+        return tg;
     }
 }
 

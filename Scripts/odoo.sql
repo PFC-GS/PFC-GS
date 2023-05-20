@@ -1,0 +1,22 @@
+INSERT INTO pregunta (enunciado, respuestaa, respuestab, respuestac, solucion, categoria, dificultad)
+VALUES
+('¿Qué es Odoo?', 'A) Un lenguaje de programación', 'B) Un sistema de gestión empresarial', 'C) Un sistema operativo', 'b', 2, 1),
+('¿Qué lenguaje de programación utiliza Odoo?', 'A) Python', 'B) Java', 'C) C++', 'a', 2, 2),
+('¿Qué base de datos utiliza Odoo?', 'A) MySQL', 'B) PostgreSQL', 'C) SQLite', 'b', 2, 2),
+('¿Qué es un módulo en Odoo?', 'A) Una función', 'B) Un paquete de funcionalidades', 'C) Un tipo de dato', 'b', 2, 2),
+('¿Qué es el ORM en Odoo?', 'A) Object-Relational Mapping', 'B) Object-Resource Mapping', 'C) Object-Role Modeling', 'a', 2, 3),
+('¿Qué tipo de licencia tiene Odoo?', 'A) Propietaria', 'B) GPL', 'C) LGPL', 'c', 2, 1),
+('¿Qué es el módulo de ventas en Odoo?', 'A) Un sistema para la gestión de las ventas', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es el módulo de inventario en Odoo?', 'A) Un sistema para la gestión del inventario', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es el módulo de contabilidad en Odoo?', 'A) Un sistema para la gestión de la contabilidad', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es el módulo de recursos humanos en Odoo?', 'A) Un sistema para la gestión de los recursos humanos', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es un ERP?', 'A) Un tipo de base de datos', 'B) Un sistema de gestión empresarial', 'C) Un lenguaje de programación', 'b', 1, 1),
+('¿Qué es un CRM en el contexto de los sistemas de gestión empresarial?', 'A) Un tipo de base de datos', 'B) Un módulo de Odoo', 'C) Un sistema para la gestión de relaciones con los clientes', 'c', 1, 2),
+('¿Qué es un sistema de gestión de la cadena de suministro?', 'A) Un sistema para la gestión de las ventas', 'B) Un sistema para la gestión de la cadena de suministro', 'C) Un lenguaje de programación', 'b', 2, 2),
+('¿Qué es un sistema de gestión de la calidad?', 'A) Un sistema para la gestión de la calidad', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es un sistema de gestión de proyectos?', 'A) Un sistema para la gestión de los recursos humanos', 'B) Un tipo de base de datos', 'C) Un sistema para la gestión de proyectos', 'c', 2, 2),
+('¿Qué es un sistema de gestión de inventario?', 'A) Un sistema para la gestión de la producción', 'B) Un sistema para la gestión de inventario', 'C) Un lenguaje de programación', 'b', 2, 2),
+('¿Qué es un sistema de gestión de recursos humanos?', 'A) Un sistema para la gestión de los recursos humanos', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es un sistema de gestión de la producción?', 'A) Un sistema para la gestión de la producción', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es un sistema de gestión de compras?', 'A) Un sistema para la gestión de las compras', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2),
+('¿Qué es un sistema de gestión de ventas?', 'A) Un sistema para la gestión de ventas', 'B) Un tipo de base de datos', 'C) Un lenguaje de programación', 'a', 2, 2);

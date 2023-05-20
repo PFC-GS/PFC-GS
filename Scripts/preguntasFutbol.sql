@@ -1,0 +1,22 @@
+INSERT INTO pregunta  (enunciado, respuestaa, respuestab, respuestac, solucion, categoria, dificultad)
+VALUES
+  ('Pregunta 1: ¿Cuál es el país anfitrión de la Copa Mundial de la FIFA 2022?', 'A) Alemania', 'B) Brasil', 'C) Qatar', 'c', 3, 1),
+  ('Pregunta 2: ¿Quién ganó la Copa del Mundo de la FIFA 2018?', 'A) Francia', 'B) Brasil', 'C) Alemania', 'a', 3, 1),
+  ('Pregunta 3: ¿Cuántos jugadores conforman un equipo de fútbol en el campo?', 'A) 9', 'B) 10', 'C) 11', 'c', 3, 1),
+  ('Pregunta 4: ¿En qué año se fundó la FIFA?', 'A) 1904', 'B) 1926', 'C) 1930', 'A', 3, 1),
+  ('Pregunta 5: ¿Cuál es el máximo goleador en la historia de la Copa del Mundo?', 'A) Ronaldo', 'B) Lionel Messi', 'C) Pelé', 'a', 3, 1),
+  ('Pregunta 6: ¿Qué selección nacional ha ganado más Copas del Mundo?', 'A) Brasil', 'B) Alemania', 'C) Italia', 'a', 3, 1),
+  ('Pregunta 7: ¿Cuál es el estadio de fútbol más grande del mundo?', 'A) Camp Nou', 'B) Maracaná', 'C) Wembley', 'b', 3, 1),
+  ('Pregunta 8: ¿Quién es el jugador de fútbol más caro de la historia?', 'A) Neymar', 'B) Cristiano Ronaldo', 'C) Lionel Messi', 'a', 3, 1),
+  ('Pregunta 9: ¿Cuál es el club de fútbol con más Champions League ganadas?', 'A) Real Madrid', 'B) Barcelona', 'C) Bayern Munich', 'a', 3, 1),
+  ('Pregunta 10: ¿Quién ha ganado más Balones de Oro en la historia?', 'A) Lionel Messi', 'B) Cristiano Ronaldo', 'C) Pelé', 'a', 3, 1),
+  ('Pregunta 11: ¿Cuál es el club de fútbol más antiguo del mundo?', 'A) Notts County', 'B) Sheffield FC', 'C) FC Barcelona', 'b', 3, 1),
+  ('Pregunta 12: ¿En qué país se jugó el primer partido de la historia de la Copa del Mundo?', 'A) Uruguay', 'B) Brasil', 'C) Italia', 'a', 3,1),
+   ('Pregunta 13: ¿Cuál es el jugador con más goles en una temporada de la Liga Española?', 'A) Lionel Messi', 'B) Cristiano Ronaldo', 'C) Luis Suárez', 'a', 3, 1),
+  ('Pregunta 14: ¿En qué año se celebró el primer Mundial Femenino de Fútbol?', 'A) 1991', 'B) 1999', 'C) 1995', 'a', 3, 1),
+  ('Pregunta 15: ¿Cuál es el equipo con más títulos de la UEFA Champions League?', 'A) Real Madrid', 'B) Barcelona', 'C) Bayern Munich', 'a', 3, 1),
+  ('Pregunta 16: ¿Quién es el entrenador con más Champions League ganadas?', 'A) Zinedine Zidane', 'B) Carlo Ancelotti', 'C) Alex Ferguson', 'c', 3, 1),
+  ('Pregunta 17: ¿Cuál es el jugador con más goles en la historia de la Selección Nacional de Brasil?', 'A) Pelé', 'B) Romário', 'C) Ronaldo', 'a', 3, 1),
+  ('Pregunta 18: ¿Cuál es el equipo más laureado de la Serie A italiana?', 'A) Juventus', 'B) AC Milan', 'C) Inter de Milán', 'a', 3, 1),
+  ('Pregunta 19: ¿Quién es el máximo goleador en la historia de la Premier League inglesa?', 'A) Alan Shearer', 'B) Wayne Rooney', 'C) Thierry Henry', 'a', 3, 1),
+  ('Pregunta 20: ¿Cuál es el país con más títulos de la Copa América?', 'A) Brasil', 'B) Argentina', 'C) Uruguay', 'c', 3, 1);
