@@ -17,7 +17,7 @@ import java.util.List;
 
 public class UniRestController {
 
-    private final String hora =" 02:00:00.000";
+    private final String hora = " 02:00:00.000";
 
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
@@ -74,8 +74,8 @@ public class UniRestController {
             if (statusCode == 200) {
                 String responseBody = response.getBody();
                 Test test = gson.fromJson(responseBody, Test.class);
-                TestConfigurator.setfecha(test.getFecha()+hora);
-                System.out.println(TestConfigurator.getfecha());
+                TestConfigurator.setfecha(test.getFecha() + hora);
+
                 return test;
             } else {
                 System.err.println("Error: Unexpected response status - " + statusCode);
@@ -135,4 +135,27 @@ public class UniRestController {
     }
 
 
+    public void altaUsuario(Usuario user) {
+        String url = "http://localhost:8080/usuarios";
+
+        try {
+            Gson gson = new Gson();
+
+            HttpResponse<String> response = Unirest.post(url)
+                    .header("Content-Type", "application/json")
+                    .body(gson.toJson(user))
+                    .asString();
+
+            int statusCode = response.getStatus();
+            if (statusCode != 200) {
+                System.err.println("Error: Unexpected response status - " + statusCode);
+                System.err.println("Response body: " + response.getBody());
+            }
+        } catch (UnirestException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+    }
+
 }
+

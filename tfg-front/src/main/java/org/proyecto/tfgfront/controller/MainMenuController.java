@@ -2,22 +2,18 @@ package org.proyecto.tfgfront.controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
@@ -35,49 +31,29 @@ import static org.proyecto.tfgfront.util.Util.changeSceneMethodWithMouseEvent;
 
 public class MainMenuController implements Initializable {
 
-
+    public AnchorPane menuPanel;
     @FXML
     private Button btnGoCategorias;
-
-    @FXML
-    private Button btnLogout;
-    @FXML
-    private Button btnToLeft;
-
-    @FXML
-    private Button btnToRight;
-
     @FXML
     private Label lbRecuperaNombre;
     @FXML
     private Label labelhora;
     @FXML
-    private Label practicaLabel;
-    @FXML
-    private AnchorPane menuPanel;
-    @FXML
-    private AnchorPane categoriaPanel;
+    private Label lbCategoria;
     @FXML
     private AnchorPane conducirPanel;
-    @FXML
-    private AnchorPane opoPanel;
+
     @FXML
     private AnchorPane damPanel;
     @FXML
-    private ImageView imageMenu;
-    @FXML
-    private StackPane contendorPaneles;
+    private AnchorPane opoPanel;
     @FXML
     private ComboBox<Integer> comboPreguntas;
-    public Integer preguntasSeleccionadas;
-    private List<Node> paneles;
-    private int indicePanelActual = -1;
-
 
 
     @FXML
     void numeroPreguntasSeleccionadas(MouseEvent event) {
-        List<Integer> opciones = Arrays.asList(5,10,15,20);
+        List<Integer> opciones = Arrays.asList(5, 10, 15, 20);
 
         ObservableList<Integer> listaOpciones = FXCollections.observableArrayList(opciones);
         comboPreguntas.setItems(listaOpciones);
@@ -91,29 +67,34 @@ public class MainMenuController implements Initializable {
         });
     }
 
-
     @FXML
-    void irACarnetConducir(MouseEvent event) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
-        changeSceneMethodWithMouseEvent(loader, event);
-//        TestConducirController testConducir = loader.getController();
+    void misTest(ActionEvent event) {
 
     }
 
+    @FXML
+    void perfilUser(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void irACarnetConducir(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
+        changeSceneMethodWithMouseEvent(loader, event);
+    }
 
 
     @FXML
     void irADam(MouseEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
-
     }
 
     @FXML
     void irAOposiciones(MouseEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
-
     }
 
 
@@ -134,157 +115,24 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void verCategorias(ActionEvent event) {
-        if (categoriaPanel.isVisible()) {
-            // Si el panel está visible, ocultarlo
-            transitionOut();
 
-        } else {
-            // Si el panel no está visible, mostrarlo
-            transitionIn();
-        }
+
+        conducirPanel.setVisible(true);
+        damPanel.setVisible(true);
+        opoPanel.setVisible(true);
     }
-
-
-
-
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/tableMainMenu-view.fxml"));
-//        changeSceneMethod(loader, event);
-//        TableMainMenuViewController tableMainMenuViewController = loader.getController();
-//        tableMainMenuViewController.mostrarCategoria();
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
         initTime(); // Inicializa el reloj
-        initPanel(); // Inicializa el panel
-
     }
 
-    private void mostrarPanelActual() {
-
-        if (indicePanelActual < 0) {
-            indicePanelActual = 0;
-        } else if (indicePanelActual >= paneles.size()) {
-            indicePanelActual = paneles.size() - 1;
-        }
-        for (int i = 0; i < paneles.size(); i++) {
-            if (i == indicePanelActual) {
-                paneles.get(i).setVisible(true);
-            } else {
-                paneles.get(i).setVisible(false);
-            }
-        }
-    }
-    @FXML
-    void openMenu(MouseEvent event) {
-        if (menuPanel.isVisible()) {
-            // Si el panel está visible, ocultarlo
-            TranslateTransition slideOut = new TranslateTransition(Duration.seconds(0.75), menuPanel);
-            slideOut.setFromX(0);
-            slideOut.setToX(-menuPanel.getWidth());
-            slideOut.setOnFinished(e -> menuPanel.setVisible(false));
-            slideOut.play();
-        } else {
-            // Si el panel no está visible, mostrarlo
-            menuPanel.setVisible(true);
-            TranslateTransition slideIn = new TranslateTransition(Duration.seconds(0.75), menuPanel);
-            slideIn.setFromX(-menuPanel.getWidth());
-            slideIn.setToX(0);
-            slideIn.play();
-        }
-    }
-
-    @FXML
-    void moveToLeft(ActionEvent event) {
-        if (indicePanelActual > 0) {
-            indicePanelActual--;
-            mostrarPanelActual();
-        }
-
-    }
-
-    @FXML
-    void moveToRight(ActionEvent event) {
-        if (indicePanelActual < paneles.size() - 1) {
-            indicePanelActual++;
-            mostrarPanelActual();
-        }
-    }
     @FXML
     void exitMethod(MouseEvent event) {
         System.exit(0);
     } // TODO: 12/05/2023 implementar un método para salir de la aplicación
 
-    private void transitionOut() {
-        TranslateTransition slideOut = new TranslateTransition(Duration.seconds(0.75), categoriaPanel);
-        slideOut.setFromX(0);
-        slideOut.setToX(-categoriaPanel.getWidth());
-        slideOut.setOnFinished(e -> categoriaPanel.setVisible(false));
-        slideOut.play();
-        btnToLeft.setVisible(false);
-        btnToRight.setVisible(false);
-
-
-        TranslateTransition slideOut2 = new TranslateTransition(Duration.seconds(0.75), opoPanel);
-        slideOut2.setFromX(0);
-        slideOut2.setToX(-opoPanel.getWidth());
-        slideOut2.setOnFinished(e -> opoPanel.setVisible(false));
-        slideOut2.play();
-
-        TranslateTransition slideOut3 = new TranslateTransition(Duration.seconds(0.75), conducirPanel);
-        slideOut3.setFromX(0);
-        slideOut3.setToX(-conducirPanel.getWidth());
-        slideOut3.setOnFinished(e -> conducirPanel.setVisible(false));
-        slideOut3.play();
-
-        TranslateTransition slideOut4 = new TranslateTransition(Duration.seconds(0.75), damPanel);
-        slideOut4.setFromX(0);
-        slideOut4.setToX(-damPanel.getWidth());
-        slideOut4.setOnFinished(e -> damPanel.setVisible(false));
-        slideOut4.play();
-    }
-
-
-    private void transitionIn() {
-        categoriaPanel.setVisible(true);
-        TranslateTransition slideIn = new TranslateTransition(Duration.seconds(0.75), categoriaPanel);
-        slideIn.setFromX(-categoriaPanel.getWidth());
-        slideIn.setToX(0);
-        slideIn.play();
-        btnToLeft.setVisible(true);
-        btnToRight.setVisible(true);
-
-        opoPanel.setVisible(true);
-        TranslateTransition slideIn2 = new TranslateTransition(Duration.seconds(0.75), opoPanel);
-        slideIn2.setFromX(-opoPanel.getWidth());
-        slideIn2.setToX(0);
-        slideIn2.play();
-
-        conducirPanel.setVisible(true);
-        TranslateTransition slideIn3 = new TranslateTransition(Duration.seconds(0.75), conducirPanel);
-        slideIn3.setFromX(-conducirPanel.getWidth());
-        slideIn3.setToX(0);
-        slideIn3.play();
-
-        damPanel.setVisible(true);
-        TranslateTransition slideIn4 = new TranslateTransition(Duration.seconds(0.75), damPanel);
-        slideIn4.setFromX(-damPanel.getWidth());
-        slideIn4.setToX(0);
-        slideIn4.play();
-    }
-    private void initPanel() {
-        List<AnchorPane> listaPaneles = Arrays.asList(menuPanel, categoriaPanel, conducirPanel, damPanel, opoPanel);
-
-        for (AnchorPane pane: listaPaneles) {
-            pane.setVisible(false);
-        }
-
-        btnToLeft.setVisible(false);
-        btnToRight.setVisible(false);
-        paneles = contendorPaneles.getChildren();
-    }
 
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};

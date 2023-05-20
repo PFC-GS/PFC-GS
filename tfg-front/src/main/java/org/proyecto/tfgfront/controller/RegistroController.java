@@ -33,7 +33,7 @@ public class RegistroController implements Initializable {
     private PasswordField contrasenaAlta;
     @FXML
     private Pane panelWrong;
-
+    private UniRestController uniRest = new UniRestController();
 
     @FXML
     void enviarAltaRegistro(ActionEvent event) {
@@ -51,7 +51,7 @@ public class RegistroController implements Initializable {
             user.setEmail(emailUsuario.getText());
             user.setPassword(contrasenaAlta.getText());
 
-            // user = uniRest.altaUsuario(user);  TODO: 27/04/2023 implementar altaUsuario en UniRestController
+           uniRest.altaUsuario(user);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
             changeSceneMethod(loader, event);

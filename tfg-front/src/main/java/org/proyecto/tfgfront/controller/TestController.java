@@ -166,8 +166,6 @@ public class TestController implements Initializable {
         // Guardar la respuesta del usuario para la pregunta actual
         preguntaActual.setSolucion(respuestaUser);
         respuesta.add(preguntaActual);
-        respuesta.forEach(System.out::println);
-        System.out.println("-----------------------------------");
 
         // Incrementar el índice de la pregunta actual
         indicePreguntaActual++;

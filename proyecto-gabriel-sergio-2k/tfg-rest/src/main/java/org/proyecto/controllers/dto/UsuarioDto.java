@@ -8,7 +8,6 @@ import org.proyecto.Entity.Usuario;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
