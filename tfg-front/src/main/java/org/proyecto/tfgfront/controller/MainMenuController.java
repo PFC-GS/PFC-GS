@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -40,8 +41,14 @@ public class MainMenuController implements Initializable {
     private Label labelhora;
     @FXML
     private Label lbCategoria;
+
     @FXML
-    private AnchorPane conducirPanel;
+    private AnchorPane futbolPanel;
+    @FXML
+    private AnchorPane panelNorte;
+
+    @FXML
+    private AnchorPane panelSur;
 
     @FXML
     private AnchorPane damPanel;
@@ -49,6 +56,11 @@ public class MainMenuController implements Initializable {
     private AnchorPane opoPanel;
     @FXML
     private ComboBox<Integer> comboPreguntas;
+    @FXML
+    private ImageView imagenHobby;
+    @FXML
+    private ImageView imageStudiar;
+    private boolean isDamPanelVisible = true;
 
 
     @FXML
@@ -68,8 +80,29 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void misTest(ActionEvent event) {
+    void pasaTiempo(ActionEvent event) {
+        if (isDamPanelVisible) {
+            damPanel.setVisible(false);
+            opoPanel.setVisible(false);
+            panelNorte.setStyle("-fx-background-color: #ffffff");
+            imageStudiar.setVisible(false);
+            panelSur.setStyle("-fx-background-color: #e1a46d");
+            imagenHobby.setVisible(true);
+            futbolPanel.setVisible(true);
 
+
+        } else {
+
+            damPanel.setVisible(true);
+            opoPanel.setVisible(true);
+            panelNorte.setStyle("-fx-background-color: #737b7e");
+            imageStudiar.setVisible(true);
+            panelSur.setStyle("-fx-background-color: #ffffff");
+            imagenHobby.setVisible(false);
+            futbolPanel.setVisible(false);
+        }
+
+        isDamPanelVisible = !isDamPanelVisible; // cambia el estado
     }
 
     @FXML
@@ -79,7 +112,7 @@ public class MainMenuController implements Initializable {
 
 
     @FXML
-    void irACarnetConducir(MouseEvent event) {
+    void irAOpo(MouseEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
     }
@@ -92,7 +125,7 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void irAOposiciones(MouseEvent event) {
+    void irAfutbol(MouseEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
     }
@@ -117,7 +150,7 @@ public class MainMenuController implements Initializable {
     void verCategorias(ActionEvent event) {
 
 
-        conducirPanel.setVisible(true);
+        futbolPanel.setVisible(true);
         damPanel.setVisible(true);
         opoPanel.setVisible(true);
     }
@@ -126,6 +159,9 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
         initTime(); // Inicializa el reloj
+        futbolPanel.setVisible(false);
+        panelSur.setStyle("-fx-background-color: #ffffff");
+        imagenHobby.setVisible(false);
     }
 
     @FXML

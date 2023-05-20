@@ -1,5 +1,7 @@
 package org.proyecto.tfgfront.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +13,16 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
+import org.proyecto.tfgfront.model.Usuario;
+import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
 
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
@@ -37,6 +44,10 @@ public class TestController implements Initializable {
 
     @FXML
     private Label lbRespuesta3;
+    @FXML
+    private Label lbhora;
+    @FXML
+    private Label lbRecuperaNombre;
 
     @FXML
     private AnchorPane panelEncabezado;
@@ -67,10 +78,6 @@ public class TestController implements Initializable {
     private List<Pregunta> respuesta = new ArrayList<>();
     private int indicePreguntaActual = 0;
 
-    public Test getTest(Test seteaTest) {
-
-        return  seteaTest = this.test;
-    }
     @FXML
     void seleccionPregunta1(MouseEvent event) {
         actualizarPanelClickeado(panelRespuesta1);
@@ -86,6 +93,25 @@ public class TestController implements Initializable {
         actualizarPanelClickeado(panelRespuesta3);
     }
 
+    @FXML
+    void irAMainMenu(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
+        changeSceneMethod(loader, event);
+    }
+
+    @FXML
+    void logout(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("¿Estás seguro de que quieres cerrar sesión?");
+        alert.setContentText("Se cerrará la sesión actual");
+        alert.showAndWait();
+        if (alert.getResult().getText().equals("Aceptar")) {
+            Session.setUsuario(null);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
+            changeSceneMethod(loader, event);
+        }
+    }
     /**
      * Método que actualiza el panel clickeado
      *
@@ -114,11 +140,6 @@ public class TestController implements Initializable {
         });
     }
 
-
-    @FXML
-    void exit(MouseEvent event) {
-        System.exit(0);
-    } // TODO: 12/05/2023 implementar un método para salir de la aplicación
 
     @FXML
     void siguientePregunta(ActionEvent event) {
@@ -196,12 +217,30 @@ public class TestController implements Initializable {
 
         }
     }
-
+    private void initTime() {
+        final LocalTime[] horaActual = {LocalTime.now()};
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    horaActual[0] = LocalTime.now();
+                    String horaFormateada = horaActual[0].format(formatter);
+                    this.lbhora.setText(horaFormateada);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+    private void initUser() {
+        Usuario user = Session.getUsuario();
+        lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
 
+        initUser();
+        initTime();
+        // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
         preguntas = new ArrayList<>(test.getPreguntas());
 
         if (!preguntas.isEmpty()) {

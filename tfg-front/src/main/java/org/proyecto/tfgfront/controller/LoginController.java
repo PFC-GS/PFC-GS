@@ -77,10 +77,6 @@ public class LoginController implements Initializable {
             panelWrong.setVisible(true);
         }
     }
-    @FXML
-    void exitMethod(MouseEvent event) {
-        System.exit(0); // TODO: 12/05/2023 implementar un método para salir de la aplicación
-    }
 
     private void conditionsRedText() {
         List<TextField> textFields = Arrays.asList(emailLogin, contrasenaLogin);

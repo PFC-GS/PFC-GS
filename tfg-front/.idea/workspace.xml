@@ -26,16 +26,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/PFC/tfg-front/src/main/resources/images"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.proyecto.tfgfront.controller" />
       <recent name="org.proyecto.tfgfront.session" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PFC\tfg-front\src\main\resources\images" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.proyecto.tfgfront.model.dto" />
@@ -79,11 +83,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java</url>
           <line>60</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/TestController.java</url>
-          <line>186</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
