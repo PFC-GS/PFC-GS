@@ -71,7 +71,7 @@
             </ImageView>
             <AnchorPane fx:id="damPanel" layoutX="587.0" layoutY="50.0" prefHeight="200.0" prefWidth="234.0" stylesheets="@../../../style/MainMenuStyle.css">
                <children>
-                  <Label fx:id="practicaLabel111" layoutX="103.0" layoutY="145.0" prefHeight="40.0" prefWidth="58.0" text="DAM" />
+                  <Label fx:id="practicaLabel111" layoutX="73.0" layoutY="140.0" prefHeight="40.0" prefWidth="119.0" text="Acceso a datos" />
                   <ImageView fx:id="imageDam" fitHeight="132.0" fitWidth="273.0" onMouseClicked="#irADam" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/imageDAM.png" />
@@ -86,7 +86,7 @@
                         <Image url="@../../../images/imagenOposiciones.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="practicaLabel1" layoutX="73.0" layoutY="179.0" prefHeight="40.0" prefWidth="119.0" text="OPOSICIONES" />
+                  <Label fx:id="practicaLabel1" layoutX="110.0" layoutY="170.0" prefHeight="40.0" prefWidth="44.0" text="SGE" />
                </children>
             </AnchorPane>
             <ComboBox fx:id="comboPreguntas" layoutX="740.0" layoutY="293.0" onMouseClicked="#numeroPreguntasSeleccionadas" prefHeight="27.0" prefWidth="182.0" promptText="numero de preguntas" visibleRowCount="3" />

@@ -113,6 +113,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void irAOpo(MouseEvent event) {
+        TestConfigurator.setCategoriaTest(2);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
     }
@@ -120,12 +121,14 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void irADam(MouseEvent event) {
+        TestConfigurator.setCategoriaTest(1);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
     }
 
     @FXML
     void irAfutbol(MouseEvent event) {
+        TestConfigurator.setCategoriaTest(3);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
     }

@@ -3,16 +3,7 @@ package org.proyecto.tfgfront.model;
 
 import lombok.*;
 
-import java.security.Timestamp;
-import java.security.cert.CertPath;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Set;
-import java.util.TimeZone;
 
 
 @Getter

@@ -38,7 +38,7 @@ public class GeneratorService {
     }
 
     public boolean addUsuario(Usuario usuario) {
-        if (usuarioDAO.existsById(usuario.getId())) {
+        if (usuarioDAO.findByEmail(usuario.getEmail()) != null) {
             return false;
         } else {
             usuarioDAO.save(usuario);
