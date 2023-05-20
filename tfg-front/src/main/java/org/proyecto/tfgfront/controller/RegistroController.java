@@ -10,9 +10,7 @@ import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Usuario;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
@@ -49,6 +47,9 @@ public class RegistroController implements Initializable {
             user.setApellidos(apellidosUsuario.getText());
             user.setEmail(emailUsuario.getText());
             user.setPassword(contrasenaAlta.getText());
+            user.setAdmin(false);
+            user.setTests(new ArrayList<>());
+            user.setCategorias(new HashSet<>());
 
            uniRest.altaUsuario(user);
 

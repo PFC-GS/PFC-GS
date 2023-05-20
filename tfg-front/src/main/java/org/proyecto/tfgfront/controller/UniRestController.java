@@ -6,6 +6,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.proyecto.tfgfront.model.Categoria;
 import org.proyecto.tfgfront.model.Test;
+import org.proyecto.tfgfront.model.TestGestor;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
@@ -108,7 +109,7 @@ public class UniRestController {
         }
     }
 
-    public Test getCorreccion() {
+    public TestGestor getCorreccion() {
         String url = "http://localhost:8080/test/{usuarioId}/{fechaTest}";
 
         try {
@@ -122,7 +123,7 @@ public class UniRestController {
             int statusCode = response.getStatus();
             if (statusCode == 200) {
                 String responseBody = response.getBody();
-                Test test = gson.fromJson(responseBody, Test.class);
+                TestGestor test = gson.fromJson(responseBody, TestGestor.class);
                 return test;
             } else {
                 System.err.println("Error: Unexpected response status - " + statusCode);
