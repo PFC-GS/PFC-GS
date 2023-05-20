@@ -9,17 +9,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
-import org.proyecto.tfgfront.model.Test;
+import org.proyecto.tfgfront.model.TestGestor;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
+import org.proyecto.tfgfront.session.TestConfigurator;
 
 import java.net.URL;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
@@ -37,7 +36,7 @@ public class ResultadoTestController implements Initializable {
     private Label lbRecuperaNombre;
 
     private UniRestController uniRest = new UniRestController();
-    private Test test = uniRest.getCorreccion();
+    private TestGestor test = uniRest.getCorreccion();
 
 
     @FXML
@@ -45,6 +44,7 @@ public class ResultadoTestController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
         changeSceneMethod(loader, event);
     }
+
     @FXML
     void logout(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -58,6 +58,7 @@ public class ResultadoTestController implements Initializable {
             changeSceneMethod(loader, event);
         }
     }
+
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -71,6 +72,7 @@ public class ResultadoTestController implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
+
     private void initUser() {
         Usuario user = Session.getUsuario();
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
@@ -83,15 +85,7 @@ public class ResultadoTestController implements Initializable {
         initUser();
         DateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd");
         DateFormat formatoNuevo = new SimpleDateFormat("dd-MM-yyyy");
-
-        try {
-            Date fecha = formatoOriginal.parse(test.getFecha());
-            String fechaFormateada = formatoNuevo.format(fecha);
-            lbFecha.setText(fechaFormateada);
-            lbResultado.setText(test.getNota(test.getCalificacion()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        
 
 
 

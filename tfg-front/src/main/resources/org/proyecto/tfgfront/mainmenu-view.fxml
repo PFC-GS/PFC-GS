@@ -20,7 +20,7 @@
       </AnchorPane>
       <AnchorPane fx:id="panelEncabezado" layoutX="199.0" prefHeight="57.0" prefWidth="1135.0" stylesheets="@../../../style/MainMenuStyle.css">
          <children>
-            <Label layoutX="608.0" layoutY="19.0" prefHeight="33.0" prefWidth="119.0" text="Bienvenido: ">
+            <Label layoutX="608.0" layoutY="19.0" prefHeight="33.0" prefWidth="119.0" text="Bienvenid@: ">
                <font>
                   <Font size="15.0" />
                </font>
