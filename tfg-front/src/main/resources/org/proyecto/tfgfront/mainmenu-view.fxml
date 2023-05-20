@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="menuPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1331.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyecto.tfgfront.controller.MainMenuController">
@@ -14,6 +14,8 @@
       <AnchorPane fx:id="menuPanel" layoutY="114.0" prefHeight="708.0" prefWidth="200.0" style="-fx-background-color: #f3ad8b;">
          <children>
             <Button fx:id="btnGoCategorias" alignment="CENTER" layoutX="32.0" layoutY="80.0" mnemonicParsing="false" onAction="#verCategorias" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Entrenate" textFill="WHITE" AnchorPane.bottomAnchor="587.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="80.0" />
+            <Button fx:id="btnGoCategorias1" alignment="CENTER" layoutX="31.0" layoutY="157.0" mnemonicParsing="false" onAction="#misTest" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Mis test" textFill="WHITE" />
+            <Button fx:id="perfilUser" alignment="CENTER" layoutX="30.0" layoutY="229.0" mnemonicParsing="false" onAction="#perfilUser" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Mi perfil" textFill="WHITE" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelEncabezado" prefHeight="57.0" prefWidth="1331.0" stylesheets="@../../../style/MainMenuStyle.css">
@@ -48,59 +50,45 @@
                </font>
             </Label>
             <Button fx:id="btnLogout" alignment="CENTER" layoutX="1165.0" layoutY="9.0" mnemonicParsing="false" onAction="#methodLogout" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Logout" textFill="WHITE" />
-            <ImageView fx:id="imageMenu" fitHeight="33.0" fitWidth="33.0" layoutX="63.0" layoutY="13.0" onMouseClicked="#openMenu" pickOnBounds="true" preserveRatio="true">
+         </children>
+      </AnchorPane>
+      <ComboBox fx:id="comboPreguntas" layoutX="627.0" layoutY="411.0" onMouseClicked="#numeroPreguntasSeleccionadas" prefHeight="27.0" prefWidth="182.0" promptText="numero de preguntas" visibleRowCount="3" />
+      <Label fx:id="practicaLabel" layoutX="577.0" layoutY="349.0" prefHeight="64.0" prefWidth="281.0" text="¿Que categoria quieres Practicar?">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="damPanel" layoutX="278.0" layoutY="135.0" prefHeight="214.0" prefWidth="281.0" style="-fx-background-color: #70b493;" stylesheets="@../../../style/MainMenuStyle.css">
+         <children>
+            <Label fx:id="practicaLabel111" layoutX="110.0" layoutY="138.0" prefHeight="64.0" prefWidth="61.0" text="DAM" />
+            <ImageView fitHeight="151.0" fitWidth="262.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#irADam" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/menuIcono.png" />
+                  <Image url="@../../../images/imageDAM.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="102.0" layoutY="13.0" prefHeight="33.0" prefWidth="61.0" text="Menu">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="categoriaPanel" layoutX="200.0" layoutY="114.0" prefHeight="708.0" prefWidth="376.0" stylesheets="@../../../style/MainMenuStyle.css">
+      <AnchorPane fx:id="conducirPanel" layoutX="598.0" layoutY="135.0" prefHeight="214.0" prefWidth="281.0" style="-fx-background-color: #f3ad8b;" stylesheets="@../../../style/MainMenuStyle.css">
          <children>
-            <Label fx:id="practicaLabel" layoutX="48.0" layoutY="303.0" prefHeight="64.0" prefWidth="281.0" text="¿Que categoria quieres Practicar?" />
+            <ImageView fitHeight="151.0" fitWidth="262.0" layoutX="30.0" layoutY="7.0" onMouseClicked="#irACarnetConducir" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/imagenConducir.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="practicaLabel11" layoutX="52.0" layoutY="158.0" prefHeight="27.0" prefWidth="182.0" text="CARNET DE CONDUCIR" />
          </children>
       </AnchorPane>
-      <StackPane fx:id="contendorPaneles" layoutX="715.0" layoutY="250.0" prefHeight="150.0" prefWidth="200.0">
+      <AnchorPane fx:id="opoPanel" layoutX="922.0" layoutY="135.0" prefHeight="214.0" prefWidth="281.0" style="-fx-background-color: #0a4577;" stylesheets="@../../../style/MainMenuStyle.css">
          <children>
-            <AnchorPane fx:id="conducirPanel" prefHeight="588.0" prefWidth="528.0" style="-fx-background-color: #f3ad8b;" stylesheets="@../../../style/MainMenuStyle.css">
-               <children>
-                  <ImageView fitHeight="350.0" fitWidth="528.0" layoutX="6.0" layoutY="6.0" onMouseClicked="#irACarnetConducir" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/imagenConducir.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="practicaLabel11" layoutX="169.0" layoutY="373.0" prefHeight="64.0" prefWidth="281.0" text="CARNET DE CONDUCIR" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="opoPanel" prefHeight="588.0" prefWidth="536.0" style="-fx-background-color: #0a4577;" stylesheets="@../../../style/MainMenuStyle.css">
-               <children>
-                  <ImageView fitHeight="311.0" fitWidth="536.0" layoutY="-2.0" onMouseClicked="#irAOposiciones" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/imagenOposiciones.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="practicaLabel1" layoutX="212.0" layoutY="294.0" prefHeight="64.0" prefWidth="281.0" text="OPOSICIONES" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="damPanel" prefHeight="588.0" prefWidth="536.0" style="-fx-background-color: #70b493;" stylesheets="@../../../style/MainMenuStyle.css">
-               <children>
-                  <ImageView fitHeight="281.0" fitWidth="536.0" layoutX="-1.0" layoutY="-2.0" onMouseClicked="#irADam" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/imageDAM.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="practicaLabel111" layoutX="76.0" layoutY="262.0" prefHeight="64.0" prefWidth="385.0" text="DESARROLLO APLICACIONES MULTIPLATAFORMA" />
-               </children>
-            </AnchorPane>
+            <ImageView fitHeight="152.0" fitWidth="262.0" layoutX="10.0" layoutY="8.0" onMouseClicked="#irAOposiciones" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/imagenOposiciones.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="practicaLabel1" layoutX="79.0" layoutY="149.0" prefHeight="57.0" prefWidth="137.0" text="OPOSICIONES" />
          </children>
-      </StackPane>
-      <Button fx:id="btnToRight" layoutX="1263.0" layoutY="422.0" mnemonicParsing="false" onAction="#moveToRight" prefHeight="95.0" prefWidth="54.0" text="&gt;" />
-      <Button fx:id="btnToLeft" layoutX="650.0" layoutY="422.0" mnemonicParsing="false" onAction="#moveToLeft" prefHeight="95.0" prefWidth="54.0" text="&lt;" />
-      <ComboBox fx:id="comboPreguntas" layoutX="522.0" layoutY="588.0" onMouseClicked="#numeroPreguntasSeleccionadas" prefHeight="27.0" prefWidth="182.0" promptText="numero de preguntas" visibleRowCount="3" />
+      </AnchorPane>
+      <Line endX="1020.0" layoutX="312.0" layoutY="455.0" startX="-111.0" />
+      <AnchorPane layoutX="201.0" layoutY="456.0" prefHeight="369.0" prefWidth="1132.0" />
    </children>
 </AnchorPane>
