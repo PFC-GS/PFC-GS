@@ -12,7 +12,6 @@ import javafx.util.Duration;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
-import org.proyecto.tfgfront.session.TestConfigurator;
 
 import java.net.URL;
 import java.text.DateFormat;

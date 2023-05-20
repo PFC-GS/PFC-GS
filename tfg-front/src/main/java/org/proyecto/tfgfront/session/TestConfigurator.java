@@ -11,11 +11,9 @@ public class TestConfigurator {
     public static int getUsuarioId() {
         return usuarioId = Session.getUsuario().getId();
     }
-
     public static int getCategoriaTest() {
-        return categoriaTest = 3;
+        return categoriaTest;
     }
-
     public static int getNumeroPreguntas() {
         return numeroPreguntas;
     }
@@ -30,5 +28,9 @@ public class TestConfigurator {
 
     public static void setfecha(String fecha) {
         TestConfigurator.fecha = fecha;
+    }
+
+    public static void setCategoriaTest(int categoriaTest) {
+        TestConfigurator.categoriaTest = categoriaTest;
     }
 }
