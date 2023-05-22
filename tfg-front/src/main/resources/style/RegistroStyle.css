@@ -1,3 +1,7 @@
+#panelMenu{
+    -fx-background-color: #8794F0;
+
+}
 .text-field {
    -fx-border-color: #0a4577;
    -fx-background-radius: 25px;

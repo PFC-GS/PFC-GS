@@ -18,10 +18,6 @@ public class Test {
     private Set<Pregunta> preguntas;
 
 
-    public String getNota(double nota) {
-        String notaString = String.valueOf(nota);
-        return notaString;
-    }
 
 
 

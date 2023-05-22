@@ -59,6 +59,9 @@ public class ResultadoTestController implements Initializable {
         }
     }
 
+    /**
+     * Recupera la fecha actual y la muestra en un label
+     */
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -73,6 +76,9 @@ public class ResultadoTestController implements Initializable {
         timeline.play();
     }
 
+    /**
+     * Recupera el nombre del usuario de la sesión y lo muestra en un label
+     */
     private void initUser() {
         Usuario user = Session.getUsuario();
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
@@ -83,8 +89,10 @@ public class ResultadoTestController implements Initializable {
 
         initTime();
         initUser();
-        DateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat formatoNuevo = new SimpleDateFormat("dd-MM-yyyy");
+        lbFecha.setText(test.getFecha());
+        lbResultado.setText(test.getCalificacion());
+
+
         
 
 

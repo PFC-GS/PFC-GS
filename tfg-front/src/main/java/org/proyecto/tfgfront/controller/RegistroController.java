@@ -42,16 +42,9 @@ public class RegistroController implements Initializable {
             alert.setTitle("Registro");
             alert.setHeaderText("Registro realizado con exito");
             soloBotonAceptar(alert);
-            Usuario user = new Usuario();
-            user.setNombre(nombreUsuario.getText());
-            user.setApellidos(apellidosUsuario.getText());
-            user.setEmail(emailUsuario.getText());
-            user.setPassword(contrasenaAlta.getText());
-            user.setAdmin(false);
-            user.setTests(new ArrayList<>());
-            user.setCategorias(new HashSet<>());
+            Usuario user = createUsuario();
 
-           uniRest.altaUsuario(user);
+            uniRest.altaUsuario(user);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
             changeSceneMethod(loader, event);
@@ -59,6 +52,18 @@ public class RegistroController implements Initializable {
         }else {
             panelWrong.setVisible(true);
         }
+    }
+
+    private Usuario createUsuario() {
+        Usuario user = new Usuario();
+        user.setNombre(nombreUsuario.getText());
+        user.setApellidos(apellidosUsuario.getText());
+        user.setEmail(emailUsuario.getText());
+        user.setPassword(contrasenaAlta.getText());
+        user.setAdmin(false);
+        user.setTests(new ArrayList<>());
+        user.setCategorias(new HashSet<>());
+        return user;
     }
 
     private void soloBotonAceptar(Alert alert) {
@@ -78,10 +83,7 @@ public class RegistroController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
         changeSceneMethod(loader, event);
     }
-    @FXML
-    void exitMethod(MouseEvent event) {
-        System.exit(0); // TODO: 12/05/2023 implementar un método para salir de la aplicación
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
