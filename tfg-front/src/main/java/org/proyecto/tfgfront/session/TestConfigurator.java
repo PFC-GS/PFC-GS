@@ -1,5 +1,9 @@
 package org.proyecto.tfgfront.session;
 
+import org.proyecto.tfgfront.model.Pregunta;
+
+import java.util.List;
+
 public class TestConfigurator {
     private static int usuarioId;
     private static int categoriaTest;
@@ -7,6 +11,7 @@ public class TestConfigurator {
     private static int numeroPreguntas = 4;
 
     private static String fecha;
+    private static List<Pregunta> respuestas;
 
     public static int getUsuarioId() {
         return usuarioId = Session.getUsuario().getId();
@@ -32,5 +37,13 @@ public class TestConfigurator {
 
     public static void setCategoriaTest(int categoriaTest) {
         TestConfigurator.categoriaTest = categoriaTest;
+    }
+
+    public static List<Pregunta> getRespuestas() {
+        return respuestas;
+    }
+
+    public static void setRespuestas(List<Pregunta> respuesta) {
+        TestConfigurator.respuestas = respuesta;
     }
 }

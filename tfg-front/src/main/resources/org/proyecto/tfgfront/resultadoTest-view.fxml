@@ -3,29 +3,31 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1331.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyecto.tfgfront.controller.ResultadoTestController">
    <children>
-      <AnchorPane layoutX="200.0" layoutY="461.0" prefHeight="360.0" prefWidth="1133.0">
+      <AnchorPane layoutX="200.0" layoutY="630.0" prefHeight="191.0" prefWidth="1042.0">
          <children>
-            <Label layoutX="118.0" layoutY="76.0" text="Fecha:">
+            <Label layoutX="107.0" layoutY="36.0" text="Fecha:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="118.0" layoutY="115.0" text="Resultado: ">
+            <Label layoutX="87.0" layoutY="89.0" text="Resultado: ">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lbFecha" layoutX="215.0" layoutY="76.0" prefHeight="17.0" prefWidth="101.0">
+            <Label fx:id="lbFecha" layoutX="182.0" layoutY="36.0" prefHeight="17.0" prefWidth="101.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lbResultado" layoutX="215.0" layoutY="115.0" prefHeight="17.0" prefWidth="101.0">
+            <Label fx:id="lbResultado" layoutX="182.0" layoutY="89.0" prefHeight="17.0" prefWidth="101.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -39,7 +41,6 @@
             <Button layoutX="30.0" layoutY="245.0" mnemonicParsing="false" onAction="#irAMainMenu" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/resultadoStyle.css" text="Ir a Menu Principal" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <Line endX="1038.0" layoutX="301.0" layoutY="461.0" startX="-100.0" />
       <AnchorPane fx:id="panelEncabezado" layoutX="200.0" prefHeight="79.0" prefWidth="1133.0" stylesheets="@../../../style/resultadoStyle.css" />
       <Label alignment="CENTER" layoutX="304.0" layoutY="19.0" prefHeight="33.0" prefWidth="146.0" text="Hora Actual:">
          <font>
@@ -61,5 +62,54 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Line endX="1069.0" layoutX="262.0" layoutY="630.0" startX="-62.0" />
+      <AnchorPane fx:id="panelTest" layoutX="377.0" layoutY="94.0" prefHeight="524.0" prefWidth="859.0" stylesheets="@../../../style/resultadoStyle.css">
+         <children>
+            <AnchorPane prefHeight="103.0" prefWidth="859.0">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="51.0" layoutY="46.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="numeroPregunta" layoutX="51.0" layoutY="37.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="encabezadoPregunta" layoutX="90.0" layoutY="13.0" prefHeight="78.0" prefWidth="758.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Pane fx:id="panelRespuesta1" layoutX="162.0" layoutY="129.0" prefHeight="60.0" prefWidth="500.0" stylesheets="@../../../style/resultadoStyle.css">
+               <children>
+                  <Label fx:id="lbRespuesta1" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="440.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="panelRespuesta2" layoutX="162.0" layoutY="217.0" prefHeight="60.0" prefWidth="500.0" stylesheets="@../../../style/resultadoStyle.css">
+               <children>
+                  <Label fx:id="lbRespuesta2" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="440.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="panelRespuesta3" layoutX="162.0" layoutY="310.0" prefHeight="60.0" prefWidth="500.0" stylesheets="@../../../style/resultadoStyle.css">
+               <children>
+                  <Label fx:id="lbRespuesta3" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="440.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="siguientePreguntaResultado" layoutX="440.0" layoutY="420.0" mnemonicParsing="false" onAction="#siguientePreguntaResultado" prefHeight="40.0" prefWidth="140.0" text="Siguiente" textFill="WHITE" />
+            <Button fx:id="atrasPreguntaResultado" layoutX="272.0" layoutY="420.0" mnemonicParsing="false" onAction="#atrasPreguntaResultado" prefHeight="40.0" prefWidth="140.0" text="Atras" textFill="WHITE" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

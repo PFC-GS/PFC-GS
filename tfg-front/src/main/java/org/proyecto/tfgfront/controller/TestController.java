@@ -204,6 +204,9 @@ public class TestController implements Initializable {
             // Guardar las respuestas del usuario en un objeto Test
             Set<Pregunta> respuestas = new HashSet<>(respuesta);
             test.setPreguntas(respuestas);
+            TestConfigurator.setRespuestas(respuesta);
+
+
             // Enviar el test al servidor
             uniRest.postTest(test);
 

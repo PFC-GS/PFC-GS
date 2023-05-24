@@ -60,7 +60,7 @@ public class MainMenuController implements Initializable {
     private ImageView imagenHobby;
     @FXML
     private ImageView imageStudiar;
-    private boolean isDamPanelVisible = true;
+
 
 
     @FXML
@@ -79,31 +79,7 @@ public class MainMenuController implements Initializable {
         });
     }
 
-    @FXML
-    void pasaTiempo(ActionEvent event) {
-        if (isDamPanelVisible) {
-            damPanel.setVisible(false);
-            opoPanel.setVisible(false);
-            panelNorte.setStyle("-fx-background-color: #ffffff");
-            imageStudiar.setVisible(false);
-            panelSur.setStyle("-fx-background-color: #e1a46d");
-            imagenHobby.setVisible(true);
-            futbolPanel.setVisible(true);
 
-
-        } else {
-
-            damPanel.setVisible(true);
-            opoPanel.setVisible(true);
-            panelNorte.setStyle("-fx-background-color: #737b7e");
-            imageStudiar.setVisible(true);
-            panelSur.setStyle("-fx-background-color: #ffffff");
-            imagenHobby.setVisible(false);
-            futbolPanel.setVisible(false);
-        }
-
-        isDamPanelVisible = !isDamPanelVisible; // cambia el estado
-    }
 
     @FXML
     void perfilUser(ActionEvent event) {
@@ -149,22 +125,13 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    @FXML
-    void verCategorias(ActionEvent event) {
 
-
-        futbolPanel.setVisible(true);
-        damPanel.setVisible(true);
-        opoPanel.setVisible(true);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
         initTime(); // Inicializa el reloj
-        futbolPanel.setVisible(false);
-        panelSur.setStyle("-fx-background-color: #ffffff");
-        imagenHobby.setVisible(false);
+
     }
 
     @FXML

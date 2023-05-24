@@ -32,6 +32,10 @@ public class RegistroController implements Initializable {
     private Pane panelWrong;
     private UniRestController uniRest = new UniRestController();
 
+
+    // TODO: 24/05/2023 agregar radioButton con politicas de privacidad
+    // TODO: 24/05/2023 agregar vista con las politicas de privacidad
+
     @FXML
     void enviarAltaRegistro(ActionEvent event) {
 

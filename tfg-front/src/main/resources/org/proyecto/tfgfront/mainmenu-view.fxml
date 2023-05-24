@@ -13,9 +13,9 @@
    <children>
       <AnchorPane fx:id="panelMenu" layoutY="-6.0" prefHeight="828.0" prefWidth="201.0" stylesheets="@../../../style/MainMenuStyle.css">
          <children>
-            <Button fx:id="perfilUser" alignment="CENTER" layoutX="30.0" layoutY="261.0" mnemonicParsing="false" onAction="#perfilUser" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Mi perfil" textFill="WHITE" />
-            <Button fx:id="pasatiempo" alignment="CENTER" layoutX="31.0" layoutY="100.0" mnemonicParsing="false" onAction="#pasaTiempo" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Pasatiempo" textFill="WHITE" />
+            <Button fx:id="perfilUser" alignment="CENTER" layoutX="31.0" layoutY="351.0" mnemonicParsing="false" onAction="#perfilUser" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Mi perfil" textFill="WHITE" />
             <Button fx:id="btnLogout" alignment="CENTER" layoutX="31.0" layoutY="640.0" mnemonicParsing="false" onAction="#methodLogout" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Logout" textFill="WHITE" />
+            <ComboBox fx:id="comboPreguntas" layoutX="10.0" layoutY="206.0" onMouseClicked="#numeroPreguntasSeleccionadas" prefHeight="27.0" prefWidth="182.0" promptText="Numero Preguntas" visibleRowCount="3" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelEncabezado" layoutX="199.0" prefHeight="57.0" prefWidth="1135.0" stylesheets="@../../../style/MainMenuStyle.css">
@@ -49,7 +49,7 @@
                   <Image url="@../../../images/pasatiempoImage.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="futbolPanel" layoutX="799.0" layoutY="14.0" prefHeight="335.0" prefWidth="299.0" stylesheets="@../../../style/MainMenuStyle.css">
+            <AnchorPane fx:id="futbolPanel" layoutX="815.0" layoutY="41.0" prefHeight="244.0" prefWidth="241.0" stylesheets="@../../../style/MainMenuStyle.css">
                <children>
                   <ImageView fx:id="imageFutbol" fitHeight="186.0" fitWidth="272.0" layoutX="16.0" layoutY="32.0" onMouseClicked="#irAfutbol" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -89,7 +89,6 @@
                   <Label fx:id="practicaLabel1" layoutX="110.0" layoutY="170.0" prefHeight="40.0" prefWidth="44.0" text="SGE" />
                </children>
             </AnchorPane>
-            <ComboBox fx:id="comboPreguntas" layoutX="740.0" layoutY="293.0" onMouseClicked="#numeroPreguntasSeleccionadas" prefHeight="27.0" prefWidth="182.0" promptText="numero de preguntas" visibleRowCount="3" />
          </children>
       </AnchorPane>
    </children>
