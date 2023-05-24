@@ -6,6 +6,16 @@
     -fx-background-color: #70b493;
 
 }
+#panelTest{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+#panelRespuesta1,#panelRespuesta2,#panelRespuesta3 {
+    -fx-background-radius: 25px;
+    -fx-background-color: #8794F0;
+}
+
 .button{
     -fx-background-color: #0a4577;
     -fx-background-radius: 25px;

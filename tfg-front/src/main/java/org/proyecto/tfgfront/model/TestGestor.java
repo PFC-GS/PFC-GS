@@ -16,7 +16,6 @@ public class TestGestor {
     private Test test;
     private Set<Pregunta> preguntasCorrectas;
     private String dificultad;
-    private String calificacion;
-    private String fecha;
+
 
 }

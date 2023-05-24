@@ -7,18 +7,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.TestGestor;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
 
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
@@ -26,17 +28,101 @@ import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 public class ResultadoTestController implements Initializable {
 
     @FXML
+    private Label encabezadoPregunta;
+
+    @FXML
     private Label lbFecha;
 
     @FXML
-    private Label lbResultado;
-    @FXML
-    private Label lbhora;
-    @FXML
     private Label lbRecuperaNombre;
 
+    @FXML
+    private Label lbRespuesta1;
+
+    @FXML
+    private Label lbRespuesta2;
+
+    @FXML
+    private Label lbRespuesta3;
+
+    @FXML
+    private Label lbResultado;
+
+    @FXML
+    private Label lbhora;
+
+    @FXML
+    private Label numeroPregunta;
+
+
+    @FXML
+    private Button siguientePreguntaResultado;
+    @FXML
+    private Button atrasPreguntaResultado;
+    private List<Pregunta> respuestaUsuario;
+
+    private int indicePreguntaActual = 0;
+    private int contadorPreguntas = 1;
+
     private UniRestController uniRest = new UniRestController();
-    private TestGestor test = uniRest.getCorreccion();
+    private TestGestor testCorreccion = uniRest.getCorreccion();
+    List<Pregunta> respuestasCorrectas = new ArrayList<>(testCorreccion.getPreguntasCorrectas());
+
+    // TODO: 24/05/2023 poner test en null despues de corregirlo
+    @FXML
+    void atrasPreguntaResultado(ActionEvent event) {
+
+        indicePreguntaActual--;
+        contadorPreguntas--;
+        siguientePreguntaResultado.setVisible(true);
+
+        respuestaUsuario(0, atrasPreguntaResultado);
+
+    }
+
+    @FXML
+    void siguientePreguntaResultado(ActionEvent event) {
+
+        indicePreguntaActual++;
+        contadorPreguntas++;
+        atrasPreguntaResultado.setVisible(true);
+
+        respuestaUsuario(respuestaUsuario.size() - 1, siguientePreguntaResultado);
+
+    }
+
+    private void respuestaUsuario(int x, Button quitarBoton) {
+        numeroPregunta.setText(Integer.toString(contadorPreguntas));
+        encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
+        lbRespuesta1.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaA());
+        lbRespuesta2.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaB());
+        lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
+
+        //respuestasCorrectas
+        //respuestaUsuario
+        Boolean respuestaEncontrada = false;
+        for (Pregunta preguntaCorrecta : respuestasCorrectas) {
+            if (respuestaUsuario.get(indicePreguntaActual).equals(preguntaCorrecta.getId())) {
+                respuestaEncontrada = true;
+                if (respuestaUsuario.get(indicePreguntaActual).getSolucion().equals(preguntaCorrecta.getSolucion())) {
+                    lbResultado.setText("Correcto");
+                } else {
+                    lbResultado.setText("Incorrecto");
+                }
+                break;
+            }
+        }
+        System.out.println("respuesta usuario dentro de respuesta usuario");
+        System.out.println(respuestaUsuario.get(indicePreguntaActual));
+        System.out.println("respuesta correcta dentro de respuesta usuario");
+        System.out.println(respuestasCorrectas.get(indicePreguntaActual));
+
+
+
+        if (indicePreguntaActual == x) {
+            quitarBoton.setVisible(false);
+        }
+    }
 
 
     @FXML
@@ -89,12 +175,20 @@ public class ResultadoTestController implements Initializable {
 
         initTime();
         initUser();
-        lbFecha.setText(test.getFecha());
-        lbResultado.setText(test.getCalificacion());
+        atrasPreguntaResultado.setVisible(false);
+        lbFecha.setText(testCorreccion.getTest().getFecha());
+        lbResultado.setText(String.valueOf(testCorreccion.getTest().getCalificacion()));
+        numeroPregunta.setText(Integer.toString(contadorPreguntas));
+
+        respuestaUsuario = TestConfigurator.getRespuestas();
+        System.out.println("Respuesta usuario");
+        System.out.println(respuestaUsuario.get(indicePreguntaActual));
 
 
-        
-
+        encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
+        lbRespuesta1.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaA());
+        lbRespuesta2.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaB());
+        lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
 
 
     }

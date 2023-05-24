@@ -89,15 +89,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/ResultadoTestController.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.proyecto.tfgfront.model.TestGestor" memberName="preguntasCorrectas" />
+        <PinnedItemInfo parentTag="org.proyecto.tfgfront.model.Test" memberName="preguntas" />
       </pinned-members>
     </pin-to-top-manager>
   </component>
