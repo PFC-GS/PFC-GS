@@ -92,6 +92,16 @@ public class ResultadoTestController implements Initializable {
     }
 
     private void respuestaUsuario(int x, Button quitarBoton) {
+
+
+        if (indicePreguntaActual == 0){
+            encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
+            lbRespuesta1.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaA());
+            lbRespuesta2.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaB());
+            lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
+        }
+
+
         numeroPregunta.setText(Integer.toString(contadorPreguntas));
         encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
         lbRespuesta1.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaA());
@@ -100,11 +110,18 @@ public class ResultadoTestController implements Initializable {
 
         //respuestasCorrectas
         //respuestaUsuario
-        Boolean respuestaEncontrada = false;
+        Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
+
+        boolean respuestaEncontrada = false;
+
+        System.out.println("Pregunta del usuario: " + preguntaUsuario.getId() + ", solución: " + preguntaUsuario.getSolucion());
+
         for (Pregunta preguntaCorrecta : respuestasCorrectas) {
-            if (respuestaUsuario.get(indicePreguntaActual).equals(preguntaCorrecta.getId())) {
+            System.out.println("Pregunta correcta: " + preguntaCorrecta.getId() + ", solución: " + preguntaCorrecta.getSolucion());
+
+            if (preguntaUsuario.getId().equals(preguntaCorrecta.getId())) {
                 respuestaEncontrada = true;
-                if (respuestaUsuario.get(indicePreguntaActual).getSolucion().equals(preguntaCorrecta.getSolucion())) {
+                if (preguntaUsuario.getSolucion().equals(preguntaCorrecta.getSolucion())) {
                     lbResultado.setText("Correcto");
                 } else {
                     lbResultado.setText("Incorrecto");
@@ -112,10 +129,18 @@ public class ResultadoTestController implements Initializable {
                 break;
             }
         }
-        System.out.println("respuesta usuario dentro de respuesta usuario");
-        System.out.println(respuestaUsuario.get(indicePreguntaActual));
-        System.out.println("respuesta correcta dentro de respuesta usuario");
-        System.out.println(respuestasCorrectas.get(indicePreguntaActual));
+
+        if (!respuestaEncontrada) {
+            System.out.println("No se encontró ninguna pregunta correcta con el mismo ID que la pregunta del usuario");
+        }
+
+
+
+
+
+
+
+
 
 
 
@@ -189,6 +214,22 @@ public class ResultadoTestController implements Initializable {
         lbRespuesta1.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaA());
         lbRespuesta2.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaB());
         lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
+
+        Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
+        boolean respuestaEncontrada = false;
+        for (Pregunta preguntaCorrecta : respuestasCorrectas) {
+            System.out.println("Pregunta correcta: " + preguntaCorrecta.getId() + ", solución: " + preguntaCorrecta.getSolucion());
+
+            if (preguntaUsuario.getId().equals(preguntaCorrecta.getId())) {
+                respuestaEncontrada = true;
+                if (preguntaUsuario.getSolucion().equals(preguntaCorrecta.getSolucion())) {
+                    lbResultado.setText("Correcto");
+                } else {
+                    lbResultado.setText("Incorrecto");
+                }
+                break;
+            }
+        }
 
 
     }
