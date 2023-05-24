@@ -112,10 +112,17 @@ public class ResultadoTestController implements Initializable {
         //respuestaUsuario
         Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
 
+
+
+        correccionPreguntas(preguntaUsuario);
+
+        if (indicePreguntaActual == x) {
+            quitarBoton.setVisible(false);
+        }
+    }
+
+    private void correccionPreguntas(Pregunta preguntaUsuario) {
         boolean respuestaEncontrada = false;
-
-        System.out.println("Pregunta del usuario: " + preguntaUsuario.getId() + ", solución: " + preguntaUsuario.getSolucion());
-
         for (Pregunta preguntaCorrecta : respuestasCorrectas) {
             System.out.println("Pregunta correcta: " + preguntaCorrecta.getId() + ", solución: " + preguntaCorrecta.getSolucion());
 
@@ -129,26 +136,7 @@ public class ResultadoTestController implements Initializable {
                 break;
             }
         }
-
-        if (!respuestaEncontrada) {
-            System.out.println("No se encontró ninguna pregunta correcta con el mismo ID que la pregunta del usuario");
-        }
-
-
-
-
-
-
-
-
-
-
-
-        if (indicePreguntaActual == x) {
-            quitarBoton.setVisible(false);
-        }
     }
-
 
     @FXML
     void irAMainMenu(ActionEvent event) {
@@ -216,22 +204,11 @@ public class ResultadoTestController implements Initializable {
         lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
 
         Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
-        boolean respuestaEncontrada = false;
-        for (Pregunta preguntaCorrecta : respuestasCorrectas) {
-            System.out.println("Pregunta correcta: " + preguntaCorrecta.getId() + ", solución: " + preguntaCorrecta.getSolucion());
-
-            if (preguntaUsuario.getId().equals(preguntaCorrecta.getId())) {
-                respuestaEncontrada = true;
-                if (preguntaUsuario.getSolucion().equals(preguntaCorrecta.getSolucion())) {
-                    lbResultado.setText("Correcto");
-                } else {
-                    lbResultado.setText("Incorrecto");
-                }
-                break;
-            }
-        }
+        correccionPreguntas(preguntaUsuario);
 
 
     }
+
+
 
 }
