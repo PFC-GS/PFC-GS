@@ -16,6 +16,11 @@
             <Button fx:id="perfilUser" alignment="CENTER" layoutX="31.0" layoutY="351.0" mnemonicParsing="false" onAction="#perfilUser" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Mi perfil" textFill="WHITE" />
             <Button fx:id="btnLogout" alignment="CENTER" layoutX="31.0" layoutY="640.0" mnemonicParsing="false" onAction="#methodLogout" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/MainMenuStyle.css" text="Logout" textFill="WHITE" />
             <ComboBox fx:id="comboPreguntas" layoutX="10.0" layoutY="206.0" onMouseClicked="#numeroPreguntasSeleccionadas" prefHeight="27.0" prefWidth="182.0" promptText="Numero Preguntas" visibleRowCount="3" />
+            <ImageView fitHeight="132.0" fitWidth="177.0" layoutX="31.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/Exam_Tool_logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelEncabezado" layoutX="199.0" prefHeight="57.0" prefWidth="1135.0" stylesheets="@../../../style/MainMenuStyle.css">

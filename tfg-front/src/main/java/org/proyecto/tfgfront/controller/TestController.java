@@ -170,11 +170,11 @@ public class TestController implements Initializable {
      */
     private void panelesDesmarcados() {
         panelRespuesta1.setStyle("-fx-background-radius: 25px;\n" +
-                "    -fx-background-color: #8794F0;");
+                "    -fx-background-color: #f8efd7;");
         panelRespuesta2.setStyle("-fx-background-radius: 25px;\n" +
-                "    -fx-background-color: #8794F0;");
+                "    -fx-background-color: #f8efd7;");
         panelRespuesta3.setStyle("-fx-background-radius: 25px;\n" +
-                "    -fx-background-color: #8794F0;");
+                "    -fx-background-color: #f8efd7;");
     }
 
 
@@ -184,6 +184,10 @@ public class TestController implements Initializable {
      * @param event
      */
     private void procesarRespuesta(ActionEvent event) {
+       // si usuario no ha seleccionado ninguna respuesta, se guarda como respuesta "d" para evitar errores
+        if (respuestaUser == null){
+            respuestaUser = "d";
+        }
         // Guardar la respuesta del usuario para la pregunta actual
         preguntaActual.setSolucion(respuestaUser);
         respuesta.add(preguntaActual);
