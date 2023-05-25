@@ -26,6 +26,11 @@ public class TestConfigurator {
     public static String getfecha() {
         return fecha;
     }
+    public static List<Pregunta> getRespuestas() {
+        return respuestas;
+    }
+
+
 
     public static void setNumeroPreguntas(int numeroPreguntas) {
         TestConfigurator.numeroPreguntas = numeroPreguntas;
@@ -39,9 +44,7 @@ public class TestConfigurator {
         TestConfigurator.categoriaTest = categoriaTest;
     }
 
-    public static List<Pregunta> getRespuestas() {
-        return respuestas;
-    }
+
 
     public static void setRespuestas(List<Pregunta> respuesta) {
         TestConfigurator.respuestas = respuesta;

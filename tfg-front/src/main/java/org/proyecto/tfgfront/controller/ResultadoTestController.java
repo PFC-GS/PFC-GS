@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.TestGestor;
@@ -53,20 +54,36 @@ public class ResultadoTestController implements Initializable {
 
     @FXML
     private Label numeroPregunta;
-
+    @FXML
+    private Label lbNoContesta;
 
     @FXML
     private Button siguientePreguntaResultado;
     @FXML
     private Button atrasPreguntaResultado;
+    @FXML
+    private Pane panelRespuesta1;
+
+    @FXML
+    private Pane panelRespuesta2;
+
+    @FXML
+    private Pane panelRespuesta3;
     private List<Pregunta> respuestaUsuario;
 
     private int indicePreguntaActual = 0;
     private int contadorPreguntas = 1;
-
     private UniRestController uniRest = new UniRestController();
     private TestGestor testCorreccion = uniRest.getCorreccion();
     List<Pregunta> respuestasCorrectas = new ArrayList<>(testCorreccion.getPreguntasCorrectas());
+    private String panelRojo = "-fx-background-color: #e41613";
+    private String panelPorDefecto = "-fx-background-color: #f8efd7";
+    private String panelVerde = "-fx-background-color: #7eb400";
+
+
+//#8794F0
+
+
 
     // TODO: 24/05/2023 poner test en null despues de corregirlo
     @FXML
@@ -91,16 +108,12 @@ public class ResultadoTestController implements Initializable {
 
     }
 
+    @FXML
+    void repetirTest(ActionEvent event) {
+        // TODO: 25/05/2023 repetir ultimo test
+    }
+
     private void respuestaUsuario(int x, Button quitarBoton) {
-
-
-        if (indicePreguntaActual == 0){
-            encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
-            lbRespuesta1.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaA());
-            lbRespuesta2.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaB());
-            lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
-        }
-
 
         numeroPregunta.setText(Integer.toString(contadorPreguntas));
         encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
@@ -108,10 +121,8 @@ public class ResultadoTestController implements Initializable {
         lbRespuesta2.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaB());
         lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
 
-        //respuestasCorrectas
-        //respuestaUsuario
-        Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
 
+        Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
 
 
         correccionPreguntas(preguntaUsuario);
@@ -121,27 +132,53 @@ public class ResultadoTestController implements Initializable {
         }
     }
 
-    private void correccionPreguntas(Pregunta preguntaUsuario) {
-        boolean respuestaEncontrada = false;
-        for (Pregunta preguntaCorrecta : respuestasCorrectas) {
-            System.out.println("Pregunta correcta: " + preguntaCorrecta.getId() + ", solución: " + preguntaCorrecta.getSolucion());
+    private void correccionPreguntas(Pregunta respuestaUsuario) {
+        for (Pregunta respuestaCorrecta : respuestasCorrectas) {
 
-            if (preguntaUsuario.getId().equals(preguntaCorrecta.getId())) {
-                respuestaEncontrada = true;
-                if (preguntaUsuario.getSolucion().equals(preguntaCorrecta.getSolucion())) {
-                    lbResultado.setText("Correcto");
-                } else {
-                    lbResultado.setText("Incorrecto");
+            if (respuestaUsuario.getId().equals(respuestaCorrecta.getId())) {
+                colorPanelesPorDefecto();
+                lbNoContesta.setVisible(false);
+                System.out.println("Respuesta Usuario: " + respuestaUsuario.getSolucion());
+                System.out.println("Respuesta Correcta: " + respuestaCorrecta.getSolucion());
+                if (respuestaUsuario.getSolucion().equals("d")) {
+                    lbNoContesta.setVisible(true);
                 }
-                break;
+                if (respuestaUsuario.getSolucion().equals(respuestaCorrecta.getSolucion())) {
+                    compruebaRespuestaCorrecta(respuestaCorrecta,panelVerde);
+                }
+                if (!respuestaUsuario.getSolucion().equals(respuestaCorrecta.getSolucion())) {
+                    compruebaRespuestaCorrecta(respuestaCorrecta,panelVerde);
+                    compruebaRespuestaCorrecta(respuestaUsuario,panelRojo);
+                }
+
             }
         }
     }
+
+    private void compruebaRespuestaCorrecta(Pregunta respuestaCorrecta, String colorPanel) {
+        if (respuestaCorrecta.getSolucion().equals("a")) {
+            panelRespuesta1.setStyle(colorPanel);
+        }
+        if (respuestaCorrecta.getSolucion().equals("b")) {
+            panelRespuesta2.setStyle(colorPanel);
+        }
+        if (respuestaCorrecta.getSolucion().equals("c")) {
+            panelRespuesta3.setStyle(colorPanel);
+        }
+    }
+
+    private void colorPanelesPorDefecto() {
+        panelRespuesta1.setStyle(panelPorDefecto);
+        panelRespuesta2.setStyle(panelPorDefecto);
+        panelRespuesta3.setStyle(panelPorDefecto);
+    }
+
 
     @FXML
     void irAMainMenu(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
         changeSceneMethod(loader, event);
+        // TODO: 25/05/2023 poner test en null despues de corregirlo
     }
 
     @FXML
@@ -188,15 +225,13 @@ public class ResultadoTestController implements Initializable {
 
         initTime();
         initUser();
+        lbNoContesta.setVisible(false);
         atrasPreguntaResultado.setVisible(false);
         lbFecha.setText(testCorreccion.getTest().getFecha());
         lbResultado.setText(String.valueOf(testCorreccion.getTest().getCalificacion()));
         numeroPregunta.setText(Integer.toString(contadorPreguntas));
 
         respuestaUsuario = TestConfigurator.getRespuestas();
-        System.out.println("Respuesta usuario");
-        System.out.println(respuestaUsuario.get(indicePreguntaActual));
-
 
         encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
         lbRespuesta1.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaA());
@@ -208,7 +243,6 @@ public class ResultadoTestController implements Initializable {
 
 
     }
-
 
 
 }
