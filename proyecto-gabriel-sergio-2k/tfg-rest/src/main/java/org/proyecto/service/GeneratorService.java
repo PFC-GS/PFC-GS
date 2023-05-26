@@ -3,6 +3,9 @@ package org.proyecto.service;
 import org.proyecto.Entity.*;
 import org.proyecto.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -10,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Service
@@ -24,6 +29,11 @@ public class GeneratorService {
     private CategoriaDAO categoriaDAO;
     @Autowired
     private DificultadDAO dificultadDAO;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+
 
     /////////////////////////////////////////////////////////////
 //      CRUD USUARIO
@@ -285,30 +295,64 @@ public class GeneratorService {
         test.setCalificacion(nota);
         testDao.save(test);
     }
+
     //  Obtener el testGestor por usuario y fecha
     public TestGestor getTestByUserIdAndDate(Integer usuarioId, Timestamp fecha) {
-        Test test = testDao.findTestByUserIdAndDate(usuarioId,fecha);
+        Test test = testDao.findTestByUserIdAndDate(usuarioId, fecha);
         TestGestor tg = new TestGestor();
         tg.setTest(test);
         Set<Pregunta> preguntasCorregidas = new HashSet<>();
         float puntos = 0;
-        for (Pregunta p:test.getPreguntas()) {
+        for (Pregunta p : test.getPreguntas()) {
             Pregunta pregunaCorrecta = preguntaDAO.findById(p.getId()).orElse(null);
-            puntos+= pregunaCorrecta.getDificultad().getId();
+            puntos += pregunaCorrecta.getDificultad().getId();
             preguntasCorregidas.add(pregunaCorrecta);
         }
         tg.setPreguntasCorrectas(preguntasCorregidas);
-        float res = puntos/(preguntasCorregidas.size()*3);
+        float res = puntos / (preguntasCorregidas.size() * 3);
         String dificultad = "";
-        if (res<0.5){
+        if (res < 0.5) {
             dificultad = "Fácil";
-        } else if (res>=0.5 && res<0.66) {
+        } else if (res >= 0.5 && res < 0.66) {
             dificultad = "Media";
-        }else if (res>=0.66) {
+        } else if (res >= 0.66) {
             dificultad = "difícil";
         }
         tg.setDificultad(dificultad);
         return tg;
+    }
+
+
+    public boolean enviarCorreo(String email) {
+        Usuario usuario = usuarioDAO.findByEmail(email);
+        if (usuario != null) {
+            sendListEmail(usuario.getEmail(), usuario.getPassword());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // TODO: 26/05/2023 cambiar este metodo por algo mas sencillo 
+    public String limpiarCorreo(String requestBody) {
+        String regex = "(?i)(?<=email\":\")(.*?)(?=\")";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(requestBody);
+        if (matcher.find()) {
+            return matcher.group();
+        } else {
+            return null;
+        }
+    }
+
+    private void sendListEmail(String email, String password) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+
+        msg.setTo(email);
+        msg.setFrom("Pukssito@gmail.com");
+        msg.setSubject("ExamTool : Recuperación de contraseña");
+        msg.setText("Su contraseña es: " + password);
+        mailSender.send(msg);
     }
 }
 
