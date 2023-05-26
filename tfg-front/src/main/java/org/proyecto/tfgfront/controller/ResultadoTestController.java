@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
+import static org.proyecto.tfgfront.util.Util.changeSceneMethodWithMouseEvent;
 
 public class ResultadoTestController implements Initializable {
 
@@ -76,7 +77,7 @@ public class ResultadoTestController implements Initializable {
     private UniRestController uniRest = new UniRestController();
     private TestGestor testCorreccion = uniRest.getCorreccion();
     List<Pregunta> respuestasCorrectas = new ArrayList<>(testCorreccion.getPreguntasCorrectas());
-    private String panelRojo = "-fx-background-color: #e41613";
+    private String panelRojo = "-fx-background-color: #df2a33";
     private String panelPorDefecto = "-fx-background-color: #f8efd7";
     private String panelVerde = "-fx-background-color: #7eb400";
 
@@ -110,7 +111,9 @@ public class ResultadoTestController implements Initializable {
 
     @FXML
     void repetirTest(ActionEvent event) {
-        // TODO: 25/05/2023 repetir ultimo test
+        TestConfigurator.getCategoriaTest();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
+        changeSceneMethod(loader, event);
     }
 
     private void respuestaUsuario(int x, Button quitarBoton) {
@@ -138,8 +141,6 @@ public class ResultadoTestController implements Initializable {
             if (respuestaUsuario.getId().equals(respuestaCorrecta.getId())) {
                 colorPanelesPorDefecto();
                 lbNoContesta.setVisible(false);
-                System.out.println("Respuesta Usuario: " + respuestaUsuario.getSolucion());
-                System.out.println("Respuesta Correcta: " + respuestaCorrecta.getSolucion());
                 if (respuestaUsuario.getSolucion().equals("d")) {
                     lbNoContesta.setVisible(true);
                 }
@@ -154,7 +155,6 @@ public class ResultadoTestController implements Initializable {
             }
         }
     }
-
     private void compruebaRespuestaCorrecta(Pregunta respuestaCorrecta, String colorPanel) {
         if (respuestaCorrecta.getSolucion().equals("a")) {
             panelRespuesta1.setStyle(colorPanel);
