@@ -89,5 +89,21 @@ public class UsuarioController {
         }
     }
 
+    /**
+     * Recupera la contraseña de un usuario
+     * @param bodyRequest email del usuario
+     * @return 200 si se ha enviado el correo correctamente, 404 si no se ha podido enviar
+     */
+    @PostMapping("/recuperaPass")
+    public ResponseEntity<String> enviarCorreo(@RequestBody String bodyRequest) {
+        String email = service.limpiarJson(bodyRequest);
+        boolean correoEnviado = service.enviarCorreo(email);
+        if (correoEnviado) {
+            return ResponseEntity.ok("Correo enviado correctamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se pudo enviar el correo");
+        }
+    }
+
 
 }

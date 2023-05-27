@@ -2,8 +2,10 @@ package org.proyecto.tfgfront.controller;
 
 import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONObject;
 import org.proyecto.tfgfront.model.Categoria;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.TestGestor;
@@ -157,6 +159,35 @@ public class UniRestController {
         }
 
     }
+
+    public boolean enviarCorreo(String email) {
+        String url = "http://localhost:8080/recuperaPass";
+
+        try {
+            JSONObject requestBody = new JSONObject();
+            requestBody.put("email", email);
+
+            HttpResponse<String> response = Unirest.post(url)
+                    .header("Content-Type", "application/json")
+                    .body(requestBody.toString())
+                    .asString();
+
+            int statusCode = response.getStatus();
+            if (statusCode == 200) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (UnirestException e) {
+            System.err.println("Error: " + e.getMessage());
+            return false;
+        }
+
+    }
+
+
+
+
 
 }
 
