@@ -8,11 +8,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +32,12 @@ public class GeneratorService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String username;
+
+    @Value("${spring.mail.password}")
+    private String password;
 
 
 
@@ -326,7 +332,11 @@ public class GeneratorService {
     public boolean enviarCorreo(String email) {
         Usuario usuario = usuarioDAO.findByEmail(email);
         if (usuario != null) {
-            sendListEmail(usuario.getEmail(), usuario.getPassword());
+            try {
+                sendListEmail(usuario.getEmail(), usuario.getPassword());
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
             return true;
         } else {
             return false;
@@ -345,14 +355,45 @@ public class GeneratorService {
         }
     }
 
-    private void sendListEmail(String email, String password) {
-        SimpleMailMessage msg = new SimpleMailMessage();
+    public void sendListEmail(String email, String password) throws MessagingException {
+        // Configuración de las propiedades de JavaMail
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
 
-        msg.setTo(email);
-        msg.setFrom("Pukssito@gmail.com");
-        msg.setSubject("ExamTool : Recuperación de contraseña");
-        msg.setText("Su contraseña es: " + password);
-        mailSender.send(msg);
+        // Credenciales de autenticación
+        String username = this.username;
+        String userPassword = this.password;
+
+        // Autenticación
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, userPassword);
+            }
+        };
+
+        // Crear sesión de JavaMail
+        Session session = Session.getInstance(props, auth);
+
+        // Crear el mensaje de correo electrónico
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+        message.setSubject("ExamTool: Recuperación de contraseña");
+
+        // Crear el contenido del mensaje en formato HTML con la firma personalizada
+        String signature = "<p>Atentamente,<br>" +
+                "Admin, ExamTool<br>" +
+                "Web: <a href=\"https://www.examTool.es\">www.examTool.es</a><br>" +
+                "Email: <a href=\"mailto:supportAdmin@ExamTool.com\">supportAdmin@ExamTool.com</a></p>";
+
+        String body = "Su contraseña es: " + password + "<br><br>" + signature;
+        message.setContent(body, "text/html");
+
+        // Enviar el mensaje de correo electrónico
+        Transport.send(message);
     }
 }
 
