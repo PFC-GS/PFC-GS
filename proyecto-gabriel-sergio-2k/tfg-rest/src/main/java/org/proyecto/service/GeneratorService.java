@@ -4,12 +4,11 @@ import org.proyecto.Entity.*;
 import org.proyecto.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.sql.Timestamp;
 import java.util.*;
@@ -34,10 +33,8 @@ public class GeneratorService {
     private JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
-    private String username;
+    private String examToolEmail;
 
-    @Value("${spring.mail.password}")
-    private String password;
 
 
 
@@ -333,7 +330,7 @@ public class GeneratorService {
         Usuario usuario = usuarioDAO.findByEmail(email);
         if (usuario != null) {
             try {
-                sendListEmail(usuario.getEmail(), usuario.getPassword());
+                configCorreo(usuario.getEmail(), usuario.getPassword());
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
@@ -343,57 +340,32 @@ public class GeneratorService {
         }
     }
 
-    // TODO: 26/05/2023 cambiar este metodo por algo mas sencillo 
-    public String limpiarCorreo(String requestBody) {
-        String regex = "(?i)(?<=email\":\")(.*?)(?=\")";
+
+    public String limpiarJson(String requestBody) {
+        String regex = "\"email\":\"([^\"]+)\"";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(requestBody);
-        if (matcher.find()) {
-            return matcher.group();
-        } else {
-            return null;
-        }
+        return matcher.find() ? matcher.group(1) : null;
     }
 
-    public void sendListEmail(String email, String password) throws MessagingException {
-        // Configuración de las propiedades de JavaMail
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
+    public void configCorreo(String email, String password) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setTo(email);
+        helper.setFrom(examToolEmail);
+        helper.setSubject("ExamTool: Recuperación de contraseña");
 
-        // Credenciales de autenticación
-        String username = this.username;
-        String userPassword = this.password;
-
-        // Autenticación
-        Authenticator auth = new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, userPassword);
-            }
-        };
-
-        // Crear sesión de JavaMail
-        Session session = Session.getInstance(props, auth);
-
-        // Crear el mensaje de correo electrónico
-        MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(username));
-        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-        message.setSubject("ExamTool: Recuperación de contraseña");
-
-        // Crear el contenido del mensaje en formato HTML con la firma personalizada
-        String signature = "<p>Atentamente,<br>" +
+        // Crear el contenido del mensaje en formato HTML con la firma personalizada y la imagen
+        String signature = "<p>Atentamente.<br>" +
                 "Admin, ExamTool<br>" +
+                "Phone: 123456789<br>" +
                 "Web: <a href=\"https://www.examTool.es\">www.examTool.es</a><br>" +
-                "Email: <a href=\"mailto:supportAdmin@ExamTool.com\">supportAdmin@ExamTool.com</a></p>";
+                "Email: <a href=\"mailto:support@ExamTool.com\">support@ExamTool.com</a></p>";
 
         String body = "Su contraseña es: " + password + "<br><br>" + signature;
-        message.setContent(body, "text/html");
 
-        // Enviar el mensaje de correo electrónico
-        Transport.send(message);
+        helper.setText(body, true);
+        mailSender.send(message);
     }
 }
 
