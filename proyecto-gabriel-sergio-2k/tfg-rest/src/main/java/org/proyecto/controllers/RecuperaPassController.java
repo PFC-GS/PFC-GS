@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
-public class RecuperaPass {
+public class RecuperaPassController {
     @Autowired
     private GeneratorService service;
 
