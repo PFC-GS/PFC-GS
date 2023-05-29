@@ -9,7 +9,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Usuario;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
@@ -21,7 +28,8 @@ public class RegistroController implements Initializable {
 
     @FXML
     private TextField emailUsuario;
-
+    @FXML
+    private Label lbLey;
 
     @FXML
     private TextField nombreUsuario;
@@ -30,31 +38,59 @@ public class RegistroController implements Initializable {
     private PasswordField contrasenaAlta;
     @FXML
     private Pane panelWrong;
+    @FXML
+    private ScrollPane scrollpane;
+    @FXML
+    private Button btnAceptarLey;
+    @FXML
+    private RadioButton radioPolitica;
     private UniRestController uniRest = new UniRestController();
 
 
-    // TODO: 24/05/2023 agregar radioButton con politicas de privacidad
-    // TODO: 24/05/2023 agregar vista con las politicas de privacidad
+    @FXML
+    void mostrarPoliticaPrivacidad(MouseEvent event) {
+
+        scrollpane.setVisible(true);
+        lbLey.setVisible(true);
+        radioPolitica.setVisible(false);
+
+
+        scrollpane.setOnScroll(eventScroll -> {
+            if (scrollpane.getVvalue() == 1.0) {
+                btnAceptarLey.setVisible(true);
+                scrollpane.setOnScroll(null);// Desactivar el evento después de mostrar el botón
+                // Volver a la parte superior
+            }
+        });
+        scrollpane.setVvalue(0.0); //solventamos bug del scroll en la parte baja si se ha visto antes
+    }
 
     @FXML
     void enviarAltaRegistro(ActionEvent event) {
 
-        conditionsRedText();
-        if (!nombreUsuario.getText().isEmpty() && !apellidosUsuario.getText().isEmpty() && !emailUsuario.getText().isEmpty() && !contrasenaAlta.getText().isEmpty()){
-            panelWrong.setVisible(false);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Registro");
-            alert.setHeaderText("Registro realizado con exito");
+        if (!radioPolitica.isSelected()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Debe aceptar la politica de privacidad");
             soloBotonAceptar(alert);
-            Usuario user = createUsuario();
+        } else {
+            conditionsRedText();
+            if (!nombreUsuario.getText().isEmpty() && !apellidosUsuario.getText().isEmpty() && !emailUsuario.getText().isEmpty() && !contrasenaAlta.getText().isEmpty()) {
+                panelWrong.setVisible(false);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Registro");
+                alert.setHeaderText("Registro realizado con exito");
+                soloBotonAceptar(alert);
+                Usuario user = createUsuario();
 
-            uniRest.altaUsuario(user);
+                uniRest.altaUsuario(user);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
-            changeSceneMethod(loader, event);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
+                changeSceneMethod(loader, event);
 
-        }else {
-            panelWrong.setVisible(true);
+            } else {
+                panelWrong.setVisible(true);
+            }
         }
     }
 
@@ -87,7 +123,29 @@ public class RegistroController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
         changeSceneMethod(loader, event);
     }
+    @FXML
+    void aceptarLey(ActionEvent event) {
+        scrollpane.setVisible(false);
+        btnAceptarLey.setVisible(false);
+        lbLey.setVisible(false);
+        radioPolitica.setVisible(true);
 
+
+
+    }
+    public String leerArchivoTexto(String rutaArchivo) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rutaArchivo);
+             Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8)) {
+            StringBuilder contenido = new StringBuilder();
+            while (scanner.hasNextLine()) {
+                contenido.append(scanner.nextLine()).append("\n");
+            }
+            return contenido.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ""; // Devuelve una cadena vacía en caso de error
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -96,6 +154,11 @@ public class RegistroController implements Initializable {
         configurarTextField(apellidosUsuario, "Apellidos");
         configurarTextField(emailUsuario, "Correo electrónico");
         configurarTextField(contrasenaAlta, "Contraseña");
+
+        String ley = leerArchivoTexto("proteccionDatos.txt");
+        lbLey.setText(ley);
+
+
 
     }
     private void configurarTextField(TextField textField, String textoSugerencia) {

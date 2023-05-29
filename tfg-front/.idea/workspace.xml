@@ -35,19 +35,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PFC/tfg-front/src/main/resources/images&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/PFC/tfg-front/src/main/resources"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.proyecto.tfgfront.controller" />
       <recent name="org.proyecto.tfgfront.session" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PFC\tfg-front\src\main\resources" />
+      <recent name="D:\PFC\tfg-front\src\main\resources\LPD" />
       <recent name="D:\PFC\tfg-front\src\main\resources\images" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
