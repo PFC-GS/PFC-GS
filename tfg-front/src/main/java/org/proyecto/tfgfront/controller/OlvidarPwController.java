@@ -18,7 +18,6 @@ public class OlvidarPwController implements Initializable {
     private TextField emailUsuario;
 
 
-
     private String correo;
     private String textoRespuesta;
 
@@ -27,9 +26,9 @@ public class OlvidarPwController implements Initializable {
     @FXML
     void buscaCorreo(ActionEvent event) {
 
-        if (emailUsuario.getText().isEmpty()){
+        if (emailUsuario.getText().isEmpty()) {
             emailUsuario.getStyleClass().add("redText");
-        }else {
+        } else {
             correo = emailUsuario.getText();
             UniRestController uniRestController = new UniRestController();
             respuesta = uniRestController.enviarCorreo(correo);
@@ -42,8 +41,6 @@ public class OlvidarPwController implements Initializable {
             alert.setTitle("Recuperar contraseña");
             alert.setContentText(textoRespuesta);
             alert.showAndWait();
-
-
         }
     }
 
@@ -58,5 +55,6 @@ public class OlvidarPwController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         emailUsuario.setPromptText("Introduce tu correo electronico");
         emailUsuario.getStyleClass().add("textField");
+
     }
 }
