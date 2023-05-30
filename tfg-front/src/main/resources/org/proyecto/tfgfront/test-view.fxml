@@ -78,7 +78,7 @@
          <children>
             <Button fx:id="lbMenuPrincipal" layoutX="30.0" layoutY="163.0" mnemonicParsing="false" onAction="#irAMainMenu" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/TestStyle.css" text="Menu Principal" textFill="WHITE" />
             <Button fx:id="logout" layoutX="30.0" layoutY="637.0" mnemonicParsing="false" onAction="#logout" prefHeight="40.0" prefWidth="140.0" stylesheets="@../../../style/TestStyle.css" text="Logout" textFill="WHITE" />
-            <ImageView fitHeight="132.0" fitWidth="177.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="132.0" fitWidth="177.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/Exam_Tool_logo.png" />
                </image>

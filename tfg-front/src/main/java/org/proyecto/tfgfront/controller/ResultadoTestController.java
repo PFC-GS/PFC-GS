@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
-import static org.proyecto.tfgfront.util.Util.changeSceneMethodWithMouseEvent;
 
 public class ResultadoTestController implements Initializable {
 
@@ -82,11 +81,7 @@ public class ResultadoTestController implements Initializable {
     private String panelVerde = "-fx-background-color: #7eb400";
 
 
-//#8794F0
 
-
-
-    // TODO: 24/05/2023 poner test en null despues de corregirlo
     @FXML
     void atrasPreguntaResultado(ActionEvent event) {
 
@@ -145,16 +140,17 @@ public class ResultadoTestController implements Initializable {
                     lbNoContesta.setVisible(true);
                 }
                 if (respuestaUsuario.getSolucion().equals(respuestaCorrecta.getSolucion())) {
-                    compruebaRespuestaCorrecta(respuestaCorrecta,panelVerde);
+                    compruebaRespuestaCorrecta(respuestaCorrecta, panelVerde);
                 }
                 if (!respuestaUsuario.getSolucion().equals(respuestaCorrecta.getSolucion())) {
-                    compruebaRespuestaCorrecta(respuestaCorrecta,panelVerde);
-                    compruebaRespuestaCorrecta(respuestaUsuario,panelRojo);
+                    compruebaRespuestaCorrecta(respuestaCorrecta, panelVerde);
+                    compruebaRespuestaCorrecta(respuestaUsuario, panelRojo);
                 }
 
             }
         }
     }
+
     private void compruebaRespuestaCorrecta(Pregunta respuestaCorrecta, String colorPanel) {
         if (respuestaCorrecta.getSolucion().equals("a")) {
             panelRespuesta1.setStyle(colorPanel);
