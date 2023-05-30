@@ -62,7 +62,6 @@ public class MainMenuController implements Initializable {
     private ImageView imageStudiar;
 
 
-
     @FXML
     void numeroPreguntasSeleccionadas(MouseEvent event) {
         List<Integer> opciones = Arrays.asList(5, 10, 15, 20);
@@ -80,10 +79,10 @@ public class MainMenuController implements Initializable {
     }
 
 
-
     @FXML
     void perfilUser(ActionEvent event) {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/perfil-view.fxml"));
+        changeSceneMethod(loader, event);
     }
 
 
@@ -126,18 +125,12 @@ public class MainMenuController implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
         initTime(); // Inicializa el reloj
 
     }
-
-    @FXML
-    void exitMethod(MouseEvent event) {
-        System.exit(0);
-    } // TODO: 12/05/2023 implementar un método para salir de la aplicación
 
 
     private void initTime() {
