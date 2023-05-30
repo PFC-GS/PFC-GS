@@ -76,6 +76,7 @@ public class TestController implements Initializable {
     private Pregunta preguntaActual;
     private String respuestaUser;
     private List<Pregunta> respuesta = new ArrayList<>();
+    PerfilController perfilController = new PerfilController();
     private int indicePreguntaActual = 0;
 
     @FXML
@@ -209,6 +210,7 @@ public class TestController implements Initializable {
             Set<Pregunta> respuestas = new HashSet<>(respuesta);
             test.setPreguntas(respuestas);
             TestConfigurator.setRespuestas(respuesta);
+
 
 
             // Enviar el test al servidor

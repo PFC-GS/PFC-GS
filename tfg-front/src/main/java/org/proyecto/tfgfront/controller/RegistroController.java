@@ -77,21 +77,36 @@ public class RegistroController implements Initializable {
             conditionsRedText();
             if (!nombreUsuario.getText().isEmpty() && !apellidosUsuario.getText().isEmpty() && !emailUsuario.getText().isEmpty() && !contrasenaAlta.getText().isEmpty()) {
                 panelWrong.setVisible(false);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Registro");
-                alert.setHeaderText("Registro realizado con exito");
-                soloBotonAceptar(alert);
-                Usuario user = createUsuario();
+                String email = emailUsuario.getText();
+                if (!validateEmail(email)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Formato de correo electrónico incorrecto");
+                    alert.setContentText("Por favor, ingrese un correo electrónico con formato válido." + "\n" +
+                            "Ejemplo: xxxx@xxxx.xxx");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Registro");
+                    alert.setHeaderText("Registro realizado con exito");
+                    soloBotonAceptar(alert);
+                    Usuario user = createUsuario();
 
-                uniRest.altaUsuario(user);
+                    uniRest.altaUsuario(user);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
-                changeSceneMethod(loader, event);
-
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
+                    changeSceneMethod(loader, event);
+                }
             } else {
                 panelWrong.setVisible(true);
             }
         }
+    }
+
+    private boolean validateEmail(String email) {
+        String emailPattern = "^[A-Za-z0-9]+([._%+-][A-Za-z0-9]+)*@[A-Za-z0-9]+([.-][A-Za-z0-9]+)*\\.[A-Za-z]{2,}$";
+
+        return email.matches(emailPattern);
     }
 
     private Usuario createUsuario() {
@@ -117,12 +132,12 @@ public class RegistroController implements Initializable {
     }
 
 
-
     @FXML
     void volverALogin(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
         changeSceneMethod(loader, event);
     }
+
     @FXML
     void aceptarLey(ActionEvent event) {
         scrollpane.setVisible(false);
@@ -131,8 +146,8 @@ public class RegistroController implements Initializable {
         radioPolitica.setVisible(true);
 
 
-
     }
+
     public String leerArchivoTexto(String rutaArchivo) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rutaArchivo);
              Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8)) {
@@ -159,12 +174,13 @@ public class RegistroController implements Initializable {
         lbLey.setText(ley);
 
 
-
     }
+
     private void configurarTextField(TextField textField, String textoSugerencia) {
         textField.setPromptText(textoSugerencia);
         textField.getStyleClass().add("textField");
     }
+
     private void conditionsRedText() {
         List<TextField> textFields = Arrays.asList(nombreUsuario, apellidosUsuario, emailUsuario, contrasenaAlta);
 
