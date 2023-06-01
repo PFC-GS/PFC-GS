@@ -7,6 +7,17 @@
     -fx-background-color: #8794F0;
 
 }
+#paneInsideGrid{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+#encabezadoPanelInsideGrid{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
 .button{
     -fx-background-color: #0a4577;
     -fx-background-radius: 25px;

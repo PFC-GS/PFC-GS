@@ -42,5 +42,18 @@ public class Util {
         Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         loginStage.close();
     }
+    public static void changeSceneMethodResultadoTestEnPerfil(FXMLLoader loader, ActionEvent event) {
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(root);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.setScene(scene);
+        currentStage.show();
+    }
 
 }

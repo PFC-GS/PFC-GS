@@ -1,6 +1,9 @@
 package org.proyecto.service;
 
 import org.proyecto.Entity.*;
+import org.proyecto.controllers.dto.PreguntaDto;
+import org.proyecto.controllers.dto.TestDto;
+import org.proyecto.controllers.dto.TestGestorDto;
 import org.proyecto.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -326,6 +329,7 @@ public class GeneratorService {
     }
 
 
+
     public boolean enviarCorreo(String email) {
         Usuario usuario = usuarioDAO.findByEmail(email);
         if (usuario != null) {
@@ -366,6 +370,37 @@ public class GeneratorService {
 
         helper.setText(body, true);
         mailSender.send(message);
+    }
+
+    public List<TestGestorDto> getTestByUserId(Integer usuarioId) {
+
+        List<Test> testList = testDao.findTestByUserId(usuarioId);
+        List<TestGestorDto> testGestorList = new ArrayList<>();
+        for (Test t : testList) {
+            TestGestorDto testGestorDto = new TestGestorDto();
+            testGestorDto.setTest(TestDto.toDto(t));
+            Set<PreguntaDto> preguntasCorregidas = new HashSet<>();
+            float puntos = 0;
+            for (Pregunta p : t.getPreguntas()) {
+                Pregunta pregunaCorrecta = preguntaDAO.findById(p.getId()).orElse(null);
+                puntos += pregunaCorrecta.getDificultad().getId();
+                preguntasCorregidas.add(PreguntaDto.toDto(pregunaCorrecta));
+            }
+            testGestorDto.setPreguntasCorrectas(preguntasCorregidas);
+            float res = puntos / (preguntasCorregidas.size() * 3);
+            String dificultad = "";
+            if (res < 0.5) {
+                dificultad = "Fácil";
+            } else if (res >= 0.5 && res < 0.66) {
+                dificultad = "Media";
+            } else if (res >= 0.66) {
+                dificultad = "difícil";
+            }
+            testGestorDto.setDificultad(dificultad);
+            testGestorList.add(testGestorDto);
+        }
+        return testGestorList;
+
     }
 }
 

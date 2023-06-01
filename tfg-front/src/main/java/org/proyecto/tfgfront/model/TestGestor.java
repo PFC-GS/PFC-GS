@@ -1,9 +1,6 @@
 package org.proyecto.tfgfront.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +9,7 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class TestGestor {
     private Test test;
     private Set<Pregunta> preguntasCorrectas;

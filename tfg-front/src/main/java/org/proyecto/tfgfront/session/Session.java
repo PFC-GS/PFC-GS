@@ -6,10 +6,14 @@ public class Session {
 
     private static Usuario usuario;
 
+
     public static Usuario getUsuario() {
         return usuario;
     }
+
     public static void setUsuario(Usuario user) {
         Session.usuario = user;
     }
+
+
 }
