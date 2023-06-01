@@ -75,7 +75,7 @@ public class ResultadoTestController implements Initializable {
     private int contadorPreguntas = 1;
     private UniRestController uniRest = new UniRestController();
     private TestGestor testCorreccion = uniRest.getCorreccion();
-    List<Pregunta> respuestasCorrectas = new ArrayList<>(testCorreccion.getPreguntasCorrectas());
+    private List<Pregunta> respuestasCorrectas = new ArrayList<>(testCorreccion.getPreguntasCorrectas());
     private String panelRojo = "-fx-background-color: #df2a33";
     private String panelPorDefecto = "-fx-background-color: #f8efd7";
     private String panelVerde = "-fx-background-color: #7eb400";
@@ -174,7 +174,6 @@ public class ResultadoTestController implements Initializable {
     void irAMainMenu(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
         changeSceneMethod(loader, event);
-        // TODO: 25/05/2023 poner test en null despues de corregirlo
     }
 
     @FXML

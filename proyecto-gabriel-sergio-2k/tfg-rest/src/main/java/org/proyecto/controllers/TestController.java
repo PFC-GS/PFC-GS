@@ -124,4 +124,20 @@ public class TestController {
             return ResponseEntity.ok(TestGestorDto.toDto(service.getTestByUserIdAndDate(usuarioId,fecha)));
         }
     }
+    @GetMapping(path = "/test/{usuarioId}")
+    public ResponseEntity<List<TestGestorDto>> getTestByUserId(
+            @PathVariable("usuarioId") Integer usuarioId
+    ){
+        if (service.getUsuarioById(usuarioId)==null){
+            return ResponseEntity.notFound().build();
+        } else {
+            List<TestGestorDto> tests = service.getTestByUserId(usuarioId);
+            if (tests.isEmpty()) {
+                return ResponseEntity.noContent().build();  // Retorna un código 204 si no hay tests
+            } else {
+                return ResponseEntity.ok(tests);  // Retorna los tests con un código 200
+            }
+        }
+    }
+
 }

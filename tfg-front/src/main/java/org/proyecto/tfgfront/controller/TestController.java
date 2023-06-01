@@ -212,7 +212,6 @@ public class TestController implements Initializable {
             TestConfigurator.setRespuestas(respuesta);
 
 
-
             // Enviar el test al servidor
             uniRest.postTest(test);
 
