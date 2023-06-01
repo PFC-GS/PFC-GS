@@ -16,6 +16,7 @@ public class ExcelUtils {
 
     private static Workbook workbook;
     private static Sheet sheet;
+    public static String nombreArchivo;
 
     private static final String[] columns = {"categoria", "dificultad", "enunciado", "respuestaA", "respuestaB", "respuestaC", "respuesta usuario"};
 
@@ -125,7 +126,10 @@ public class ExcelUtils {
     public static void saveExcelToDownloads(String fileName) {
         String userHome = System.getProperty("user.home");
         Path rutaDescarga = FileSystems.getDefault().getPath(userHome, "Downloads");
-        Path rutaObjetivo = rutaDescarga.resolve(fileName);
+
+        // Generar un nombre de archivo único basado en la marca de tiempo
+         nombreArchivo = fileName + "_" + System.currentTimeMillis() + ".xlsx"; //creo el nombre del archivo con los milisegundos  transcurridos desde 1/1/1970 para que sea unico
+        Path rutaObjetivo = rutaDescarga.resolve(nombreArchivo);
 
         try (OutputStream outputStream = new FileOutputStream(rutaObjetivo.toFile())) {
             workbook.write(outputStream);
