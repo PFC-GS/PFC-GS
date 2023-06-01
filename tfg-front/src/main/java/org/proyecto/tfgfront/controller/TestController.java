@@ -14,17 +14,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
+import org.proyecto.tfgfront.util.ExcelUtils;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static org.proyecto.tfgfront.util.ExcelUtils.generateExcel;
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
 
@@ -113,6 +119,7 @@ public class TestController implements Initializable {
             changeSceneMethod(loader, event);
         }
     }
+
     /**
      * Método que actualiza el panel clickeado
      *
@@ -185,8 +192,8 @@ public class TestController implements Initializable {
      * @param event
      */
     private void procesarRespuesta(ActionEvent event) {
-       // si usuario no ha seleccionado ninguna respuesta, se guarda como respuesta "d" para evitar errores
-        if (respuestaUser == null){
+        // si usuario no ha seleccionado ninguna respuesta, se guarda como respuesta "d" para evitar errores
+        if (respuestaUser == null) {
             respuestaUser = "d";
         }
         // Guardar la respuesta del usuario para la pregunta actual
@@ -201,19 +208,22 @@ public class TestController implements Initializable {
             // Establecer la pregunta actual como la siguiente en la lista
             preguntaActual = preguntas.get(indicePreguntaActual);
         } else {
-            // Mostrar diálogo de alerta indicando que se ha terminado el test
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Test finalizado");
-            alert.setHeaderText("Has finalizado el test");
-            alert.setContentText("Pulsa aceptar para ver los resultados");
             // Guardar las respuestas del usuario en un objeto Test
             Set<Pregunta> respuestas = new HashSet<>(respuesta);
             test.setPreguntas(respuestas);
             TestConfigurator.setRespuestas(respuesta);
 
 
+            ExcelUtils.generateExcel(respuesta,"RespuestasUsuario.xlsx");
+
             // Enviar el test al servidor
             uniRest.postTest(test);
+
+            // Mostrar diálogo de alerta indicando que se ha terminado el test
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Test finalizado");
+            alert.setHeaderText("Has finalizado el test");
+            alert.setContentText("Pulsa aceptar para ver los resultados");
 
             // comprueba si el usuario ha pulsado el botón aceptar
             Optional<ButtonType> result = alert.showAndWait();
@@ -225,6 +235,7 @@ public class TestController implements Initializable {
 
         }
     }
+
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -238,6 +249,7 @@ public class TestController implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
+
     private void initUser() {
         Usuario user = Session.getUsuario();
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
@@ -266,5 +278,10 @@ public class TestController implements Initializable {
         }
 
     }
+
+
+
+
+
 }
 

@@ -16,6 +16,7 @@ import org.proyecto.tfgfront.model.TestGestor;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
+import org.proyecto.tfgfront.util.ExcelUtils;
 
 import java.net.URL;
 import java.time.LocalTime;
@@ -80,7 +81,17 @@ public class ResultadoTestController implements Initializable {
     private String panelPorDefecto = "-fx-background-color: #f8efd7";
     private String panelVerde = "-fx-background-color: #7eb400";
 
+    @FXML
+    void descargarExcel(ActionEvent event) {
+        ExcelUtils.saveExcelToDownloads("RespuestasUsuario.xlsx");
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Descarga");
+        alert.setHeaderText("Descarga de Excel");
+        alert.setContentText("El archivo se ha descargado correctamente en la carpeta de descargas");
+        alert.showAndWait();
+        ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
+    }
 
     @FXML
     void atrasPreguntaResultado(ActionEvent event) {
@@ -102,13 +113,6 @@ public class ResultadoTestController implements Initializable {
 
         respuestaUsuario(respuestaUsuario.size() - 1, siguientePreguntaResultado);
 
-    }
-
-    @FXML
-    void repetirTest(ActionEvent event) {
-        TestConfigurator.getCategoriaTest();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
-        changeSceneMethod(loader, event);
     }
 
     private void respuestaUsuario(int x, Button quitarBoton) {
@@ -169,15 +173,25 @@ public class ResultadoTestController implements Initializable {
         panelRespuesta3.setStyle(panelPorDefecto);
     }
 
+    @FXML
+    void repetirTest(ActionEvent event) {
+        ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
+        TestConfigurator.getCategoriaTest();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
+        changeSceneMethod(loader, event);
+    }
 
     @FXML
     void irAMainMenu(ActionEvent event) {
+        ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
         changeSceneMethod(loader, event);
     }
 
     @FXML
     void logout(ActionEvent event) {
+        ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("¿Estás seguro de que quieres cerrar sesión?");
