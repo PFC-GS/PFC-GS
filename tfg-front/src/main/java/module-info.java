@@ -6,6 +6,8 @@ module org.proyecto.tfgfront {
     requires org.json;
     requires com.google.gson;
     requires javafx.graphics;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
 
     opens org.proyecto.tfgfront to javafx.fxml;
     exports org.proyecto.tfgfront;
