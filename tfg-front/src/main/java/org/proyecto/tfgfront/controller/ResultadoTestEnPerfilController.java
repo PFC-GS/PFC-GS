@@ -13,6 +13,7 @@ import org.proyecto.tfgfront.model.TestGestor;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -68,15 +69,17 @@ public class ResultadoTestEnPerfilController implements Initializable {
 
         colorPanelesPorDefecto();
 
+
         List<Pregunta> preguntas = new ArrayList<>(gestor.getPreguntasCorrectas());
+        // ordena las preguntas por id
+        preguntas.sort(Comparator.comparing(Pregunta::getId));
+
         atras.setVisible(true);
 
-        respuestasCorrectas(0,atras,preguntas);
-
+        respuestasCorrectas(0, atras, preguntas);
 
 
     }
-
 
 
     @FXML
@@ -91,15 +94,19 @@ public class ResultadoTestEnPerfilController implements Initializable {
         colorPanelesPorDefecto();
 
         List<Pregunta> preguntas = new ArrayList<>(gestor.getPreguntasCorrectas());
+
+        // ordena las preguntas por id
+        preguntas.sort(Comparator.comparing(Pregunta::getId));
+
         atras.setVisible(true);
 
-        respuestasCorrectas(preguntas.size() - 1,siguiente,preguntas);
-
+        respuestasCorrectas(preguntas.size() - 1, siguiente, preguntas);
 
         indicePreguntaActual++;
         contadorPreguntas++;
 
     }
+
     private void respuestasCorrectas(int x, Button quitarBoton, List<Pregunta> preguntas) {
 
         numeroPregunta.setText(Integer.toString(contadorPreguntas));
@@ -109,10 +116,10 @@ public class ResultadoTestEnPerfilController implements Initializable {
         lbRespuesta3.setText(preguntas.get(indicePreguntaActual).getRespuestaC());
         compruebaRespuestaCorrecta(preguntas.get(indicePreguntaActual), panelVerde);
 
-        if (indicePreguntaActual == x) {
-            quitarBoton.setVisible(false);
-        }
+        quitarBoton.setVisible(indicePreguntaActual == x ? false : true);
+
     }
+
     private void compruebaRespuestaCorrecta(Pregunta respuestaCorrecta, String colorPanel) {
         if (respuestaCorrecta.getSolucion().equals("a")) {
             panelRespuesta1.setStyle(colorPanel);
@@ -126,11 +133,10 @@ public class ResultadoTestEnPerfilController implements Initializable {
     }
 
 
-
     public void setlistaTestGestor(TestGestor testGestor) {
         if (testGestor != null) {
             this.gestor = testGestor;
-            System.out.println("El testGestor se ha asignado correctamente");
+
         } else {
             System.out.println("El testGestor es nulo");
         }

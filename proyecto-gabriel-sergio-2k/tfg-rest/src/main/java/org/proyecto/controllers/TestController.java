@@ -1,6 +1,7 @@
 package org.proyecto.controllers;
 
 import org.proyecto.Entity.Test;
+import org.proyecto.Entity.TestGestor;
 import org.proyecto.controllers.dto.TestDto;
 import org.proyecto.controllers.dto.TestGestorDto;
 import org.proyecto.controllers.dto.UsuarioDto;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -127,17 +129,27 @@ public class TestController {
     @GetMapping(path = "/test/{usuarioId}")
     public ResponseEntity<List<TestGestorDto>> getTestByUserId(
             @PathVariable("usuarioId") Integer usuarioId
-    ){
-        if (service.getUsuarioById(usuarioId)==null){
+    ) {
+        if (service.getUsuarioById(usuarioId) == null) {
             return ResponseEntity.notFound().build();
         } else {
-            List<TestGestorDto> tests = service.getTestByUserId(usuarioId);
-            if (tests.isEmpty()) {
+            List<TestGestor> testGestorList = service.getTestByUserId(usuarioId);
+            List<TestGestorDto> testGestorDtoList = new ArrayList<>();
+
+            for (TestGestor testGestor : testGestorList) {
+                TestGestorDto testGestorDto = TestGestorDto.toDto(testGestor);
+                testGestorDtoList.add(testGestorDto);
+            }
+
+            if (testGestorDtoList.isEmpty()) {
                 return ResponseEntity.noContent().build();  // Retorna un código 204 si no hay tests
             } else {
-                return ResponseEntity.ok(tests);  // Retorna los tests con un código 200
+                return ResponseEntity.ok(testGestorDtoList);  // Retorna los tests con un código 200
             }
         }
     }
+
+
+
 
 }

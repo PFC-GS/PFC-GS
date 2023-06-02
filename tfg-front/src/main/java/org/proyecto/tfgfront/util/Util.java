@@ -12,8 +12,6 @@ import java.io.IOException;
 
 public class Util {
 
-    public static final String version = "1.0";
-
     public static void changeSceneMethod(FXMLLoader loader, ActionEvent event) {
         Parent root = null;
         try {

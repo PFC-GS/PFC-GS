@@ -90,7 +90,7 @@ public class ResultadoTestController implements Initializable {
         alert.setHeaderText("Descarga de Excel");
         alert.setContentText("El archivo se ha descargado correctamente en la carpeta de descargas");
         alert.showAndWait();
-        ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
+
     }
 
     @FXML

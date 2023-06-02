@@ -372,35 +372,42 @@ public class GeneratorService {
         mailSender.send(message);
     }
 
-    public List<TestGestorDto> getTestByUserId(Integer usuarioId) {
-
+    public List<TestGestor> getTestByUserId(Integer usuarioId) {
         List<Test> testList = testDao.findTestByUserId(usuarioId);
-        List<TestGestorDto> testGestorList = new ArrayList<>();
-        for (Test t : testList) {
-            TestGestorDto testGestorDto = new TestGestorDto();
-            testGestorDto.setTest(TestDto.toDto(t));
-            Set<PreguntaDto> preguntasCorregidas = new HashSet<>();
-            float puntos = 0;
-            for (Pregunta p : t.getPreguntas()) {
-                Pregunta pregunaCorrecta = preguntaDAO.findById(p.getId()).orElse(null);
-                puntos += pregunaCorrecta.getDificultad().getId();
-                preguntasCorregidas.add(PreguntaDto.toDto(pregunaCorrecta));
-            }
-            testGestorDto.setPreguntasCorrectas(preguntasCorregidas);
-            float res = puntos / (preguntasCorregidas.size() * 3);
-            String dificultad = "";
-            if (res < 0.5) {
-                dificultad = "Fácil";
-            } else if (res >= 0.5 && res < 0.66) {
-                dificultad = "Media";
-            } else if (res >= 0.66) {
-                dificultad = "difícil";
-            }
-            testGestorDto.setDificultad(dificultad);
-            testGestorList.add(testGestorDto);
-        }
-        return testGestorList;
+        List<TestGestor> testGestorList = new ArrayList<>();
 
+        for (Test test : testList) {
+            TestGestor testGestor = new TestGestor();
+            testGestor.setTest(test);
+            Set<Pregunta> preguntasCorregidas = new HashSet<>();
+            float puntos = 0;
+
+            for (Pregunta pregunta : test.getPreguntas()) {
+                Pregunta preguntaCorrecta = preguntaDAO.findById(pregunta.getId()).orElse(null);
+                puntos += preguntaCorrecta.getDificultad().getId();
+                preguntasCorregidas.add(preguntaCorrecta);
+            }
+
+            String dificultad = calcularDificultad(puntos, preguntasCorregidas.size());
+            testGestor.setPreguntasCorrectas(preguntasCorregidas);
+            testGestor.setDificultad(dificultad);
+
+            testGestorList.add(testGestor);
+        }
+
+        return testGestorList;
+    }
+
+    private String calcularDificultad(float puntos, int numPreguntas) {
+        float res = puntos / (numPreguntas * 3);
+        if (res < 0.5) {
+            return "Fácil";
+        } else if (res >= 0.5 && res < 0.66) {
+            return "Media";
+        } else if (res >= 0.66) {
+            return "Difícil";
+        }
+        return "";
     }
 }
 
