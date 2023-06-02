@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -45,6 +46,10 @@ public class PerfilController implements Initializable {
 
     @FXML
     private Label lbDatosNombre;
+    @FXML
+    private Button seguridad;
+    @FXML
+    private Button datosPersonales;
 
     @FXML
     private GridPane resultadoGrid;
@@ -54,6 +59,17 @@ public class PerfilController implements Initializable {
 
     private int testCount = 0;
 
+
+    @FXML
+    void cambiarDatosPersonales(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/cambiarDatosPersonales-view.fxml"));
+        changeSceneMethod(loader, event);
+    }
+    @FXML
+    void cambiarPw(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/cambiarPw-view.fxml"));
+        changeSceneMethod(loader, event);
+    }
 
     @FXML
     void irAMainMenu(ActionEvent event) {

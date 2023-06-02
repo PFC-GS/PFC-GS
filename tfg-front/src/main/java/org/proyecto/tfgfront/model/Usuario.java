@@ -1,9 +1,7 @@
 package org.proyecto.tfgfront.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +9,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Usuario {
 
     private Integer id;

@@ -3,7 +3,6 @@ package org.proyecto.tfgfront.controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
@@ -91,6 +90,7 @@ public class UniRestController {
         }
         return null;
     }
+
     public List<TestGestor> getTestByUserId(Integer usuarioId) {
         String url = "http://localhost:8080/test/{usuarioId}";
 
@@ -104,7 +104,8 @@ public class UniRestController {
             int statusCode = response.getStatus();
             if (statusCode == 200) {
                 String responseBody = response.getBody();
-                Type listType = new TypeToken<List<TestGestor>>(){}.getType();
+                Type listType = new TypeToken<List<TestGestor>>() {
+                }.getType();
                 List<TestGestor> tests = gson.fromJson(responseBody, listType);
                 return tests;
             } else if (statusCode == 204) {
@@ -217,8 +218,29 @@ public class UniRestController {
     }
 
 
+    public void modificaUsuario(Usuario user) {
+        String id = String.valueOf(user.getId());
+        String url = "http://localhost:8080/usuarios/18";
+
+        try {
+            Gson gson = new Gson();
+
+            HttpResponse<String> response = Unirest.put(url)
+                    .header("Content-Type", "application/json")
+                    .body(gson.toJson(user))
+                    .asString();
 
 
-
+            int statusCode = response.getStatus();
+            if (statusCode == 200) {
+                System.out.println("Usuario modificado correctamente");
+            } else {
+                System.err.println("Error: Unexpected response status - " + statusCode);
+                System.err.println("Response body: " + response.getBody());
+            }
+        } catch (UnirestException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
 }
 
