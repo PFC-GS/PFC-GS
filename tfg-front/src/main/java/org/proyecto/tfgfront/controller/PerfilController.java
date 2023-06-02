@@ -95,7 +95,7 @@ public class PerfilController implements Initializable {
                 if (x == 0) {
                     x = 1;
                 }
-                // Create a new VBox for each test.
+                // crear un nuevo VBox para cada test
                 VBox vbox = new VBox();
                 vbox.setPadding(new Insets(10, 10, 10, 10));
                 vbox.setBorder(new Border(new BorderStroke(Color.BLACK,
@@ -108,7 +108,7 @@ public class PerfilController implements Initializable {
                 HBox hboxTestResult = createHBox(test.getTest().getCalificacion() >= 5 ? "Apto" : "No apto", false, 14);
 
 
-                // Create a Hyperlink.
+                // crear el link para ver los detalles del test
                 Hyperlink detallesLink = new Hyperlink("Ver Test");
                 detallesLink.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -126,10 +126,10 @@ public class PerfilController implements Initializable {
                 HBox hboxDetallesLink = new HBox(detallesLink);
                 hboxDetallesLink.setAlignment(Pos.CENTER);
 
-                // Add the HBoxes to the VBox.
+                // añadir los HBox al VBox
                 vbox.getChildren().addAll(hboxNombre, hboxFecha, hboxCalificacion, hboxNumeroPreguntas, hboxTestResult, hboxDetallesLink);
 
-                // Add the VBox to your GridPane.
+                // Añadir el VBox al GridPane
                 resultadoGrid.add(vbox, i % 5, i / 5);
                 i++;
                 x--;

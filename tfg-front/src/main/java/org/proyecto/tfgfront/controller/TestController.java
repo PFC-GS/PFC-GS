@@ -14,8 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
@@ -23,14 +21,11 @@ import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
 import org.proyecto.tfgfront.util.ExcelUtils;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import static org.proyecto.tfgfront.util.ExcelUtils.generateExcel;
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
 
@@ -82,7 +77,6 @@ public class TestController implements Initializable {
     private Pregunta preguntaActual;
     private String respuestaUser;
     private List<Pregunta> respuesta = new ArrayList<>();
-    PerfilController perfilController = new PerfilController();
     private int indicePreguntaActual = 0;
 
     @FXML
@@ -192,12 +186,12 @@ public class TestController implements Initializable {
      * @param event
      */
     private void procesarRespuesta(ActionEvent event) {
-        // si usuario no ha seleccionado ninguna respuesta, se guarda como respuesta "d" para evitar errores
-        if (respuestaUser == null) {
-            respuestaUser = "d";
-        }
+        // Si el usuario no ha seleccionado ninguna respuesta, se guarda como respuesta "d" para evitar errores
+        respuestaUser = (respuestaUser == null) ? "d" : respuestaUser;
+
         // Guardar la respuesta del usuario para la pregunta actual
         preguntaActual.setSolucion(respuestaUser);
+
         respuesta.add(preguntaActual);
 
         // Incrementar el índice de la pregunta actual
@@ -213,8 +207,11 @@ public class TestController implements Initializable {
             test.setPreguntas(respuestas);
             TestConfigurator.setRespuestas(respuesta);
 
+            // Ordenar las respuestas por id
+            respuesta.sort(Comparator.comparing(Pregunta::getId));
 
-            ExcelUtils.generateExcel(respuesta,"RespuestasUsuario.xlsx");
+            // Guardar el test en un archivo Excel
+            ExcelUtils.generateExcel(respuesta, "RespuestasUsuario.xlsx");
 
             // Enviar el test al servidor
             uniRest.postTest(test);
@@ -225,16 +222,17 @@ public class TestController implements Initializable {
             alert.setHeaderText("Has finalizado el test");
             alert.setContentText("Pulsa aceptar para ver los resultados");
 
-            // comprueba si el usuario ha pulsado el botón aceptar
+            // Comprueba si el usuario ha pulsado el botón aceptar
             Optional<ButtonType> result = alert.showAndWait();
-            // si el usuario ha pulsado el botón aceptar de la ventana alert, carga la vista de resultados
+
+            // Si el usuario ha pulsado el botón aceptar de la ventana alert, carga la vista de resultados
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/resultadoTest-view.fxml"));
                 changeSceneMethod(loader, event);
             }
-
         }
     }
+
 
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};
@@ -263,6 +261,7 @@ public class TestController implements Initializable {
         // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
         preguntas = new ArrayList<>(test.getPreguntas());
 
+
         if (!preguntas.isEmpty()) {
             preguntaActual = preguntas.get(0);
             encabezadoPregunta.setText(preguntaActual.getEnunciado());
@@ -278,9 +277,6 @@ public class TestController implements Initializable {
         }
 
     }
-
-
-
 
 
 }

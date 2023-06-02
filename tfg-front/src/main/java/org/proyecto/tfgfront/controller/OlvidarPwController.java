@@ -41,6 +41,8 @@ public class OlvidarPwController implements Initializable {
             alert.setTitle("Recuperar contraseña");
             alert.setContentText(textoRespuesta);
             alert.showAndWait();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
+            changeSceneMethod(loader, event);
         }
     }
 
