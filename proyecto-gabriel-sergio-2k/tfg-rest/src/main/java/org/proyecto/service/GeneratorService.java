@@ -315,18 +315,11 @@ public class GeneratorService {
             preguntasCorregidas.add(pregunaCorrecta);
         }
         tg.setPreguntasCorrectas(preguntasCorregidas);
-        float res = puntos / (preguntasCorregidas.size() * 3);
-        String dificultad = "";
-        if (res < 0.5) {
-            dificultad = "Fácil";
-        } else if (res >= 0.5 && res < 0.66) {
-            dificultad = "Media";
-        } else if (res >= 0.66) {
-            dificultad = "difícil";
-        }
+        String dificultad = calcularDificultad(puntos, preguntasCorregidas.size());
         tg.setDificultad(dificultad);
         return tg;
     }
+
 
 
 
