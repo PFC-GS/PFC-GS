@@ -220,7 +220,7 @@ public class UniRestController {
 
     public void modificaUsuario(Usuario user) {
         String id = String.valueOf(user.getId());
-        String url = "http://localhost:8080/usuarios/18";
+        String url = "http://localhost:8080/usuarios/"+id;
 
         try {
             Gson gson = new Gson();

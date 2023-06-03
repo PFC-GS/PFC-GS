@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55f53600-a4e6-4b1e-aae0-8c5691bd0b29" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-model/src/main/java/org/proyecto/Entity/TestGestor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/dto/TestGestorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/controllers/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/service/GeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-gabriel-sergio-2k/tfg-rest/src/main/java/org/proyecto/service/GeneratorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,18 +94,10 @@
     <servers />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/proyecto/tfgfront/controller/UniRestController.java</url>
-          <line>222</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.proyecto.tfgfront.model.TestGestor" memberName="preguntasCorrectas" />
+        <PinnedItemInfo parentTag="org.proyecto.tfgfront.model.Test" memberName="preguntas" />
       </pinned-members>
     </pin-to-top-manager>
   </component>
