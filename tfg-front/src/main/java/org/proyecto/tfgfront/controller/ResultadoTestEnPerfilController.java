@@ -12,10 +12,7 @@ import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.TestGestor;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
@@ -73,6 +70,7 @@ public class ResultadoTestEnPerfilController implements Initializable {
         List<Pregunta> preguntas = new ArrayList<>(gestor.getPreguntasCorrectas());
         // ordena las preguntas por id
         preguntas.sort(Comparator.comparing(Pregunta::getId));
+
 
         atras.setVisible(true);
 
