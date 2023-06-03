@@ -19,7 +19,7 @@
             <Button layoutX="37.0" layoutY="229.0" mnemonicParsing="false" onAction="#irAMainMenu" prefHeight="40.0" prefWidth="140.0" text="Menu Principal" textFill="WHITE" />
             <Button layoutX="37.0" layoutY="475.0" mnemonicParsing="false" onAction="#logout" prefHeight="40.0" prefWidth="140.0" text="Logout" textFill="WHITE" />
             <Button fx:id="datosPersonales" layoutX="37.0" layoutY="314.0" mnemonicParsing="false" onAction="#cambiarDatosPersonales" prefHeight="40.0" prefWidth="140.0" text="Datos Personales" textFill="WHITE" />
-            <Button fx:id="seguridad" layoutX="37.0" layoutY="394.0" mnemonicParsing="false" onAction="#cambiarPw" prefHeight="40.0" prefWidth="140.0" text="Seguridad" textFill="WHITE" />
+            <Button fx:id="seguridad" layoutX="37.0" layoutY="394.0" mnemonicParsing="false" onAction="#cambiarPw" prefHeight="40.0" prefWidth="140.0" text="Cambiar Contraseña" textFill="WHITE" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelEncabezado" layoutX="200.0" prefHeight="71.0" prefWidth="1134.0" stylesheets="@../../../style/PerfilStyle.css" />
