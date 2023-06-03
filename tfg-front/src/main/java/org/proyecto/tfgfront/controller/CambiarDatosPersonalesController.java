@@ -52,13 +52,12 @@ public class CambiarDatosPersonalesController implements Initializable {
                         "Ejemplo: xxxx@xxxx.xxx");
                 alert.showAndWait();
             } else {
+                modificaUsuario(nombre, apellidos, email);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Registro");
-                alert.setHeaderText("Registro realizado con exito");
-                modificaUsuario(nombre, apellidos, email);
-
-                uniRest.altaUsuario(user);
-
+                alert.setHeaderText("Registro realizado con exito." + "\n" +
+                        "Los cambios surtirán efecto en su próxima sesión");
+                alert.showAndWait();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/perfil-view.fxml"));
                 changeSceneMethod(loader, event);
             }
