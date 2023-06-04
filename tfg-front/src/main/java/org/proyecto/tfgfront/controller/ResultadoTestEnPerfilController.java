@@ -6,13 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import org.proyecto.tfgfront.model.Pregunta;
 import org.proyecto.tfgfront.model.TestGestor;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
@@ -38,6 +43,13 @@ public class ResultadoTestEnPerfilController implements Initializable {
 
     @FXML
     private Label numeroPregunta;
+    @FXML
+    private Label lbResultPregunEncabezado;
+    @FXML
+    private ImageView etImage;
+
+    @FXML
+    private AnchorPane panelPrincipal;
 
     @FXML
     private Pane panelRespuesta1;
@@ -79,15 +91,23 @@ public class ResultadoTestEnPerfilController implements Initializable {
 
     }
 
-
+    /**
+     * Metodo que lleva a la vista de perfil
+     * @param event
+     */
     @FXML
     void salir(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/perfil-view.fxml"));
         changeSceneMethod(loader, event);
     }
 
+    /**
+     * Metodo que permite pasar a la siguiente pregunta
+     * @param event
+     */
     @FXML
     void siguiente(ActionEvent event) {
+        primeraVista(false);
         visibility(true);
         colorPanelesPorDefecto();
 
@@ -151,7 +171,14 @@ public class ResultadoTestEnPerfilController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         atras.setVisible(false);
         visibility(false);
+        primeraVista(true);
+    }
 
+    private void primeraVista(Boolean pv) {
+        lbResultPregunEncabezado.setVisible(pv);
+        etImage.setVisible(pv);
+        String colorPanel = pv ? "-fx-background-color: #f8efd7" : "-fx-background-color: #ffffff";
+        panelPrincipal.setStyle(colorPanel);
 
     }
 

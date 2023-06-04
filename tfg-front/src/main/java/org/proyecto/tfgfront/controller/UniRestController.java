@@ -109,7 +109,6 @@ public class UniRestController {
                 List<TestGestor> tests = gson.fromJson(responseBody, listType);
                 return tests;
             } else if (statusCode == 204) {
-                System.out.println("No tests found for user with id - " + usuarioId);
                 return new ArrayList<>();
             } else {
                 System.err.println("Error: Unexpected response status - " + statusCode);

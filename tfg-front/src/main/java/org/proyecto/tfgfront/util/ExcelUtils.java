@@ -135,6 +135,7 @@ public class ExcelUtils {
         try (OutputStream outputStream = new FileOutputStream(rutaObjetivo.toFile())) {
             workbook.write(outputStream);
             System.out.println("Excel guardado exitosamente en la carpeta de Descargas.");
+            workbook.close(); //cierro el workbook
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error al guardar el Excel en la carpeta de Descargas.");
