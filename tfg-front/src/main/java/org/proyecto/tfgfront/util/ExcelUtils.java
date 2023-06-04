@@ -18,14 +18,14 @@ public class ExcelUtils {
     private static Sheet sheet;
     public static String nombreArchivo;
 
-    private static final String[] columns = {"categoria", "dificultad", "enunciado", "respuestaA", "respuestaB", "respuestaC", "respuesta usuario"};
+    private static final String[] columns = {"categoria", "dificultad", "enunciado", "respuestaA", "respuestaB", "respuestaC","respuesta usuario","respuesta correcta"};
 
-    public static void generateExcel(List<Pregunta> preguntas, String fileName) {
+    public static void generateExcel(List<Pregunta> preguntas, List<Pregunta> respuestas, String fileName) {
 
 
         createWorkbookAndSheet();
         createHeaderRow();
-        fillDataRows(preguntas);
+        fillDataRows(preguntas,respuestas);
         adjustColumnSizes();
         writeToFile(fileName);
     }
@@ -54,7 +54,7 @@ public class ExcelUtils {
         }
     }
 
-    private static void fillDataRows(List<Pregunta> preguntas) {
+    private static void fillDataRows(List<Pregunta> preguntas, List<Pregunta> respuestas) {
         int rowNum = 1;
         for (Pregunta pregunta : preguntas) {
             Row row = sheet.createRow(rowNum++);
@@ -65,8 +65,9 @@ public class ExcelUtils {
             row.createCell(3).setCellValue(pregunta.getRespuestaA());
             row.createCell(4).setCellValue(pregunta.getRespuestaB());
             row.createCell(5).setCellValue(pregunta.getRespuestaC());
-            String respuestaUsuario = "d".equalsIgnoreCase(pregunta.getSolucion()) ? "No ha contestado" : pregunta.getSolucion();
+            String respuestaUsuario = "d".equalsIgnoreCase(respuestas.get(preguntas.indexOf(pregunta)).getSolucion()) ? "No ha contestado" : respuestas.get(preguntas.indexOf(pregunta)).getSolucion();
             row.createCell(6).setCellValue(respuestaUsuario);
+            row.createCell(7).setCellValue(pregunta.getSolucion());
 
         }
     }

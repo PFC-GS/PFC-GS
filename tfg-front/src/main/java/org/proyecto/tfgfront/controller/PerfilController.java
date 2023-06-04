@@ -47,6 +47,8 @@ public class PerfilController implements Initializable {
     @FXML
     private Label lbDatosNombre;
     @FXML
+    private Label lbTotalTest;
+    @FXML
     private Button seguridad;
     @FXML
     private Button datosPersonales;
@@ -185,5 +187,7 @@ public class PerfilController implements Initializable {
         lbDatosNombre.setText(user.getNombre());
         lbDatosApellidos.setText(user.getApellidos());
         lbDatosCorreo.setText(user.getEmail());
+        int totalTest = uniRest.getTestByUserId(Session.getUsuario().getId()).size();
+        lbTotalTest.setText(String.valueOf(totalTest));
     }
 }

@@ -207,11 +207,7 @@ public class TestController implements Initializable {
             test.setPreguntas(respuestas);
             TestConfigurator.setRespuestas(respuesta);
 
-            // Ordenar las respuestas por id
-            respuesta.sort(Comparator.comparing(Pregunta::getId));
 
-            // Guardar el test en un archivo Excel
-            ExcelUtils.generateExcel(respuesta, "RespuestasUsuario.xlsx");
 
             // Enviar el test al servidor
             uniRest.postTest(test);
