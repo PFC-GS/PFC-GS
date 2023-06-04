@@ -22,6 +22,7 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -96,6 +97,7 @@ public class ResultadoTestController implements Initializable {
     @FXML
     void atrasPreguntaResultado(ActionEvent event) {
 
+
         indicePreguntaActual--;
         contadorPreguntas--;
         siguientePreguntaResultado.setVisible(true);
@@ -107,6 +109,7 @@ public class ResultadoTestController implements Initializable {
     @FXML
     void siguientePreguntaResultado(ActionEvent event) {
 
+
         indicePreguntaActual++;
         contadorPreguntas++;
         atrasPreguntaResultado.setVisible(true);
@@ -116,6 +119,8 @@ public class ResultadoTestController implements Initializable {
     }
 
     private void respuestaUsuario(int x, Button quitarBoton) {
+        respuestasCorrectas.sort(Comparator.comparing(Pregunta::getId));
+        TestConfigurator.getRespuestas().sort(Comparator.comparing(Pregunta::getId));
 
         numeroPregunta.setText(Integer.toString(contadorPreguntas));
         encabezadoPregunta.setText(respuestaUsuario.get(indicePreguntaActual).getEnunciado());
@@ -135,6 +140,8 @@ public class ResultadoTestController implements Initializable {
     }
 
     private void correccionPreguntas(Pregunta respuestaUsuario) {
+        respuestasCorrectas.sort(Comparator.comparing(Pregunta::getId));
+        TestConfigurator.getRespuestas().sort(Comparator.comparing(Pregunta::getId));
         for (Pregunta respuestaCorrecta : respuestasCorrectas) {
 
             if (respuestaUsuario.getId().equals(respuestaCorrecta.getId())) {
@@ -249,6 +256,11 @@ public class ResultadoTestController implements Initializable {
 
         Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
         correccionPreguntas(preguntaUsuario);
+        //ordenamos las respuestas para que coincidan con las correctas y se pinten en el excel
+        respuestasCorrectas.sort(Comparator.comparing(Pregunta::getId));
+        TestConfigurator.getRespuestas().sort(Comparator.comparing(Pregunta::getId));
+
+        ExcelUtils.generateExcel(respuestasCorrectas,TestConfigurator.getRespuestas(),"RespuestasUsuario.xlsx");
 
 
     }

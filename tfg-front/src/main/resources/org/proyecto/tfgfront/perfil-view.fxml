@@ -96,5 +96,15 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <Label layoutX="260.0" layoutY="737.0" text="Total Test:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTotalTest" layoutX="358.0" layoutY="737.0" prefHeight="21.0" prefWidth="160.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
