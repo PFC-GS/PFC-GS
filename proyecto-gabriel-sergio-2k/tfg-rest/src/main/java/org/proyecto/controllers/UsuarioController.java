@@ -12,12 +12,19 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controlador para los usuarios
+ */
 @RestController
 public class UsuarioController {
     @Autowired
     private GeneratorService service;
 
-
+    /**
+     * Devuelve todos los usuarios
+     *
+     * @return Lista de usuarios
+     */
     @GetMapping(path = "/usuarios")
     public ResponseEntity<List<UsuarioDto>> getAllUsuarios() {
         return ResponseEntity.ok(
@@ -27,6 +34,12 @@ public class UsuarioController {
                         .collect(Collectors.toList()));
     }
 
+    /**
+     * Devuelve un usuario por su id
+     *
+     * @param usuarioId Id del usuario
+     * @return Usuario
+     */
     @GetMapping(path = "/usuarios/{id}")
     public ResponseEntity<UsuarioDto> getUsuarioById(
             @PathVariable("id") Integer usuarioId
@@ -38,6 +51,12 @@ public class UsuarioController {
         return ResponseEntity.ok(UsuarioDto.toDto(usuario));
     }
 
+    /**
+     * Crea un usuario
+     *
+     * @param usuario Usuario a crear
+     * @return 200 si se ha creado correctamente, 409 si ya existe
+     */
     @PostMapping(path = "/usuarios")
     public ResponseEntity<UsuarioDto> createUsuario(
             @RequestBody UsuarioDto usuario
@@ -50,6 +69,13 @@ public class UsuarioController {
         }
     }
 
+    /**
+     * Actualiza un usuario
+     *
+     * @param usuarioId Id del usuario
+     * @param usuario   Usuario a actualizar
+     * @return 200 si se ha actualizado correctamente, 409 si ya existe
+     */
     @PutMapping(path = "/usuarios/{id}")
     public ResponseEntity<Void> updateUsuario(
             @PathVariable("id") Integer usuarioId,
@@ -63,6 +89,12 @@ public class UsuarioController {
         }
     }
 
+    /**
+     * Borra un usuario
+     *
+     * @param usuarioId Id del usuario
+     * @return 200 si se ha borrado correctamente, 404 si no existe
+     */
     @DeleteMapping(path = "/usuarios/{id}")
     public ResponseEntity<Void> deleteUsuario(
             @PathVariable("id") Integer usuarioId
@@ -75,7 +107,13 @@ public class UsuarioController {
         }
     }
 
-    // Encontrar un usuario por su email y password
+    /**
+     * Encontrar un usuario por su email y password
+     *
+     * @param email email
+     * @param pass  password
+     * @return Usuario
+     */
     @GetMapping(path = "/usuarios/{email}/{pass}")
     public ResponseEntity<UsuarioDto> getUsuarioByEmailAndPass(
             @PathVariable("email") String email,
@@ -84,13 +122,14 @@ public class UsuarioController {
         Usuario usuario = service.getUsuarioByEmailAndPass(email, pass);
         if (usuario == null) {
             return ResponseEntity.notFound().build();
-        }else {
+        } else {
             return ResponseEntity.ok(UsuarioDto.toDto(usuario));
         }
     }
 
     /**
      * Recupera la contraseña de un usuario
+     *
      * @param bodyRequest email del usuario
      * @return 200 si se ha enviado el correo correctamente, 404 si no se ha podido enviar
      */

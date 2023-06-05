@@ -12,11 +12,21 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controlador para las preguntas
+ */
 @RestController
 public class PreguntaController {
     @Autowired
     private GeneratorService service;
 
+    /**
+     * Devuelve todas las preguntas
+     *
+     * @param dificultad dificultad de la pregunta (opcional)
+     * @param categoria  categoria de la pregunta (opcional)
+     * @return Lista de preguntas
+     */
     @GetMapping(path = "/preguntas")
     public ResponseEntity<List<PreguntaDto>> getAllPreguntas(
             @RequestParam(value = "dificultad", required = false) Integer dificultad,
@@ -29,6 +39,12 @@ public class PreguntaController {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * Devuelve una pregunta por su id
+     *
+     * @param preguntaId Id de la pregunta
+     * @return Pregunta
+     */
     @GetMapping(path = "/preguntas/{id}")
     public ResponseEntity<PreguntaDto> getPreguntaById(
             @PathVariable("id") Integer preguntaId
@@ -41,6 +57,12 @@ public class PreguntaController {
         }
     }
 
+    /**
+     * Crea una pregunta
+     *
+     * @param pregunta Pregunta a crear
+     * @return Pregunta creada
+     */
     @PostMapping(path = "/preguntas")
     public ResponseEntity<Void> createPregunta(
             @Valid @RequestBody PreguntaDto pregunta
@@ -52,6 +74,12 @@ public class PreguntaController {
         }
     }
 
+    /**
+     * Actualiza una pregunta
+     *
+     * @param pregunta Pregunta a actualizar
+     * @return Pregunta actualizada
+     */
     @PutMapping(path = "/preguntas/{id}")
     public ResponseEntity<Void> updatePregunta(
             @Valid @RequestBody PreguntaDto pregunta
@@ -63,6 +91,12 @@ public class PreguntaController {
         }
     }
 
+    /**
+     * Elimina una pregunta
+     *
+     * @param preguntaId Id de la pregunta a eliminar
+     * @return Pregunta eliminada
+     */
     @DeleteMapping(path = "/preguntas/{id}")
     public ResponseEntity<Void> deletePregunta(
             @PathVariable("id") Integer preguntaId
@@ -73,24 +107,5 @@ public class PreguntaController {
             return ResponseEntity.notFound().build();
         }
     }
-/*
-    // obtener las preguntas de un test (por defecto serán 10 preguntas)
-    @GetMapping(path = "/preguntas/test/{categoriaId}")
-    public ResponseEntity<List<PreguntaDto>> getPreguntasForTest(
-            @PathVariable("categoriaId") Integer categoriaId,
-            @RequestParam(value = "numPreguntas",required = false) Integer numPreguntas
-    ){
-        if (service.getCategoriaById(categoriaId) == null){
-            return ResponseEntity.notFound().build();
-        }else {
-            return ResponseEntity.ok(
-                    service.getPreguntasForTest(categoriaId,numPreguntas)
-                            .stream()
-                            .map(PreguntaDto::toDto)
-                            .collect(Collectors.toList()));
-        }
-    }
-
- */
 
 }

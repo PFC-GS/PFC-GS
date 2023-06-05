@@ -14,34 +14,45 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controlador para las dificultades
+ */
 @RestController
 public class DificultadController {
     @Autowired
     private GeneratorService service;
 
+    /**
+     * Devuelve todas las dificultades
+     *
+     * @return Lista de dificultades
+     */
     @GetMapping(path = "/dificultades")
     public ResponseEntity<List<DificultadDto>> listAllDificultades() {
         return ResponseEntity.ok(service
-                        .getAllDificultad()
-                        .stream()
-                        .map(DificultadDto::toDto)
-                        .collect(Collectors.toList())
-                );
+                .getAllDificultad()
+                .stream()
+                .map(DificultadDto::toDto)
+                .collect(Collectors.toList())
+        );
     }
 
+    /**
+     * Crea una dificultad
+     *
+     * @param dificultad Dificultad a crear
+     * @return
+     */
     @PostMapping(path = "/dificultades")
     public ResponseEntity<Void> createDificultad(
             @Valid @RequestBody DificultadDto dificultad
-    ){
-        if (service.addDificultad(DificultadDto.toEntity(dificultad))){
+    ) {
+        if (service.addDificultad(DificultadDto.toEntity(dificultad))) {
             return ResponseEntity.ok().build();
-        }else {
+        } else {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
-
-
-
 
 
 }

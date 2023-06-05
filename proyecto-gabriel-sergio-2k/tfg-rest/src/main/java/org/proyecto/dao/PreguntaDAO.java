@@ -9,24 +9,33 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Interfaz DAO de Pregunta .
+ */
 @Repository
-public interface PreguntaDAO extends JpaRepository<Pregunta,Integer> {
+public interface PreguntaDAO extends JpaRepository<Pregunta, Integer> {
     List<Pregunta> findByDificultad_Id(Integer id);
 
     List<Pregunta> findByCategoria_Id(Integer id);
 
+    /**
+     * Método para obtener preguntas de una dificultad y una categoría específica
+     *
+     * @param dificultadId
+     * @param categoriaId
+     * @return
+     */
     List<Pregunta> findByDificultad_IdAndCategoria_Id(Integer dificultadId, Integer categoriaId);
 
     /**
      * Método para obtener un número de preguntas aleatorias de una categoría específica
+     *
      * @param cate categoría de las preguntas
-     * @param num número de preguntas a elegir
-     * @return  Set de preguntas
+     * @param num  número de preguntas a elegir
+     * @return Set de preguntas
      */
     @Query(value = "Select * from pregunta where categoria = :cate order by random() LIMIT :num", nativeQuery = true)
     Set<Pregunta> findRandomQuestions(@Param("cate") Integer cate, @Param("num") Integer num);
-
-
 
 
 }
