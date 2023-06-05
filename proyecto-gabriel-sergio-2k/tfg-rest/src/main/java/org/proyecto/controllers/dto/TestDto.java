@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class TestDto {
 
-
     private Integer id;
     @NotNull
     @Positive

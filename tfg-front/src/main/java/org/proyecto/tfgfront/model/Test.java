@@ -10,7 +10,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Test {
     private Integer id;
     private int usuario;

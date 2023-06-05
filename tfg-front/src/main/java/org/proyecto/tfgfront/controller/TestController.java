@@ -212,6 +212,7 @@ public class TestController implements Initializable {
             // Enviar el test al servidor
             uniRest.postTest(test);
 
+
             // Mostrar diálogo de alerta indicando que se ha terminado el test
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Test finalizado");
