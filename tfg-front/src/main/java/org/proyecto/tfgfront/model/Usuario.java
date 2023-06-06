@@ -9,7 +9,9 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+/**
+ * Clase modelo de Usuario
+ */
 public class Usuario {
 
     private Integer id;

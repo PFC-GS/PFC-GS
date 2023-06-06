@@ -61,11 +61,14 @@ public class MainMenuController implements Initializable {
     @FXML
     private ImageView imageStudiar;
 
-
+    /**
+     * Método que configura la cantidad de preguntas del test
+     *
+     * @param event evento
+     */
     @FXML
     void numeroPreguntasSeleccionadas(MouseEvent event) {
         List<Integer> opciones = Arrays.asList(5, 10, 15, 20);
-
         ObservableList<Integer> listaOpciones = FXCollections.observableArrayList(opciones);
         comboPreguntas.setItems(listaOpciones);
 
@@ -77,30 +80,46 @@ public class MainMenuController implements Initializable {
             }
         });
     }
-
-
+    /**
+     * Método que ejecuta la vista perfil al iniciar
+     *
+     * @param event
+     */
     @FXML
     void perfilUser(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/perfil-view.fxml"));
         changeSceneMethod(loader, event);
     }
 
-
+    /**
+     * Método que ejecuta la vista categorias al iniciar
+     *
+     * @param event evento
+     */
     @FXML
-    void irAOpo(MouseEvent event) {
+    void irASge(MouseEvent event) {
         TestConfigurator.setCategoriaTest(2);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
     }
 
-
+    /**
+     * Método que ejecuta la vista categorias al iniciar
+     *
+     * @param event evento
+     */
     @FXML
-    void irADam(MouseEvent event) {
+    void irAAcessoDatos(MouseEvent event) {
         TestConfigurator.setCategoriaTest(1);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/test-view.fxml"));
         changeSceneMethodWithMouseEvent(loader, event);
     }
 
+    /**
+     * Método que ejecuta la vista categorias al iniciar
+     *
+     * @param event evento
+     */
     @FXML
     void irAfutbol(MouseEvent event) {
         TestConfigurator.setCategoriaTest(3);
@@ -108,10 +127,13 @@ public class MainMenuController implements Initializable {
         changeSceneMethodWithMouseEvent(loader, event);
     }
 
-
+    /**
+     * Método que ejecuta la vista login al iniciar
+     *
+     * @param event evento
+     */
     @FXML
     void methodLogout(ActionEvent event) {
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("¿Estás seguro de que quieres cerrar sesión?");
@@ -124,7 +146,12 @@ public class MainMenuController implements Initializable {
         }
     }
 
-
+    /**
+     * Método que inicializa la vista
+     *
+     * @param url            url
+     * @param resourceBundle resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
@@ -132,7 +159,9 @@ public class MainMenuController implements Initializable {
 
     }
 
-
+    /**
+     * Método que inicializa el reloj
+     */
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -147,6 +176,9 @@ public class MainMenuController implements Initializable {
         timeline.play();
     }
 
+    /**
+     * Método que recupera el Usuario que ha iniciado sesion
+     */
     private void initUser() {
         Usuario user = Session.getUsuario();
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());

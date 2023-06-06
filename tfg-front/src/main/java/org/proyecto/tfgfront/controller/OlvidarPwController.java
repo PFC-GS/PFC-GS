@@ -12,6 +12,9 @@ import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
+/**
+ * Clase controladora de la vista olvidarPw
+ */
 public class OlvidarPwController implements Initializable {
 
     @FXML
@@ -23,6 +26,12 @@ public class OlvidarPwController implements Initializable {
 
     private Boolean respuesta;
 
+    /**
+     * Método que comprueba si el email introducido es correcto y envia un correo con la contraseña,
+     * despues ejecuta la vista login
+     *
+     * @param event evento
+     */
     @FXML
     void buscaCorreo(ActionEvent event) {
 
@@ -46,13 +55,23 @@ public class OlvidarPwController implements Initializable {
         }
     }
 
+    /**
+     * Método que ejecuta la vista login
+     *
+     * @param event evento
+     */
     @FXML
     void goToLogin(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/login-view.fxml"));
         changeSceneMethod(loader, event);
     }
 
-
+    /**
+     * Método que carga la vista al iniciar
+     *
+     * @param url            url
+     * @param resourceBundle resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         emailUsuario.setPromptText("Introduce tu correo electronico");

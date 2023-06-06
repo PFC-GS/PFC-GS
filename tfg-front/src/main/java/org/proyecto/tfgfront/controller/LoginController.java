@@ -18,6 +18,9 @@ import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
+/**
+ * Clase controladora de la vista de login
+ */
 public class LoginController implements Initializable {
 
     @FXML
@@ -35,48 +38,59 @@ public class LoginController implements Initializable {
 
     private Usuario user;
 
+    /**
+     * Método que ejecuta la vista olvidarPw al iniciar
+     *
+     * @param event evento
+     */
     @FXML
     void olvidastePw(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/olvidarPw-view.fxml"));
-
         changeSceneMethod(loader, event);
     }
+
+    /**
+     * Método que ejecuta la vista registro al iniciar
+     *
+     * @param event evento
+     */
     @FXML
     void irARegistro(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/registro-view.fxml"));
-
         changeSceneMethod(loader, event);
     }
 
 
-
+    /**
+     * Método que comprueba si el usuario existe en la base de datos y si es así, ejecuta la vista mainmenu
+     *
+     * @param event evento
+     * @throws IOException excepción
+     */
     @FXML
     void accionBoton(ActionEvent event) throws IOException {
         boolean usuarioValido = false;
 
-        user = uniRest.login(emailLogin.getText(),contrasenaLogin.getText());
+        user = uniRest.login(emailLogin.getText(), contrasenaLogin.getText());
         conditionsRedText();
-        if (user != null){
+        if (user != null) {
             if (user.getEmail().equals(emailLogin.getText()) && user.getPassword().equals(contrasenaLogin.getText())) {
                 usuarioValido = true;
-            }else {
+            } else {
                 panelWrong.setVisible(true);
-
             }
-
         }
         if (usuarioValido) {
-
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
-
-                changeSceneMethod(loader, event);
-
+            changeSceneMethod(loader, event);
         } else {
             panelWrong.setVisible(true);
         }
     }
 
+    /**
+     * Método extaido de accionBoton que comprueba si el email es válido y si no lo es, pintará el campo de color rojo
+     */
     private void conditionsRedText() {
         List<TextField> textFields = Arrays.asList(emailLogin, contrasenaLogin);
 
@@ -87,19 +101,24 @@ public class LoginController implements Initializable {
         }
     }
 
-
-
-
-
+    /**
+     * Método que incializa la vista
+     *
+     * @param url            url
+     * @param resourceBundle resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarTextField(emailLogin, "Correo electrónico");
         configurarTextField(contrasenaLogin, "Contraseña");
-
-
-
-
     }
+
+    /**
+     * Método que configura los textfield
+     *
+     * @param textField       textfield
+     * @param textoSugerencia texto sugerencia
+     */
     private void configurarTextField(TextField textField, String textoSugerencia) {
         textField.setPromptText(textoSugerencia);
         textField.getStyleClass().add("textField");

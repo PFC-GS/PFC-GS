@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 
+/**
+ * Clase controladora de la vista resultadoTest
+ */
 public class ResultadoTestController implements Initializable {
 
     @FXML
@@ -82,6 +85,11 @@ public class ResultadoTestController implements Initializable {
     private String panelPorDefecto = "-fx-background-color: #f8efd7";
     private String panelVerde = "-fx-background-color: #7eb400";
 
+    /**
+     * Método que al ejecutarse descarga el excel con las preguntas y respuestas del usuario
+     *
+     * @param event evento que se produce al pulsar el botón
+     */
     @FXML
     void descargarExcel(ActionEvent event) {
         ExcelUtils.saveExcelToDownloads("RespuestasUsuario.xlsx");
@@ -94,30 +102,41 @@ public class ResultadoTestController implements Initializable {
 
     }
 
+    /**
+     * Método que al ejecutarse mueve la pregunta a la anterior
+     *
+     * @param event evento que se produce al pulsar el botón
+     */
     @FXML
     void atrasPreguntaResultado(ActionEvent event) {
-
-
         indicePreguntaActual--;
         contadorPreguntas--;
         siguientePreguntaResultado.setVisible(true);
 
         respuestaUsuario(0, atrasPreguntaResultado);
-
     }
 
+    /**
+     * Método que al ejecutarse mueve la pregunta a la siguiente
+     *
+     * @param event evento que se produce al pulsar el botón
+     */
     @FXML
     void siguientePreguntaResultado(ActionEvent event) {
-
-
         indicePreguntaActual++;
         contadorPreguntas++;
         atrasPreguntaResultado.setVisible(true);
 
         respuestaUsuario(respuestaUsuario.size() - 1, siguientePreguntaResultado);
-
     }
 
+    /**
+     * Método que al ejecutarse pinta el panel de la respuesta correcta de verde y la incorrecta de rojo,
+     * si no se ha contestado muestra un label con el texto "No contestada"
+     *
+     * @param x           numero de pregunta
+     * @param quitarBoton botón que se oculta
+     */
     private void respuestaUsuario(int x, Button quitarBoton) {
         respuestasCorrectas.sort(Comparator.comparing(Pregunta::getId));
         TestConfigurator.getRespuestas().sort(Comparator.comparing(Pregunta::getId));
@@ -128,9 +147,7 @@ public class ResultadoTestController implements Initializable {
         lbRespuesta2.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaB());
         lbRespuesta3.setText(respuestaUsuario.get(indicePreguntaActual).getRespuestaC());
 
-
         Pregunta preguntaUsuario = respuestaUsuario.get(indicePreguntaActual);
-
 
         correccionPreguntas(preguntaUsuario);
 
@@ -139,11 +156,15 @@ public class ResultadoTestController implements Initializable {
         }
     }
 
+    /**
+     * Método extraido del metodo respuestaUsuario que comprueba si la respuesta es correcta o no
+     *
+     * @param respuestaUsuario respuesta del usuario
+     */
     private void correccionPreguntas(Pregunta respuestaUsuario) {
         respuestasCorrectas.sort(Comparator.comparing(Pregunta::getId));
         TestConfigurator.getRespuestas().sort(Comparator.comparing(Pregunta::getId));
         for (Pregunta respuestaCorrecta : respuestasCorrectas) {
-
             if (respuestaUsuario.getId().equals(respuestaCorrecta.getId())) {
                 colorPanelesPorDefecto();
                 lbNoContesta.setVisible(false);
@@ -157,11 +178,16 @@ public class ResultadoTestController implements Initializable {
                     compruebaRespuestaCorrecta(respuestaCorrecta, panelVerde);
                     compruebaRespuestaCorrecta(respuestaUsuario, panelRojo);
                 }
-
             }
         }
     }
 
+    /**
+     * Método extraido de correccionPreguntas que comprueba si la respuesta es correcta o no
+     *
+     * @param respuestaCorrecta respuesta correcta
+     * @param colorPanel        color del panel
+     */
     private void compruebaRespuestaCorrecta(Pregunta respuestaCorrecta, String colorPanel) {
         if (respuestaCorrecta.getSolucion().equals("a")) {
             panelRespuesta1.setStyle(colorPanel);
@@ -174,12 +200,20 @@ public class ResultadoTestController implements Initializable {
         }
     }
 
+    /**
+     * Método que pone los paneles de las respuestas a su color por defecto
+     */
     private void colorPanelesPorDefecto() {
         panelRespuesta1.setStyle(panelPorDefecto);
         panelRespuesta2.setStyle(panelPorDefecto);
         panelRespuesta3.setStyle(panelPorDefecto);
     }
 
+    /**
+     * Método que al ejecutarse repite un test (es un test nuevo)
+     *
+     * @param event evento que se produce al pulsar el botón
+     */
     @FXML
     void repetirTest(ActionEvent event) {
         ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
@@ -188,6 +222,11 @@ public class ResultadoTestController implements Initializable {
         changeSceneMethod(loader, event);
     }
 
+    /**
+     * Método que al ejecutarse vuelve al menú principal
+     *
+     * @param event evento que se produce al pulsar el botón
+     */
     @FXML
     void irAMainMenu(ActionEvent event) {
         ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
@@ -196,6 +235,11 @@ public class ResultadoTestController implements Initializable {
         changeSceneMethod(loader, event);
     }
 
+    /**
+     * Método que al ejecutarse cierra la sesión actual y carga la vista de login
+     *
+     * @param event evento que se produce al pulsar el botón
+     */
     @FXML
     void logout(ActionEvent event) {
         ExcelUtils.deleteFile("RespuestasUsuario.xlsx");
@@ -236,9 +280,14 @@ public class ResultadoTestController implements Initializable {
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
     }
 
+    /**
+     * Método que inicializa la vista
+     *
+     * @param url            url
+     * @param resourceBundle resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         initTime();
         initUser();
         lbNoContesta.setVisible(false);
@@ -259,11 +308,7 @@ public class ResultadoTestController implements Initializable {
         //ordenamos las respuestas para que coincidan con las correctas y se pinten en el excel
         respuestasCorrectas.sort(Comparator.comparing(Pregunta::getId));
         TestConfigurator.getRespuestas().sort(Comparator.comparing(Pregunta::getId));
-
-        ExcelUtils.generateExcel(respuestasCorrectas,TestConfigurator.getRespuestas(),"RespuestasUsuario.xlsx");
-
-
+        //generamos el excel con las respuestas correctas y las del usuario
+        ExcelUtils.generateExcel(respuestasCorrectas, TestConfigurator.getRespuestas(), "RespuestasUsuario.xlsx");
     }
-
-
 }
