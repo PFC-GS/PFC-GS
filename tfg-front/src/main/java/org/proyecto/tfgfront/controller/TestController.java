@@ -19,7 +19,6 @@ import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
-import org.proyecto.tfgfront.util.ExcelUtils;
 
 import java.net.URL;
 import java.time.LocalTime;
@@ -78,6 +77,9 @@ public class TestController implements Initializable {
     private String respuestaUser;
     private List<Pregunta> respuesta = new ArrayList<>();
     private int indicePreguntaActual = 0;
+    private final String scaleYBorder = "; -fx-scale-x: 1.1; -fx-scale-y: 1.1; -fx-border-color: #1a181b; -fx-border-width: 4px; -fx-border-radius: ";
+    private final String ultimoPanelClickeadoSettings = "-fx-background-radius: 25px; -fx-border-color: transparent;";
+    private final String panelesDesmarcadosStyle = "-fx-background-radius: 25px; -fx-background-color: #f8efd7;";
 
     @FXML
     void seleccionPregunta1(MouseEvent event) {
@@ -121,10 +123,10 @@ public class TestController implements Initializable {
      */
     private void actualizarPanelClickeado(Pane panelRespuesta) {
         if (ultimoPanelClickeado != null && ultimoPanelClickeado != panelRespuesta) {
-            ultimoPanelClickeado.setStyle("-fx-background-radius: 25px; -fx-border-color: transparent;");
+            ultimoPanelClickeado.setStyle(ultimoPanelClickeadoSettings);
         }
         double radioBorde = panelRespuesta.getBackground().getFills().get(0).getRadii().getTopLeftHorizontalRadius();
-        panelRespuesta.setStyle("-fx-background-radius: " + radioBorde + "; -fx-scale-x: 1.1; -fx-scale-y: 1.1; -fx-border-color: #1a181b; -fx-border-width: 4px; -fx-border-radius: " + radioBorde + ";");
+        panelRespuesta.setStyle("-fx-background-radius: " + radioBorde + scaleYBorder + radioBorde + ";");
         ultimoPanelClickeado = panelRespuesta;
     }
 
@@ -142,12 +144,14 @@ public class TestController implements Initializable {
         });
     }
 
-
+    /**
+     * Método que pasa a la siguiente pregunta
+     *
+     * @param event evento
+     */
     @FXML
     void siguientePregunta(ActionEvent event) {
-
         procesarRespuesta(event);
-
         panelesDesmarcados();
 
         respuestaUser = null;
@@ -159,26 +163,20 @@ public class TestController implements Initializable {
         lbRespuesta3.setText(preguntaActual.getRespuestaC());
         numeroPregunta.setText(String.valueOf(indicePreguntaActual + 1));
 
-
         // Establecer los eventos de clic para cada panel de respuesta
         setPanelRespuestaEvents(panelRespuesta1, "a");
         setPanelRespuestaEvents(panelRespuesta2, "b");
         setPanelRespuestaEvents(panelRespuesta3, "c");
-
     }
 
     /**
      * Método que pone los paneles de respuesta en su estado inicial
      */
     private void panelesDesmarcados() {
-        panelRespuesta1.setStyle("-fx-background-radius: 25px;\n" +
-                "    -fx-background-color: #f8efd7;");
-        panelRespuesta2.setStyle("-fx-background-radius: 25px;\n" +
-                "    -fx-background-color: #f8efd7;");
-        panelRespuesta3.setStyle("-fx-background-radius: 25px;\n" +
-                "    -fx-background-color: #f8efd7;");
+        panelRespuesta1.setStyle(panelesDesmarcadosStyle);
+        panelRespuesta2.setStyle(panelesDesmarcadosStyle);
+        panelRespuesta3.setStyle(panelesDesmarcadosStyle);
     }
-
 
     /**
      * Metodo que procesa la respuesta del usuario y la guarda en una lista
@@ -207,11 +205,8 @@ public class TestController implements Initializable {
             test.setPreguntas(respuestas);
             TestConfigurator.setRespuestas(respuesta);
 
-
-
             // Enviar el test al servidor
             uniRest.postTest(test);
-
 
             // Mostrar diálogo de alerta indicando que se ha terminado el test
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -230,7 +225,9 @@ public class TestController implements Initializable {
         }
     }
 
-
+    /**
+     * Método que inicializa el reloj
+     */
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -245,11 +242,20 @@ public class TestController implements Initializable {
         timeline.play();
     }
 
+    /**
+     * Método que recupera datos del usuario
+     */
     private void initUser() {
         Usuario user = Session.getUsuario();
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
     }
 
+    /**
+     * Método que inicializa la vista
+     *
+     * @param url            url
+     * @param resourceBundle resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -257,7 +263,6 @@ public class TestController implements Initializable {
         initTime();
         // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
         preguntas = new ArrayList<>(test.getPreguntas());
-
 
         if (!preguntas.isEmpty()) {
             preguntaActual = preguntas.get(0);
@@ -270,11 +275,7 @@ public class TestController implements Initializable {
             setPanelRespuestaEvents(panelRespuesta1, "a");
             setPanelRespuestaEvents(panelRespuesta2, "b");
             setPanelRespuestaEvents(panelRespuesta3, "c");
-
         }
-
     }
-
-
 }
 

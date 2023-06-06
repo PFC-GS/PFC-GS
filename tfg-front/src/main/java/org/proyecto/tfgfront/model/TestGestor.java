@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+/**
+ * Clase modelo de TestGestor
+ */
 public class TestGestor {
     private Test test;
     private Set<Pregunta> preguntasCorrectas;

@@ -6,7 +6,9 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+/**
+ * Clase modelo de Pregunta
+ */
 public class Pregunta {
 
 

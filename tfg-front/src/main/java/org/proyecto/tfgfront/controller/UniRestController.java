@@ -18,11 +18,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * Clase controladora UniRest encargada de realizar las peticiones al servidor
+ */
 public class UniRestController {
 
+    //hora de inicio del test
     private final String hora = " 02:00:00.000";
 
+    /**
+     * Método que realiza una petición al servidor para obtener todas las categorías
+     *
+     * @return lista de categorías
+     */
     public List<Categoria> httpCategoria() {
         List<Categoria> categorias = new ArrayList<>();
         try {
@@ -39,7 +47,13 @@ public class UniRestController {
         return categorias;
     }
 
-
+    /**
+     * Método que realiza una petición al servidor para comprobar los datos de inicio de sesión del usuario
+     *
+     * @param email    email del usuario
+     * @param password contraseña del usuario
+     * @return usuario
+     */
     public static Usuario login(String email, String password) {
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/usuarios/{email}/{pass}")
@@ -61,6 +75,14 @@ public class UniRestController {
         }
     }
 
+    /**
+     * Método que realiza una petición al servidor para obtener un test por usuario,categoría y número de preguntas
+     *
+     * @param usuarioId    id del usuario
+     * @param categoriaId  id de la categoría
+     * @param numPreguntas número de preguntas
+     * @return test
+     */
     public Test getTest(Integer usuarioId, Integer categoriaId, Integer numPreguntas) {
         String url = "http://localhost:8080/tests/preguntas2/{usuarioId}/{categoriaId}";
         if (numPreguntas != null) {
@@ -79,7 +101,6 @@ public class UniRestController {
                 String responseBody = response.getBody();
                 Test test = gson.fromJson(responseBody, Test.class);
                 TestConfigurator.setfecha(test.getFecha() + hora);
-
                 return test;
             } else {
                 System.err.println("Error: Unexpected response status - " + statusCode);
@@ -91,9 +112,14 @@ public class UniRestController {
         return null;
     }
 
+    /**
+     * Método que realiza una petición al servidor para obtener una lista de test por id de usuario
+     *
+     * @param usuarioId id del usuario
+     * @return lista de test
+     */
     public List<TestGestor> getTestByUserId(Integer usuarioId) {
         String url = "http://localhost:8080/test/{usuarioId}";
-
         try {
             Gson gson = new Gson();
 
@@ -120,13 +146,15 @@ public class UniRestController {
         return null;
     }
 
-
+    /**
+     * Método que realiza una petición al servidor con el test realizado por el usuario para su corrección
+     *
+     * @param test test realizado por el usuario
+     */
     public void postTest(Test test) {
         String url = "http://localhost:8080/test/correccion";
-
         try {
             Gson gson = new Gson();
-
             HttpResponse<String> response = Unirest.post(url)
                     .header("Content-Type", "application/json")
                     .body(gson.toJson(test))
@@ -142,6 +170,11 @@ public class UniRestController {
         }
     }
 
+    /**
+     * Método que realiza una petición al servidor para obtener un testGestor por id de usuario y fecha
+     *
+     * @return testGestor
+     */
     public TestGestor getCorreccion() {
         String url = "http://localhost:8080/test/{usuarioId}/{fechaTest}";
 
@@ -168,7 +201,11 @@ public class UniRestController {
         return null;
     }
 
-
+    /**
+     * Método que realiza una petición al servidor para dar de alta a un usuario
+     *
+     * @param user usuario
+     */
     public void altaUsuario(Usuario user) {
         String url = "http://localhost:8080/usuarios";
 
@@ -188,9 +225,14 @@ public class UniRestController {
         } catch (UnirestException e) {
             System.err.println("Error: " + e.getMessage());
         }
-
     }
 
+    /**
+     * Método que realiza una petición al servidor para enviar un correo de recuperación de contraseña
+     *
+     * @param email email del usuario
+     * @return true si se ha enviado el correo, false en caso contrario
+     */
     public boolean enviarCorreo(String email) {
         String url = "http://localhost:8080/recuperaPass";
 
@@ -216,10 +258,14 @@ public class UniRestController {
 
     }
 
-
+    /**
+     * Método que realiza una petición al servidor para modificar un usuario
+     *
+     * @param user usuario
+     */
     public void modificaUsuario(Usuario user) {
         String id = String.valueOf(user.getId());
-        String url = "http://localhost:8080/usuarios/"+id;
+        String url = "http://localhost:8080/usuarios/" + id;
 
         try {
             Gson gson = new Gson();

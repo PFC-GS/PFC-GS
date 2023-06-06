@@ -30,6 +30,9 @@ import java.util.ResourceBundle;
 import static org.proyecto.tfgfront.util.Util.changeSceneMethod;
 import static org.proyecto.tfgfront.util.Util.changeSceneMethodResultadoTestEnPerfil;
 
+/**
+ * Clase controladora de la vista perfil
+ */
 public class PerfilController implements Initializable {
 
     @FXML
@@ -61,24 +64,44 @@ public class PerfilController implements Initializable {
 
     private int testCount = 0;
 
-
+    /**
+     * Método que carga la vista de cambiar datos personales
+     *
+     * @param event evento
+     */
     @FXML
     void cambiarDatosPersonales(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/cambiarDatosPersonales-view.fxml"));
         changeSceneMethod(loader, event);
     }
+
+    /**
+     * Método que carga la vista de cambiar contraseña
+     *
+     * @param event evento
+     */
     @FXML
     void cambiarPw(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/cambiarPw-view.fxml"));
         changeSceneMethod(loader, event);
     }
 
+    /**
+     * Método que carga la vista de mainMenu
+     *
+     * @param event evento
+     */
     @FXML
     void irAMainMenu(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/proyecto/tfgfront/mainmenu-view.fxml"));
         changeSceneMethod(loader, event);
     }
 
+    /**
+     * Método que carga la vista de login
+     *
+     * @param event evento
+     */
     @FXML
     void logout(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -93,18 +116,22 @@ public class PerfilController implements Initializable {
         }
     }
 
+    /**
+     * Método que inicializa la vista
+     * Carga la lista de test hecha por el usuario y la muestra en la vista
+     * Carga los datos del usuario y los muestra en la vista
+     * Si se quiere ver los detalles de un test, se carga la vista de resultadoTestEnPerfil
+     *
+     * @param url            url
+     * @param resourceBundle resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
         initTime(); // Inicializa el reloj
 
-
-        listaTest.sort(new Comparator<TestGestor>() {
-            @Override
-            public int compare(TestGestor t1, TestGestor t2) {
-                return t2.getTest().getId().compareTo(t1.getTest().getId());
-            }
-        });
+        //compara los test por id de forma descendente
+        listaTest.sort(Comparator.comparing((TestGestor t) -> t.getTest().getId()).reversed());
 
         int i = 0;
         int x = listaTest.size();
@@ -125,7 +152,6 @@ public class PerfilController implements Initializable {
                 HBox hboxNumeroPreguntas = createHBox("Número de preguntas: " + test.getTest().getPreguntas().size(), false, 14);
                 HBox hboxTestResult = createHBox(test.getTest().getCalificacion() >= 5 ? "Apto" : "No apto", false, 14);
 
-
                 // crear el link para ver los detalles del test
                 Hyperlink detallesLink = new Hyperlink("Ver Test");
                 detallesLink.setOnAction(new EventHandler<ActionEvent>() {
@@ -136,10 +162,7 @@ public class PerfilController implements Initializable {
                         changeSceneMethodResultadoTestEnPerfil(loader, event);
                         ResultadoTestEnPerfilController controller = loader.getController();
                         controller.setlistaTestGestor(test); // Asigna el testGestor a la instancia del controlador cargado
-
-
                     }
-
                 });
                 HBox hboxDetallesLink = new HBox(detallesLink);
                 hboxDetallesLink.setAlignment(Pos.CENTER);
@@ -152,11 +175,17 @@ public class PerfilController implements Initializable {
                 i++;
                 x--;
             }
-
-
         }
     }
 
+    /**
+     * Método que crea un HBox con un texto, un booleano para indicar si es negrita y un int para indicar el tamaño de la fuente
+     *
+     * @param text     texto
+     * @param isBold   booleano para indicar si es negrita
+     * @param fontSize int para indicar el tamaño de la fuente
+     * @return HBox
+     */
     private HBox createHBox(String text, boolean isBold, int fontSize) {
         Label label = new Label(text);
         String fontWeight = isBold ? "bold" : "normal";
@@ -166,7 +195,9 @@ public class PerfilController implements Initializable {
         return hbox;
     }
 
-
+    /**
+     * Método que inicializa el reloj
+     */
     private void initTime() {
         final LocalTime[] horaActual = {LocalTime.now()};
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -181,6 +212,9 @@ public class PerfilController implements Initializable {
         timeline.play();
     }
 
+    /**
+     * Método que recupera el usuario y lo muestra en la vista
+     */
     private void initUser() {
         Usuario user = Session.getUsuario();
         lbRecuperaNombre.setText(user.getNombre() + " " + user.getApellidos());
