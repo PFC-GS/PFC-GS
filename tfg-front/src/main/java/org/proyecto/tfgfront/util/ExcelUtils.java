@@ -12,6 +12,9 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * Clase ExcelUtils
+ */
 public class ExcelUtils {
 
     private static Workbook workbook;
@@ -20,8 +23,13 @@ public class ExcelUtils {
 
     private static final String[] columns = {"categoria", "dificultad", "enunciado", "respuestaA", "respuestaB", "respuestaC","respuesta usuario","respuesta correcta"};
 
+    /**
+     * Crea el archivo excel
+     * @param preguntas Lista de preguntas
+     * @param respuestas Lista de respuestas
+     * @param fileName Nombre del archivo
+     */
     public static void generateExcel(List<Pregunta> preguntas, List<Pregunta> respuestas, String fileName) {
-
 
         createWorkbookAndSheet();
         createHeaderRow();
@@ -30,12 +38,17 @@ public class ExcelUtils {
         writeToFile(fileName);
     }
 
-
+    /**
+     * Método extraido de generateExcel que crea el archivo excel
+     */
     private static void createWorkbookAndSheet() {
         workbook = new XSSFWorkbook();
         sheet = workbook.createSheet("Preguntas");
     }
 
+    /**
+     * Método extraido de generateExcel que crea el estilo de celda
+     */
     private static void createHeaderRow() {
         Row headerRow = sheet.createRow(0);
 
@@ -54,6 +67,11 @@ public class ExcelUtils {
         }
     }
 
+    /**
+     * Método extraido de generateExcel que escribe en el archivo
+     * @param preguntas
+     * @param respuestas
+     */
     private static void fillDataRows(List<Pregunta> preguntas, List<Pregunta> respuestas) {
         int rowNum = 1;
         for (Pregunta pregunta : preguntas) {
@@ -72,12 +90,19 @@ public class ExcelUtils {
         }
     }
 
+    /**
+     * Método extraido de generateExcel que ajusta el tamaño de las columnas
+     */
     private static void adjustColumnSizes() {
         for (int i = 0; i < columns.length; i++) {
             sheet.autoSizeColumn(i);
         }
     }
 
+    /**
+     * Método extraido de generateExcel que escribe en el archivo
+     * @param fileName Nombre del archivo
+     */
     private static void writeToFile(String fileName) {
         try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
             workbook.write(outputStream);
@@ -87,6 +112,11 @@ public class ExcelUtils {
         }
     }
 
+    /**
+     * Método extraido de fillDataRows que devuelve la categoria como String
+     * @param categoria Categoria
+     * @return Categoria como String
+     */
     private static String getCategoriaAsString(int categoria) {
         switch (categoria) {
             case 1:
@@ -100,6 +130,11 @@ public class ExcelUtils {
         }
     }
 
+    /**
+     * Método extraido de fillDataRows que devuelve la dificultad como String
+     * @param dificultad Dificultad
+     * @return Dificultad como String
+     */
     private static String getDificultadAsString(int dificultad) {
         switch (dificultad) {
             case 1:
@@ -112,6 +147,11 @@ public class ExcelUtils {
                 return "";
         }
     }
+
+    /**
+     * Método que borra el archivo
+     * @param fileName Nombre del archivo
+     */
     public static void deleteFile(String fileName) {
         File file = new File(fileName);
         if (file.exists()) {
@@ -124,6 +164,11 @@ public class ExcelUtils {
             System.out.println("El archivo no existe.");
         }
     }
+
+    /**
+     * Método que guarda el archivo en la carpeta de descargas (windows)
+     * @param fileName Nombre del archivo
+     */
     public static void saveExcelToDownloads(String fileName) {
         String userHome = System.getProperty("user.home");
         Path rutaDescarga = FileSystems.getDefault().getPath(userHome, "Downloads");

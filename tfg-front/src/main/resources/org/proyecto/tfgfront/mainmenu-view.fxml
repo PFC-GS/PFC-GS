@@ -47,7 +47,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panelSur" layoutX="201.0" layoutY="423.0" prefHeight="369.0" prefWidth="1135.0" stylesheets="@../../../style/MainMenuStyle.css">
+      <AnchorPane fx:id="panelSur" layoutX="201.0" layoutY="425.0" prefHeight="395.0" prefWidth="1135.0" stylesheets="@../../../style/MainMenuStyle.css">
          <children>
             <ImageView fx:id="imagenHobby" fitHeight="424.0" fitWidth="798.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
                <image>
@@ -65,6 +65,7 @@
                </children>
             </AnchorPane>
             <Line endX="1126.0" layoutX="27.0" startX="-25.0" />
+            <Label fx:id="lbVersion" layoutX="1079.0" layoutY="366.0" prefHeight="20.0" prefWidth="56.0" stylesheets="@../../../style/MainMenuStyle.css" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelNorte" layoutX="199.0" layoutY="57.0" prefHeight="369.0" prefWidth="1135.0" stylesheets="@../../../style/MainMenuStyle.css">

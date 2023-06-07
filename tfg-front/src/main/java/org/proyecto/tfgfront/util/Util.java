@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Clase Util
+ */
 public class Util {
 
     public static void changeSceneMethod(FXMLLoader loader, ActionEvent event) {

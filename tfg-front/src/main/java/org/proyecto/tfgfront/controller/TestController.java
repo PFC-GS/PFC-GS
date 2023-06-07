@@ -19,6 +19,7 @@ import org.proyecto.tfgfront.model.Test;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
+import org.proyecto.tfgfront.util.Constants;
 
 import java.net.URL;
 import java.time.LocalTime;
@@ -48,6 +49,8 @@ public class TestController implements Initializable {
     private Label lbhora;
     @FXML
     private Label lbRecuperaNombre;
+    @FXML
+    private Label lbVersion;
 
     @FXML
     private AnchorPane panelEncabezado;
@@ -261,6 +264,7 @@ public class TestController implements Initializable {
 
         initUser();
         initTime();
+        lbVersion.setText(Constants.version);
         // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
         preguntas = new ArrayList<>(test.getPreguntas());
 

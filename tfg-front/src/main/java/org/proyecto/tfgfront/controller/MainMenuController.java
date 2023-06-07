@@ -19,6 +19,7 @@ import javafx.util.Duration;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
+import org.proyecto.tfgfront.util.Constants;
 
 import java.net.URL;
 import java.time.LocalTime;
@@ -41,6 +42,8 @@ public class MainMenuController implements Initializable {
     private Label labelhora;
     @FXML
     private Label lbCategoria;
+    @FXML
+    private Label lbVersion;
 
     @FXML
     private AnchorPane futbolPanel;
@@ -156,6 +159,7 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
         initTime(); // Inicializa el reloj
+        lbVersion.setText(Constants.version);
 
     }
 

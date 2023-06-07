@@ -5,10 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Usuario;
+import org.proyecto.tfgfront.util.Constants;
+import org.proyecto.tfgfront.util.Util;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +36,8 @@ public class LoginController implements Initializable {
     private TextField emailLogin;
     @FXML
     private Button loginButton;
+    @FXML
+    private Label lbVersion;
 
     private UniRestController uniRest = new UniRestController();
 
@@ -111,6 +116,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarTextField(emailLogin, "Correo electrónico");
         configurarTextField(contrasenaLogin, "Contraseña");
+        lbVersion.setText(Constants.version);
     }
 
     /**

@@ -19,6 +19,7 @@ import javafx.util.Duration;
 import org.proyecto.tfgfront.model.TestGestor;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
+import org.proyecto.tfgfront.util.Constants;
 
 import java.net.URL;
 import java.time.LocalTime;
@@ -51,6 +52,8 @@ public class PerfilController implements Initializable {
     private Label lbDatosNombre;
     @FXML
     private Label lbTotalTest;
+    @FXML
+    private Label lbVersion;
     @FXML
     private Button seguridad;
     @FXML
@@ -129,6 +132,7 @@ public class PerfilController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUser(); // Inicializa el usuario
         initTime(); // Inicializa el reloj
+        lbVersion.setText(Constants.version);
 
         //compara los test por id de forma descendente
         listaTest.sort(Comparator.comparing((TestGestor t) -> t.getTest().getId()).reversed());

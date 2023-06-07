@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="770.0" prefWidth="1312.0" stylesheets="@../../../style/OlvidarPwStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyecto.tfgfront.controller.OlvidarPwController">
    <children>
       <AnchorPane fx:id="panelMenu" prefHeight="834.0" prefWidth="201.0" stylesheets="@../../../style/OlvidarPwStyle.css">
@@ -40,5 +39,6 @@
             <Button layoutX="133.0" layoutY="271.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="43.0" prefWidth="121.0" text="Cancelar" textFill="WHITE" />
          </children>
       </AnchorPane>
+      <Label fx:id="lbVersion" layoutX="1272.0" layoutY="784.0" prefHeight="18.0" prefWidth="22.0" />
    </children>
 </AnchorPane>

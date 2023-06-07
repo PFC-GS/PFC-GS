@@ -106,5 +106,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Label fx:id="lbVersion" layoutX="1265.0" layoutY="749.0" prefHeight="18.0" prefWidth="22.0" />
    </children>
 </AnchorPane>
