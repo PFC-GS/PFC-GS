@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import org.proyecto.tfgfront.model.Usuario;
+import org.proyecto.tfgfront.util.Constants;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,6 +29,8 @@ public class RegistroController implements Initializable {
     private TextField emailUsuario;
     @FXML
     private Label lbLey;
+    @FXML
+    private Label lbVersion;
 
     @FXML
     private TextField nombreUsuario;
@@ -219,6 +222,7 @@ public class RegistroController implements Initializable {
 
         String ley = leerArchivoTexto("proteccionDatos.txt");
         lbLey.setText(ley);
+        lbVersion.setText(Constants.version);
     }
 
     /**

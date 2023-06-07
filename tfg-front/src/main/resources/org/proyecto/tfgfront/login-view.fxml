@@ -78,6 +78,7 @@
             </Label>
          </children>
       </Pane>
+      <Label fx:id="lbVersion" layoutX="1289.0" layoutY="748.0" prefHeight="18.0" prefWidth="22.0" />
        
    </children>
 </AnchorPane>

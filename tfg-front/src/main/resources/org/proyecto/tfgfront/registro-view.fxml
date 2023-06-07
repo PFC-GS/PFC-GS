@@ -92,5 +92,6 @@
          </children>
       </AnchorPane>
       <Button fx:id="btnAceptarLey" layoutX="643.0" layoutY="728.0" mnemonicParsing="false" onAction="#aceptarLey" prefHeight="43.0" prefWidth="121.0" stylesheets="@../../../style/RegistroStyle.css" text="Aceptar" textFill="WHITE" visible="false" />
+      <Label fx:id="lbVersion" layoutX="1292.0" layoutY="799.0" prefHeight="18.0" prefWidth="22.0" />
    </children>
 </AnchorPane>

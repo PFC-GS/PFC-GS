@@ -85,5 +85,6 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <Label fx:id="lbVersion" layoutX="1360.0" layoutY="755.0" prefHeight="18.0" prefWidth="22.0" />
    </children>
 </AnchorPane>

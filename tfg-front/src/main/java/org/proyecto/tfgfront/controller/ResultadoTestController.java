@@ -16,6 +16,7 @@ import org.proyecto.tfgfront.model.TestGestor;
 import org.proyecto.tfgfront.model.Usuario;
 import org.proyecto.tfgfront.session.Session;
 import org.proyecto.tfgfront.session.TestConfigurator;
+import org.proyecto.tfgfront.util.Constants;
 import org.proyecto.tfgfront.util.ExcelUtils;
 
 import java.net.URL;
@@ -61,6 +62,8 @@ public class ResultadoTestController implements Initializable {
     private Label numeroPregunta;
     @FXML
     private Label lbNoContesta;
+    @FXML
+    private Label lbVersion;
 
     @FXML
     private Button siguientePreguntaResultado;
@@ -290,6 +293,7 @@ public class ResultadoTestController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initTime();
         initUser();
+        lbVersion.setText(Constants.version);
         lbNoContesta.setVisible(false);
         atrasPreguntaResultado.setVisible(false);
         lbFecha.setText(testCorreccion.getTest().getFecha());
