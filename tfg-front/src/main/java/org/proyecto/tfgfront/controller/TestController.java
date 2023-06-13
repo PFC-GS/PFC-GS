@@ -204,9 +204,12 @@ public class TestController implements Initializable {
             preguntaActual = preguntas.get(indicePreguntaActual);
         } else {
             // Guardar las respuestas del usuario en un objeto Test
-            Set<Pregunta> respuestas = new HashSet<>(respuesta);
+            respuesta.sort(Comparator.comparing(Pregunta::getId));
+            Set<Pregunta> respuestas = new LinkedHashSet<>(respuesta);
             test.setPreguntas(respuestas);
+
             TestConfigurator.setRespuestas(respuesta);
+            test.getPreguntas().stream().sorted(Comparator.comparing(Pregunta::getId));
 
             // Enviar el test al servidor
             uniRest.postTest(test);
@@ -267,6 +270,7 @@ public class TestController implements Initializable {
         lbVersion.setText(Constants.version);
         // mostramos la primera pregunta al usuario y delvolvemos la respuesta segun el panel que se ha clickeado
         preguntas = new ArrayList<>(test.getPreguntas());
+        preguntas.sort(Comparator.comparing(Pregunta::getId));
 
         if (!preguntas.isEmpty()) {
             preguntaActual = preguntas.get(0);

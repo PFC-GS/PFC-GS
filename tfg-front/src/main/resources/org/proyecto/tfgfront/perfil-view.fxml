@@ -64,17 +64,17 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lbDatosCorreo" layoutX="358.0" layoutY="698.0" prefHeight="21.0" prefWidth="160.0">
+      <Label fx:id="lbDatosCorreo" layoutX="358.0" layoutY="698.0" prefHeight="21.0" prefWidth="320.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lbDatosApellidos" layoutX="358.0" layoutY="655.0" prefHeight="21.0" prefWidth="160.0">
+      <Label fx:id="lbDatosApellidos" layoutX="358.0" layoutY="655.0" prefHeight="21.0" prefWidth="250.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lbDatosNombre" layoutX="358.0" layoutY="614.0" prefHeight="21.0" prefWidth="192.0">
+      <Label fx:id="lbDatosNombre" layoutX="358.0" layoutY="614.0" prefHeight="21.0" prefWidth="292.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -107,5 +107,10 @@
          </font>
       </Label>
       <Label fx:id="lbVersion" layoutX="1265.0" layoutY="749.0" prefHeight="18.0" prefWidth="22.0" />
+      <Label fx:id="lbDatosNombre1" layoutX="368.0" layoutY="624.0" prefHeight="21.0" prefWidth="292.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
