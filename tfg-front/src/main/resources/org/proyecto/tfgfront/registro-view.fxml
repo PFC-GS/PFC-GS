@@ -68,7 +68,7 @@
             </ScrollPane>
             <RadioButton fx:id="radioPolitica" layoutX="420.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#mostrarPoliticaPrivacidad" text="Politica de privacidad">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </RadioButton>
          </children>
